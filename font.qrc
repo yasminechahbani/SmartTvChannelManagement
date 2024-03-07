@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/font">
+        <file>Kabel Book BT_0.ttf</file>
+    </qresource>
+</RCC>
