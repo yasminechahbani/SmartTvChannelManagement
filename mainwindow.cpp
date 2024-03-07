@@ -1,59 +1,84 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "sponsor.h" // Include the sponsor header file
+#include <QMessageBox>
+#include <QSqlError>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::changeCursor);
+    // Connect signals and slots here if needed
+    ui->equip_tab->setModel(sponsor.showSponsor()); // Update to use the Sponsor class
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-//added code to change the cursor to pointing hand upon click
-void MainWindow::changeCursor()
+
+// Validate form function remains the same if form fields are common
+
+void MainWindow::on_ajouter_clicked()
 {
-    // Set the cursor to PointingHandCursor
-    QApplication::setOverrideCursor(Qt::PointingHandCursor);
+    QString sponsor_id = ui->id_lineEdit->text();
+    QString sponsor_nom = ui->name_lineEdit->text();
+    QString sponsor_montant = ui->montant_lineEdit->text();
+    QString sponsor_tempsaffichage = ui->tempsaffichage_lineEdit->text();
+    QString sponsor_nb_totalaffichage = ui->nb_totalaffichage_lineEdit->text();
+    QString sponsor_etatcontrat = ui->etatcontrat_lineEdit->text();
+
+    Sponsor sponsor(sponsor_id, sponsor_nom, sponsor_montant, sponsor_tempsaffichage, sponsor_nb_totalaffichage, sponsor_etatcontrat);
+
+    if (!sponsor.addSponsor()) {
+        QMessageBox::critical(nullptr, "Error", "Failed to add sponsor.");
+        return;
+    }
+
+    ui->equip_tab->setModel(sponsor.showSponsor());
+    QMessageBox::information(nullptr, "Success", "Sponsor added successfully.");
 }
 
-//////////////////////////////////////
-//#include "mainwindow.h"
-//#include "ui_mainwindow.h"
-//#include <QPushButton>
+void MainWindow::on_delete_button_clicked()
+{
+    QString sponsor_id = ui->id_lineEdit_delete->text();
+    if (!sponsor.deleteSponsor(sponsor_id)) {
+        QMessageBox::critical(nullptr, "Error", "Failed to delete sponsor.");
+        return;
+    }
 
-//MainWindow::MainWindow(QWidget *parent)
-//    : QMainWindow(parent)
-//    , ui(new Ui::MainWindow)
-//{
-//    ui->setupUi(this);
+    ui->equip_tab->setModel(sponsor.showSponsor());
+    QMessageBox::information(nullptr, "Success", "Sponsor deleted successfully.");
+}
 
-//    // Create and customize the first button
-//    QPushButton* button1 = new QPushButton("Button 1", this);
-//    button1->setStyleSheet("background-color: red;");
-//    button1->setGeometry(50, 50, 100, 50);
 
-//    // Create and customize the second button
-//    QPushButton* button2 = new QPushButton("Button 2", this);
-//    button2->setStyleSheet("background-color: green;");
-//    button2->setGeometry(200, 50, 100, 50);
+void MainWindow::on_list_all_button_clicked()
+{
+    ui->equip_tab->setModel(sponsor.showSponsor());
+}
 
-//    // Create and customize the third button
-//    QPushButton* button3 = new QPushButton("Button 3", this);
-//    button3->setStyleSheet("background-color: blue;");
-//    button3->setGeometry(50, 150, 100, 50);
+void MainWindow::on_clear_fields_add_clicked()
+{
+    ui->id_lineEdit->clear();
+    ui->name_lineEdit->clear();
+    ui->montant_lineEdit->clear();
+    ui->tempsaffichage_lineEdit->clear();
+    ui->nb_totalaffichage_lineEdit->clear();
+    ui->etatcontrat_lineEdit->clear();
+}
 
-//    // Create and customize the fourth button
-//    QPushButton* button4 = new QPushButton("Button 4", this);
-//    button4->setStyleSheet("background-color: yellow;");
-//    button4->setGeometry(200, 150, 100, 50);
-//}
-
-//MainWindow::~MainWindow()
-//{
-//    delete ui;
-//}
-
+void MainWindow::on_clear_all_in_table_clicked()
+{
+    int reply = QMessageBox::question(this, "Confirmation", "Are you sure you want to clear all lines in the table?", QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        QSqlQuery query;
+        query.prepare("DELETE FROM sponsor");
+        if (!query.exec()) {
+            QMessageBox::critical(this, "Error", "Failed to clear table.");
+            return;
+        }
+        ui->equip_tab->setModel(sponsor.showSponsor());
+    }
+}

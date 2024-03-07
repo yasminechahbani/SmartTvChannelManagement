@@ -1,7 +1,7 @@
 QT       += core gui
 QT+=sql
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
+CONFIG+=console;
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     connexion.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    sponsor.cpp
 
 HEADERS += \
     connexion.h \
-    mainwindow.h
+    mainwindow.h \
+    sponsor.h
 
 FORMS += \
     mainwindow.ui
