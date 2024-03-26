@@ -45,12 +45,12 @@ bool EMISSION::deleteEmission(QString id)
     return query.exec();
 }
 
-/*QSqlQueryModel* EMISSION::searchEmissionByName(QString name)
+QSqlQueryModel* EMISSION::searchEmissionByName(QString name)
 {
     QSqlQueryModel* model = new QSqlQueryModel();
     model->setQuery("SELECT * FROM emissions WHERE emission_nom LIKE '%" + name + "%'");
     return model;
-}*/
+}
 
 bool EMISSION::updateEmission(QString id)
 {

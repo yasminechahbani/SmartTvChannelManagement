@@ -44,7 +44,7 @@ public:
     bool CreateEmission();
     QSqlQueryModel* ReadEmission();
     bool deleteEmission(QString);
-    //QSqlQueryModel* searchEmissionByName(QString name);
+    QSqlQueryModel* searchEmissionByName(QString name);
     bool updateEmission(QString id);
 
 

@@ -86,10 +86,8 @@ void MainWindow::on_clear_all_in_table_clicked()
 void MainWindow::on_list_all_button_clicked()
 {
     QString searchName = ui->search_name_lineEdit->text();
-    //no search
-    ui->tabb->setModel(Emission.ReadEmission());
-    //with search
-    //ui->tabb->setModel(Emission.searchEmissionByName(searchName));
+
+    ui->tabb->setModel(Emission.searchEmissionByName(searchName));
 }
 
 
