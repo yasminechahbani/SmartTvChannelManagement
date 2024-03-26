@@ -66,3 +66,14 @@ bool EMISSION::updateEmission(QString id)
     query.bindValue(":id", id);
     return query.exec();
 }
+
+
+
+
+QSqlQuery EMISSION::getEMISSIONData()
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM emissions");
+    query.exec();
+    return query;
+}

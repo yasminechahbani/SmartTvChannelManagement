@@ -9,6 +9,8 @@
 #include<QDate>
 #include<QDesktopServices>
 #include<QUrl>
+#include <QtCharts>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -116,3 +118,76 @@ void MainWindow::on_update_clicked()
     QMessageBox::information(nullptr, "Success", "Emission updated successfully.");
 }
 
+
+//pdf//////////////////
+void MainWindow::on_Generate_PDF_clicked()
+{
+    QPdfWriter pdf("C:/Users/USER/Desktop/official_projectCPP_folder/pdf/EMISSION.pdf");
+    QPainter painter(&pdf);
+    int i = 4100;
+    const QImage image("C:/Users/USER/Desktop/official_projectCPP_folder/pdf/417529624_1870268480077915_5802465082538659099_n.png");
+    const QPoint imageCoordinates(155,0);
+    int width1 = 2000;
+    int height1 = 2000;
+    QImage img=image.scaled(width1,height1);
+    painter.drawImage(imageCoordinates, img );
+
+    QColor dateColor(0x4a5bcf);
+    painter.setPen(dateColor);
+    painter.setFont(QFont("Montserrat SemiBold", 11));
+    QDate cd = QDate::currentDate();
+    painter.drawText(7700,250,cd.toString("Ariana, El Ghazela"));
+    painter.drawText(8100,500,cd.toString("dd/MM/yyyy"));
+
+    QColor titleColor(0x341763);
+    painter.setPen(titleColor);
+    painter.setFont(QFont("Montserrat SemiBold", 25));
+    painter.drawText(3000,2700,"EMISSION LIST");
+
+    painter.setPen(Qt::black);
+    painter.setFont(QFont("Time New Roman", 15));
+    painter.drawRect(100,3300,9400,500);
+
+    painter.setFont(QFont("Montserrat SemiBold", 10));
+    painter.drawText(1000, 3600, "EMISSION_ID");
+    painter.drawText(2000, 3600, "NAME");
+    painter.drawText(3000, 3600, "HOST");
+    painter.drawText(4000, 3600, "NBVIEWERS");
+    painter.drawText(5000, 3600, "GENRE");
+    painter.drawText(6000, 3600, "TYPE");
+    painter.drawText(7000, 3600, "DATE");
+    painter.drawText(8000, 3600, "DUREE");
+
+    painter.setFont(QFont("Montserrat", 10));
+    painter.drawRect(100,3300,9400,9000);
+
+    EMISSION emission;
+    QSqlQuery query = emission.getEMISSIONData();
+    int y=4300;
+    while (query.next())
+    {
+        painter.drawLine(100,y,9490,y);
+        y+=500;
+        painter.drawText(200,i,query.value(0).toString());
+        painter.drawText(2000,i,query.value(1).toString());
+        painter.drawText(3000,i,query.value(2).toString());
+        painter.drawText(4000,i,query.value(3).toString());
+        painter.drawText(5000,i,query.value(4).toString());
+        painter.drawText(6000,i,query.value(5).toString());
+        painter.drawText(7000,i,query.value(6).toString());
+        painter.drawText(8000,i,query.value(7).toString());
+
+        i = i + 500;
+    }
+
+    int reponse = QMessageBox::question(this, "Generate PDF", "PDF Saved. Do you want to open it?", QMessageBox::Yes | QMessageBox::No);
+    if (reponse == QMessageBox::Yes)
+    {
+        QDesktopServices::openUrl(QUrl::fromLocalFile("C:/Users/USER/Desktop/official_projectCPP_folder/pdf/EMISSION.pdf"));
+        painter.end();
+    }
+    else
+    {
+        painter.end();
+    }
+}

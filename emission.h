@@ -46,6 +46,7 @@ public:
     bool deleteEmission(QString);
     QSqlQueryModel* searchEmissionByName(QString name);
     bool updateEmission(QString id);
+    QSqlQuery getEMISSIONData();
 
 
 };
