@@ -1,7 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "emission.h"
 #include <QMainWindow>
+#include <QObject>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,11 +16,19 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
 private slots:
-    void changeCursor();
+    void on_ajouter_clicked();
+    void on_delete_button_clicked();
+    void on_list_all_button_clicked();
+    void on_clear_all_in_table_clicked();
+    void on_update_clicked();
+
+
 
 
 private:
     Ui::MainWindow *ui;
+    EMISSION Emission;
 };
 #endif // MAINWINDOW_H
