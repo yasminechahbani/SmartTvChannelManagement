@@ -23,6 +23,7 @@ private slots:
     void on_list_all_button_clicked();
     void on_clear_fields_add_clicked();
     void on_clear_all_in_table_clicked();
+    void on_update_clicked();
 
 private:
     Ui::MainWindow *ui;

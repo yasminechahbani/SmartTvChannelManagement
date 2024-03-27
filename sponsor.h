@@ -42,6 +42,8 @@ public:
     bool deleteSponsor(QString id);
     QSqlQuery getSponsorData();
     QSqlQueryModel *showSearch(const QString &searchTerm);
+    bool updateSponsor(QString id) ;
+    
 };
 
 #endif // SPONSOR_H

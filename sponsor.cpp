@@ -66,3 +66,16 @@ QSqlQuery Sponsor::getSponsorData()
     query.exec();
     return query;
 }
+bool Sponsor::updateSponsor(QString id)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE sponsor SET sponsor_nom = :nom, sponsor_montant = :montant, sponsor_tempsaffichage = :tempsaffichage, sponsor_nb_totalaffichage = :nb_totalaffichage, sponsor_etatcontrat = :etatcontrat WHERE sponsor_id = :id");
+    query.bindValue(":nom", sponsor_nom);
+    query.bindValue(":montant", sponsor_montant);
+    query.bindValue(":tempsaffichage", sponsor_tempsaffichage);
+    query.bindValue(":nb_totalaffichage", sponsor_nb_totalaffichage);
+    query.bindValue(":etatcontrat", sponsor_etatcontrat);
+    query.bindValue(":id", id);
+    return query.exec();
+}
+
