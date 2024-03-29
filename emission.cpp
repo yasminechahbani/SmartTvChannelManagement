@@ -77,3 +77,11 @@ QSqlQuery EMISSION::getEMISSIONData()
     query.exec();
     return query;
 }
+
+
+QSqlQuery EMISSION::getStatBynbviews()
+{
+    QSqlQuery query;
+    query.exec("SELECT emission_nbviewers, COUNT(*) FROM emissions GROUP BY emission_nbviewers");
+    return query;
+}

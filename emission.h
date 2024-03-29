@@ -47,6 +47,7 @@ public:
     QSqlQueryModel* searchEmissionByName(QString name);
     bool updateEmission(QString id);
     QSqlQuery getEMISSIONData();
+    QSqlQuery getStatBynbviews();
 
 
 };

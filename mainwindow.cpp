@@ -191,3 +191,33 @@ void MainWindow::on_Generate_PDF_clicked()
         painter.end();
     }
 }
+
+
+//chartssssssssssss
+
+
+void MainWindow::on_stat_clicked()
+{
+    EMISSION emission;
+         QSqlQuery query = emission.getStatBynbviews();
+
+         QtCharts::QPieSeries *series = new QtCharts::QPieSeries();
+         while (query.next()) {
+             QString type = query.value(0).toString();
+             int count = query.value(1).toInt();
+             QtCharts::QPieSlice *slice = new QtCharts::QPieSlice(type, count);
+             series->append(slice);
+         }
+
+         QtCharts::QChart *chart = new QtCharts::QChart();
+         chart->addSeries(series);
+         chart->setTitle("Statistiques");
+         chart->setAnimationOptions(QtCharts::QChart::SeriesAnimations);
+
+         QtCharts::QChartView *chartView = new QtCharts::QChartView(chart);
+         chartView->setRenderHint(QPainter::Antialiasing);
+         chartView->setParent(ui->tableView);
+         chartView->resize(ui->tableView->size());
+         chartView->show();
+}
+

@@ -1054,7 +1054,7 @@ font: 75 12pt &quot;8514oem&quot;;
        <string>    Show List</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="stats_button">
+     <widget class="QPushButton" name="stat">
       <property name="geometry">
        <rect>
         <x>590</x>
@@ -1930,6 +1930,19 @@ background:rgb(217, 237, 255);</string>
          <string>host</string>
         </property>
        </widget>
+       <widget class="QTableView" name="tableView">
+        <property name="geometry">
+         <rect>
+          <x>580</x>
+          <y>200</y>
+          <width>256</width>
+          <height>192</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:rgb(3, 43, 67);</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
@@ -2048,7 +2061,7 @@ background:rgb(217, 237, 255);</string>
        </widget>
       </widget>
      </widget>
-     <zorder>stats_button</zorder>
+     <zorder>stat</zorder>
      <zorder>pushButton_2</zorder>
      <zorder>add_button</zorder>
      <zorder>search_name_lineEdit</zorder>
