@@ -1352,7 +1352,7 @@ font: 75 12pt &quot;8514oem&quot;;
 background:rgb(217, 237, 255);</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -2061,6 +2061,36 @@ background:rgb(217, 237, 255);</string>
        </widget>
       </widget>
      </widget>
+     <widget class="QPushButton" name="printEmissions">
+      <property name="geometry">
+       <rect>
+        <x>660</x>
+        <y>690</y>
+        <width>231</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{color:#D00000;
+border-radius:20px;
+border: 1px solid #D00000;
+font: 75 12pt &quot;8514oem&quot;;
+}
+QPushButton:hover {
+    background: #D00000;
+        color:white;
+
+
+}
+</string>
+      </property>
+      <property name="text">
+       <string>print</string>
+      </property>
+     </widget>
      <zorder>stat</zorder>
      <zorder>pushButton_2</zorder>
      <zorder>add_button</zorder>
@@ -2086,6 +2116,7 @@ background:rgb(217, 237, 255);</string>
      <zorder>label_18</zorder>
      <zorder>sort_button</zorder>
      <zorder>tabWidget</zorder>
+     <zorder>printEmissions</zorder>
     </widget>
     <widget class="QLabel" name="label">
      <property name="geometry">
@@ -2462,7 +2493,7 @@ background:transparent;
      <x>0</x>
      <y>0</y>
      <width>1753</width>
-     <height>26</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuCreate">

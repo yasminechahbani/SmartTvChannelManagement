@@ -25,6 +25,7 @@ private slots:
     void on_update_clicked();
     void on_Generate_PDF_clicked();
     void on_stat_clicked();
+    void on_printEmissions_clicked();
 
 
 

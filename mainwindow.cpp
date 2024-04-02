@@ -10,6 +10,10 @@
 #include<QDesktopServices>
 #include<QUrl>
 #include <QtCharts>
+#include <QPrinter>
+#include <QPrintDialog>
+#include <QPainter>
+
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -69,6 +73,13 @@ void MainWindow::on_delete_button_clicked()
 //}
 
 
+void MainWindow::on_list_all_button_clicked()
+{
+    QString searchName = ui->search_name_lineEdit->text();
+
+    ui->tabb->setModel(Emission.searchEmissionByName(searchName));
+}
+
 
 void MainWindow::on_clear_all_in_table_clicked()
 {
@@ -85,12 +96,7 @@ void MainWindow::on_clear_all_in_table_clicked()
 }
 
 
-void MainWindow::on_list_all_button_clicked()
-{
-    QString searchName = ui->search_name_lineEdit->text();
 
-    ui->tabb->setModel(Emission.searchEmissionByName(searchName));
-}
 
 
 void MainWindow::on_update_clicked()
@@ -220,4 +226,48 @@ void MainWindow::on_stat_clicked()
          chartView->resize(ui->tableView->size());
          chartView->show();
 }
+
+
+//printtttttttttttttttttt////////
+
+
+void MainWindow::on_printEmissions_clicked()
+{
+    // Create a QPrinter object for high-resolution printing
+    QPrinter printer(QPrinter::HighResolution);
+    printer.setPageSize(QPrinter::A4); // Set page size to A4
+    printer.setOrientation(QPrinter::Landscape); // Set orientation to landscape
+    printer.setFullPage(false); // Do not print the full page
+
+    // Create a print dialog for the printer
+    QPrintDialog printDialog(&printer, this);
+
+    // Open the print dialog, wait for user input
+    if (printDialog.exec() == QDialog::Accepted) {
+        // If the user accepts, create a QPainter object to paint on the printer
+        QPainter painter(&printer);
+
+        // Get the printable area of the page
+        QRect printArea = printer.pageRect();
+
+        // Get the size of the content you want to print (assuming it's a table view)
+        QSize tableViewSize = ui->tabb->sizeHint(); // Assuming your table view is named 'tabb'
+
+        // Scale the content to fit within the print area
+        double xscale = printArea.width() / double(tableViewSize.width());
+        double yscale = printArea.height() / double(tableViewSize.height());
+        double scale = qMin(xscale, yscale);
+
+        // Translate the painter to start drawing from the top left of the print area
+        painter.translate(printArea.topLeft());
+
+        // Apply the scale to fit the content within the print area
+        painter.scale(scale, scale);
+
+        // Render the table view onto the painter
+        ui->tabb->render(&painter); // Assuming your table view is named 'tabb'
+    }
+}
+
+
 
