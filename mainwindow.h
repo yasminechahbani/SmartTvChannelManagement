@@ -6,6 +6,7 @@
 #include <QHoverEvent>
 #include "invites.h"
 #include <QTableView>
+//#include "stat.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -20,6 +21,9 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 private slots:
+    bool validateFormData();
+    void on_pushButton_9_clicked();
+    void on_pushButton_10_clicked();
     void changeCursor();
     void openForm();
     void opensupp();
@@ -32,6 +36,21 @@ private slots:
     void refreshTable();
 void on_tableView_activated(const QModelIndex &);
     void on_Generate_PDF_clicked();
+    void handleDateSelection(const QDate &selectedDate);
+
+
+
+
+
+    void on_toolButton_2_clicked();
+
+    void on_pushButton_6_clicked();
+
+    void on_pushButton_11_clicked();
+
+    void on_pushButton_list_clicked();
+
+    void on_pushButton_12_clicked();
 
 private:
     Ui::MainWindow *ui;

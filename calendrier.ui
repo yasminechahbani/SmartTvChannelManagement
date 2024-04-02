@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>supp</class>
- <widget class="QWidget" name="supp">
+ <class>calendrier</class>
+ <widget class="QWidget" name="calendrier">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>578</width>
-    <height>434</height>
+    <width>786</width>
+    <height>558</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QTableView" name="tableView">
+  <widget class="QCalendarWidget" name="calendarWidget">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>90</y>
-     <width>256</width>
-     <height>192</height>
+     <x>50</x>
+     <y>30</y>
+     <width>671</width>
+     <height>391</height>
     </rect>
    </property>
   </widget>

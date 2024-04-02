@@ -1,5 +1,11 @@
 QT       += core gui
 QT+=sql
+QT += charts
+QT += network
+TARGET = gen_UI.pro
+TEMPLATE = app
+INCLUDEPATH += "C:\Program Files\OpenSSL-Win64\include\openssl"
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -16,6 +22,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    calendrier.cpp \
+    chat.cpp \
+    chatserver.cpp \
     connexion.cpp \
     dialog.cpp \
     form.cpp \
@@ -25,6 +34,9 @@ SOURCES += \
     supp.cpp
 
 HEADERS += \
+    calendrier.h \
+    chat.h \
+    chatserver.h \
     connexion.h \
     dialog.h \
     form.h \
@@ -33,6 +45,8 @@ HEADERS += \
     supp.h
 
 FORMS += \
+    calendrier.ui \
+    chat.ui \
     dialog.ui \
     form.ui \
     mainwindow.ui \
@@ -50,3 +64,5 @@ RESOURCES += \
     font.qrc \
     icons_ui_dark.qrc \
     logo.qrc
+
+

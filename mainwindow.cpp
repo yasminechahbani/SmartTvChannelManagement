@@ -14,15 +14,18 @@
 #include<QPainter>
 #include<QDate>
 #include<QDesktopServices>
+#include <QtCharts>
+#include "calendrier.h"
+#include "chat.h"
+#include "ui_supp.h"
 //#include <QWidget>
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    ui->tableView->setModel(inv.afficher());
+
 
 
 
@@ -31,6 +34,9 @@ MainWindow::MainWindow(QWidget *parent)
        connect(ui->pushButton_6, SIGNAL(clicked()), this, SLOT(opensupp()));
        connect(ui->pushButton_up, SIGNAL(clicked()), this, SLOT(openUpdate()));
        connect(ui->pushButton_4, &QPushButton::clicked, this, &MainWindow::refreshTable);
+       //connect(ui->toolButton_3, SIGNAL(clicked()), this, SLOT(openStat()));
+
+        ui->tableView->setModel(inv.afficher());
 
 }
 
@@ -38,6 +44,148 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
+
+
+
+
+
+
+bool MainWindow::validateFormData()
+{
+    // Retrieve data from UI
+    QString ID_INV=ui->id_lineEdit->text();
+    QString NOM_INV=ui->nom_lineEdit_2->text();
+    QString PRENOM_INV=ui->prenom_lineEdit_3->text();
+    QString SEXE_INV=ui->sexe_lineEdit_4->text();
+    QString METIER_INV=ui->metier_lineEdit_5->text();
+    QString DATEN_INV=ui->date_lineEdit_6->text();
+    QString TEL_INV=ui->num_lineEdit_7->text();
+
+    // Check constraints for each field
+    if (ID_INV.isEmpty()) {
+        QMessageBox::critical(this, "Error", "ID_INV cannot be empty.");
+        return false;
+    }
+
+    if (NOM_INV.isEmpty()) {
+        QMessageBox::critical(this, "Error", "NOM_INV cannot be empty.");
+        return false;
+    }
+
+    if (PRENOM_INV.isEmpty()) {
+        QMessageBox::critical(this, "Error", "PRENOM_INV cannot be empty.");
+        return false;
+    }
+
+    if (SEXE_INV.isEmpty()) {
+        QMessageBox::critical(this, "Error", "SEXE_INV cannot be empty.");
+        return false;
+    }
+
+    if (METIER_INV.isEmpty()) {
+        QMessageBox::critical(this, "Error", "METIER_INV cannot be empty.");
+        return false;
+    }
+
+    if (DATEN_INV.isEmpty()) {
+        QMessageBox::critical(this, "Error", "DATEN_INV cannot be empty.");
+        return false;
+    }
+
+    if (TEL_INV.isEmpty()) {
+        QMessageBox::critical(this, "Error", "TEL_INV cannot be empty.");
+        return false;
+    }
+
+    // Add more checks for other fields if needed
+
+    return true; // All checks passed
+}
+
+
+
+
+//crud
+//ajout
+
+void MainWindow::on_pushButton_9_clicked()
+{
+    QString id_inv=ui->id_lineEdit->text();
+    QString nom_inv=ui->nom_lineEdit_2->text();
+    QString prenom_inv=ui->prenom_lineEdit_3->text();
+    QString sexe_inv=ui->sexe_lineEdit_4->text();
+    QString metier_inv=ui->metier_lineEdit_5->text();
+    QString dateN_inv=ui->date_lineEdit_6->text();
+    QString tel_inv=ui->num_lineEdit_7->text();
+    //QString nom_inv=ui->lineEdit_nom->text();
+    //invites i(nom_inv,prenom_inv,sexe_inv,metier_inv,dateN_inv,tel_inv);
+
+   //QString id_inv = "3"; // Définir l'ID de l'invité selon votre logique
+   QString id_em = "";
+    invites i(id_inv,nom_inv, prenom_inv, sexe_inv, metier_inv, dateN_inv,tel_inv, id_em);
+
+
+    bool test=i.ajouter();
+
+
+    if (!validateFormData()) {
+           return; // Stop further processing if validation fails
+       }
+
+
+
+    if(test)
+    {
+        QMessageBox::information(nullptr,QObject::tr("OK"),
+                QObject::tr("Ajout effectué \n"
+                            "Click cancel to exit."),QMessageBox::Cancel);
+
+    }
+    else
+        QMessageBox::critical(nullptr, QObject::tr("Not OK"),
+                              QObject::tr("Ajout non effectué.\n"
+                                          "click cancel to exit."),QMessageBox::Cancel);
+
+}
+
+
+
+//suppression
+
+void MainWindow::on_pushButton_10_clicked()
+{
+    QString id_inv = ui->supp_lineEdit->text();
+    bool test = inv.supprimer(id_inv);
+    if (test) {
+        // Mise à jour de l'affichage si nécessaire
+        // ui->equip_tab->setModel(inv.afficher());
+
+        QMessageBox::information(nullptr, QObject::tr("OK"), QObject::tr("Suppression effectuée"), QMessageBox::Cancel);
+    } else {
+        QMessageBox::critical(nullptr, QObject::tr("Erreur"), QObject::tr("Suppression non effectuée"), QMessageBox::Cancel);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 void MainWindow::changeCursor() {
@@ -249,3 +397,118 @@ void MainWindow::on_Generate_PDF_clicked()
 }
 
 
+
+void MainWindow::on_toolButton_2_clicked()
+{
+
+     //ui->tableView->setModel(inv.afficher());
+    ui->tableView->sortByColumn(0, Qt::AscendingOrder);
+
+}
+
+void MainWindow::on_pushButton_6_clicked() {
+    /*invites invi;
+    QSqlQuery query = invi.getStatByType();
+
+    QtCharts::QPieSeries *series = new QtCharts::QPieSeries();
+    while (query.next()) {
+        QString type = query.value(0).toString();
+        int count = query.value(1).toInt();
+        QtCharts::QPieSlice *slice = new QtCharts::QPieSlice(type, count);
+        series->append(slice);
+    }
+
+    QtCharts::QChart *chart = new QtCharts::QChart();
+    chart->addSeries(series);
+    chart->setTitle("Statistiques");
+    chart->setAnimationOptions(QtCharts::QChart::SeriesAnimations);
+
+    QtCharts::QChartView *chartView = new QtCharts::QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+    // Ajoutons chartView au layout du central widget
+    QVBoxLayout *centralLayout = new QVBoxLayout(ui->centralwidget); // Assurez-vous que centralwidget est le widget central de votre MainWindow
+    centralLayout->addWidget(chartView);*/
+
+
+    QMainWindow *supp = new QMainWindow;
+        supp->setWindowTitle("Stats");
+
+        invites invi;
+        QSqlQuery query = invi.getStatByType();
+
+        QtCharts::QPieSeries *series = new QtCharts::QPieSeries();
+        while (query.next()) {
+            QString type = query.value(0).toString();
+            int count = query.value(1).toInt();
+            QtCharts::QPieSlice *slice = new QtCharts::QPieSlice(type, count);
+            series->append(slice);
+        }
+
+        QtCharts::QChart *chart = new QtCharts::QChart();
+        chart->addSeries(series);
+        chart->setTitle("statistiques");
+        chart->setAnimationOptions(QtCharts::QChart::SeriesAnimations);
+
+        QtCharts::QChartView *chartView = new QtCharts::QChartView(chart);
+        chartView->setRenderHint(QPainter::Antialiasing);
+
+
+        supp->setCentralWidget(chartView);
+
+
+        QSize chartSize = chartView->size();
+        QSize windowSize(chartSize.width(), supp->size().height());
+        supp->resize(windowSize);
+
+
+        supp->show();
+}
+
+
+void MainWindow::on_pushButton_11_clicked()
+{
+    calendrier *myCalendrier = new calendrier(this); // Instancier votre widget calendrier
+
+            myCalendrier->show(); // Afficher le widget calendrier
+            ui->tableView->setModel(inv.afficher());
+}
+
+// Fonction de gestion de la sélection de date
+void MainWindow::handleDateSelection(const QDate &selectedDate)
+{
+    // Afficher la date sélectionnée
+    QMessageBox::information(this, "Date sélectionnée", "Vous avez sélectionné la date : " + selectedDate.toString());
+}
+
+
+void MainWindow::on_pushButton_list_clicked()
+{
+    chat *myChat = new chat(this); // Instancier votre widget chat
+
+    myChat->exec();
+     // Définir myChat comme widget central de la fenêtre principale
+
+    ui->tableView->setModel(inv.afficher());
+
+
+
+
+
+
+}
+
+
+
+
+
+void MainWindow::on_pushButton_12_clicked()
+{
+    ui->id_lineEdit->clear();
+    ui->nom_lineEdit_2->clear();
+    ui->prenom_lineEdit_3->clear();
+    ui->sexe_lineEdit_4->clear();
+    ui->metier_lineEdit_5->clear();
+    ui->date_lineEdit_6->clear();
+    ui->num_lineEdit_7->clear();
+}

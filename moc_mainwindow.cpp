@@ -114,7 +114,7 @@ void *MainWindow::qt_metacast(const char *_clname)
 int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QMainWindow::qt_metacall(_c, _id, _a);
-    if (_id < 0)
+    //if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
         if (_id < 5)

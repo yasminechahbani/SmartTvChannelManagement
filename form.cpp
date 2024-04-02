@@ -1,15 +1,21 @@
 #include "form.h"
 #include "ui_form.h"
-#include "invites.h"
-#include <QString>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply> // Ajoutez cette ligne
 #include <QMessageBox>
-//#include "connexion.h"
+
+#include <QtNetwork>
+#include <QUrl>
+#include <QNetworkRequest>
+#include <QNetworkReply>
 
 Form::Form(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Form)
 {
     ui->setupUi(this);
+    //setupConnections();
 }
 
 Form::~Form()
@@ -17,104 +23,90 @@ Form::~Form()
     delete ui;
 }
 
+/*
+void Form::sendSMS() {
+    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+    QUrl url("https://api.twilio.com/2010-04-01/Accounts/ACd25f435fa45075b1a05079c1b08200a2/Messages.json");
 
+    QByteArray postData;
+    postData.append("From=+12132960550"); // Votre numéro Twilio
+    postData.append("&To= +21696027492");
+    postData.append("&Body= hello");
 
+    QNetworkRequest request(url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+    request.setRawHeader("Authorization", "Basic " + QByteArray("ACd25f435fa45075b1a05079c1b08200a2:97989348834c400a4c239f6273f1cc63").toBase64());
 
-bool Form::validateFormData()
-{
-    // Retrieve data from UI
-    QString ID_INV=ui->lineEdit_id->text();
-    QString NOM_INV=ui->lineEdit_nom->text();
-    QString PRENOM_INV=ui->lineEdit_prenom->text();
-    QString SEXE_INV=ui->lineEdit_sexe->text();
-    QString METIER_INV=ui->lineEdit_metier->text();
-    QString DATEN_INV=ui->lineEdit_date->text();
-    QString TEL_INV=ui->lineEdit_tel->text();
+    QNetworkReply *reply = manager->post(request, postData);
 
-    // Check constraints for each field
-    if (ID_INV.isEmpty()) {
-        QMessageBox::critical(this, "Error", "ID_INV cannot be empty.");
-        return false;
-    }
-
-    if (NOM_INV.isEmpty()) {
-        QMessageBox::critical(this, "Error", "NOM_INV cannot be empty.");
-        return false;
-    }
-
-    if (PRENOM_INV.isEmpty()) {
-        QMessageBox::critical(this, "Error", "PRENOM_INV cannot be empty.");
-        return false;
-    }
-
-    if (SEXE_INV.isEmpty()) {
-        QMessageBox::critical(this, "Error", "SEXE_INV cannot be empty.");
-        return false;
-    }
-
-    if (METIER_INV.isEmpty()) {
-        QMessageBox::critical(this, "Error", "METIER_INV cannot be empty.");
-        return false;
-    }
-
-    if (DATEN_INV.isEmpty()) {
-        QMessageBox::critical(this, "Error", "DATEN_INV cannot be empty.");
-        return false;
-    }
-
-    if (TEL_INV.isEmpty()) {
-        QMessageBox::critical(this, "Error", "TEL_INV cannot be empty.");
-        return false;
-    }
-
-    // Add more checks for other fields if needed
-
-    return true; // All checks passed
+    connect(reply, &QNetworkReply::finished, [=]() {
+        if (reply->error() == QNetworkReply::NoError) {
+            QMessageBox::information(this, "Success", "SMS sent successfully");
+        } else {
+            QMessageBox::critical(this, "Error", "Error sending SMS: " + reply->errorString());
+        }
+        reply->deleteLater();
+    });
 }
 
-
-
-
-
-
-void Form::on_pushButton_clicked()
-{
-    QString id_inv=ui->lineEdit_id->text();
-    QString nom_inv=ui->lineEdit_nom->text();
-    QString prenom_inv=ui->lineEdit_prenom->text();
-    QString sexe_inv=ui->lineEdit_sexe->text();
-    QString metier_inv=ui->lineEdit_metier->text();
-    QString dateN_inv=ui->lineEdit_date->text();
-    QString tel_inv=ui->lineEdit_tel->text();
-    //QString nom_inv=ui->lineEdit_nom->text();
-    //invites i(nom_inv,prenom_inv,sexe_inv,metier_inv,dateN_inv,tel_inv);
-
-   //QString id_inv = "3"; // Définir l'ID de l'invité selon votre logique
-   QString id_em = "";
-    invites i(id_inv,nom_inv, prenom_inv, sexe_inv, metier_inv, dateN_inv,tel_inv, id_em);
-
-
-    bool test=i.ajouter();
-
-
-    if (!validateFormData()) {
-           return; // Stop further processing if validation fails
-       }
-
-
-
-    if(test)
-    {
-        QMessageBox::information(nullptr,QObject::tr("OK"),
-                QObject::tr("Ajout effectué \n"
-                            "Click cancel to exit."),QMessageBox::Cancel);
-
-    }
-    else
-        QMessageBox::critical(nullptr, QObject::tr("Not OK"),
-                              QObject::tr("Ajout non effectué.\n"
-                                          "click cancel to exit."),QMessageBox::Cancel);
-
+void Form::on_pushButton_SMS_clicked() {
+    QString recipient = ui->phoneLineEdit->text();
+    QString message = ui->messageLineEdit->text();
+    sendSMS();
 }
 
+void Form::setupConnections() {
+    connect(ui->pushButton_SMS, &QPushButton::clicked, this, &Form::on_pushButton_SMS_clicked);
+}
+*/
+
+
+
+
+
+
+void Form::sendSMS(const QString& recipient, const QString& message)
+{
+    QNetworkAccessManager* manager = new QNetworkAccessManager(this);
+    connect(manager, &QNetworkAccessManager::finished, this, &Form::onSMSRequestFinished);
+
+    // Twilio API credentials
+    QString accountSid = "ACd25f435fa45075b1a05079c1b08200a2";
+    QString authToken = "97989348834c400a4c239f6273f1cc63";
+
+    // Construct Twilio API endpoint URL
+    QUrl url("https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json");
+    QNetworkRequest request(url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+    // Construct request parameters
+    QUrlQuery params;
+    params.addQueryItem("To", recipient);
+    params.addQueryItem("From", "+12132960550");
+    params.addQueryItem("Body", message);
+    QByteArray postData = params.toString(QUrl::FullyEncoded).toUtf8();
+
+    // Set Twilio API authentication header
+    QString auth = accountSid + ":" + authToken;
+    QByteArray authData = auth.toUtf8().toBase64();
+    request.setRawHeader("Authorization", "Basic " + authData);
+
+    // Send HTTP POST request to Twilio API
+    manager->post(request, postData);
+}
+
+void Form::onSMSRequestFinished(QNetworkReply* reply)
+{
+    if (reply->error() == QNetworkReply::NoError) {
+        QMessageBox::information(this, "SMS Sent", "The SMS message has been sent successfully.");
+    } else {
+        QMessageBox::critical(this, "Error", "Failed to send SMS message: " + reply->errorString());
+    }
+    reply->deleteLater();
+}
+void Form::on_pushButton_SMS_clicked() {
+    QString recipient = ui->phoneLineEdit->text();
+    QString message = ui->messageLineEdit->text();
+    sendSMS(recipient, message);
+}
 

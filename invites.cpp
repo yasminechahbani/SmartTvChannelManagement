@@ -51,7 +51,7 @@ bool invites::ajouter()
 QSqlQueryModel * invites::afficher()
 {
 QSqlQueryModel * model=new QSqlQueryModel();
-model->setQuery("select * from invites");
+model->setQuery("select * from invites ORDER BY ID_INV ASC");
 model->setHeaderData(0,Qt::Horizontal,QObject::tr("id_inv"));
 model->setHeaderData(1,Qt::Horizontal,QObject::tr("nom_inv"));
 model->setHeaderData(2,Qt::Horizontal,QObject::tr("prenom_inv"));
@@ -77,11 +77,17 @@ bool invites::supprimer(QString id_inv)
                return false;
 }
 
-
 QSqlQuery invites::getInvitesData()
 {
     QSqlQuery query;
     query.prepare("SELECT * FROM invites");
     query.exec();
+    return query;
+}
+
+QSqlQuery invites::getStatByType()
+{
+    QSqlQuery query;
+    query.exec("SELECT SEXE_INV, COUNT(*) FROM invites GROUP BY SEXE_INV");
     return query;
 }
