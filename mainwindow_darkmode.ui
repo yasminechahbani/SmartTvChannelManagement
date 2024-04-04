@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>MainWindowDarkMode</class>
+ <widget class="QMainWindow" name="MainWindowDarkMode">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QMainWindow {
+   <string notr="true">QMainWindowDarkMode {
     background: white;
 }</string>
   </property>
@@ -47,7 +47,7 @@
       <rect>
        <x>50</x>
        <y>220</y>
-       <width>361</width>
+       <width>261</width>
        <height>61</height>
       </rect>
      </property>
@@ -76,7 +76,7 @@ QPushButton:hover {
 </string>
      </property>
      <property name="text">
-      <string>Shows</string>
+      <string>          Shows</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_10">
@@ -760,7 +760,7 @@ background:transparent;
       <rect>
        <x>20</x>
        <y>10</y>
-       <width>401</width>
+       <width>271</width>
        <height>111</height>
       </rect>
      </property>
@@ -780,7 +780,7 @@ border: 5px solid white;
      <widget class="QLabel" name="label_5">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>10</x>
         <y>10</y>
         <width>251</width>
         <height>81</height>
@@ -809,10 +809,9 @@ border:0px
      </property>
      <property name="styleSheet">
       <string notr="true">
- /*  background: #032B43;*/
+ background: #032B43;
   border: 0px ;
-  /*background-color:#3F88C5;*/
-background-color:white;
+  background-color:rgb(3, 40, 63)5;
     color: white;
     border-radius: 50px;
 </string>
@@ -934,7 +933,7 @@ font: 75 12pt &quot;8514oem&quot;;
      <widget class="QLabel" name="label_15">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>50</x>
         <y>700</y>
         <width>91</width>
         <height>41</height>
@@ -983,7 +982,7 @@ QPushButton:hover {
      <widget class="QPushButton" name="Generate_PDF">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>60</x>
         <y>690</y>
         <width>231</width>
         <height>71</height>
@@ -1914,7 +1913,7 @@ background:rgb(217, 237, 255);</string>
      <widget class="QPushButton" name="printEmissions">
       <property name="geometry">
        <rect>
-        <x>260</x>
+        <x>300</x>
         <y>690</y>
         <width>231</width>
         <height>71</height>
@@ -1944,8 +1943,8 @@ QPushButton:hover {
      <widget class="QComboBox" name="sortComboBox">
       <property name="geometry">
        <rect>
-        <x>530</x>
-        <y>220</y>
+        <x>450</x>
+        <y>200</y>
         <width>73</width>
         <height>22</height>
        </rect>
@@ -1973,8 +1972,8 @@ QPushButton:hover {
      <widget class="QPushButton" name="sort">
       <property name="geometry">
        <rect>
-        <x>420</x>
-        <y>220</y>
+        <x>340</x>
+        <y>200</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -1997,8 +1996,62 @@ font: 75 12pt &quot;8514oem&quot;;</string>
      <widget class="QPushButton" name="dark_mode">
       <property name="geometry">
        <rect>
-        <x>500</x>
+        <x>540</x>
         <y>690</y>
+        <width>231</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{color:#D00000;
+border-radius:20px;
+border: 1px solid #D00000;
+font: 75 12pt &quot;8514oem&quot;;
+}
+QPushButton:hover {
+    background: #D00000;
+        color:white;
+
+
+}
+</string>
+      </property>
+      <property name="text">
+       <string>light mode</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="sort_2">
+      <property name="geometry">
+       <rect>
+        <x>1120</x>
+        <y>200</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">  background-color: #3F88C5;
+        border: none;
+        color: white;
+        font-weight: bold;
+        padding: 5px;
+        width: 30px;
+        height: 30px;
+        border-radius: 20px;
+font: 75 12pt &quot;8514oem&quot;;</string>
+      </property>
+      <property name="text">
+       <string>sort</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="dark_mode_2">
+      <property name="geometry">
+       <rect>
+        <x>1240</x>
+        <y>670</y>
         <width>231</width>
         <height>71</height>
        </rect>
@@ -2024,11 +2077,40 @@ QPushButton:hover {
        <string>dark mode</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="excel">
+     <widget class="QComboBox" name="sortComboBox_2">
       <property name="geometry">
        <rect>
-        <x>740</x>
-        <y>690</y>
+        <x>1230</x>
+        <y>200</y>
+        <width>73</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:rgb(63, 136, 197);
+</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>A-Z </string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>default</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>tri 3</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QPushButton" name="printEmissions_2">
+      <property name="geometry">
+       <rect>
+        <x>1000</x>
+        <y>670</y>
         <width>231</width>
         <height>71</height>
        </rect>
@@ -2051,7 +2133,7 @@ QPushButton:hover {
 </string>
       </property>
       <property name="text">
-       <string>export to excel</string>
+       <string>print</string>
       </property>
      </widget>
      <zorder>stat</zorder>
@@ -2074,7 +2156,10 @@ QPushButton:hover {
      <zorder>sortComboBox</zorder>
      <zorder>sort</zorder>
      <zorder>dark_mode</zorder>
-     <zorder>excel</zorder>
+     <zorder>sort_2</zorder>
+     <zorder>dark_mode_2</zorder>
+     <zorder>sortComboBox_2</zorder>
+     <zorder>printEmissions_2</zorder>
     </widget>
     <widget class="QLabel" name="label">
      <property name="geometry">

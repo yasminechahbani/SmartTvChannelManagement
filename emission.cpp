@@ -86,12 +86,9 @@ QSqlQuery EMISSION::getStatBynbviews()
     return query;
 }
 
-QSqlQueryModel* EMISSION::ReadEmissionSorted(QString sortOrder) {
-    QSqlQueryModel* model = new QSqlQueryModel();
-    model->setQuery("SELECT * FROM emissions ORDER BY emission_nom " + sortOrder);
-    // Set header data here if needed
-    return model;
-}
+
+
+
 
 
 

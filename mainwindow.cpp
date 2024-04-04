@@ -15,23 +15,60 @@
 #include <QPainter>
 #include <QComboBox>
 #include <QSqlQueryModel>
+#include <QFileDialog>
+#include <QTextDocument>
+#include <QTextStream>
+#include <QStringListModel>
 
 
-
-
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     // Connect signals and slots here if needed
     ui->tabb->setModel(Emission.ReadEmission()); // Update to use the EMISSION class
+
 }
+
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
+
+
+
+/*void MainWindow::on_dark_mode_clicked()
+{
+    static bool isDarkModeEnabled = false;
+
+    // Toggle the dark mode flag
+    isDarkModeEnabled = !isDarkModeEnabled;
+
+    if (isDarkModeEnabled) {
+        // Load the dark mode UI
+        delete ui;
+        ui = new Ui::MainWindow;
+        ui->setupUi(this);
+        QFile file(":/darkmode.qss"); // Load the dark mode stylesheet
+        file.open(QFile::ReadOnly);
+        QString styleSheet = QLatin1String(file.readAll());
+        this->setStyleSheet(styleSheet);
+    } else {
+        // Load the default UI
+        delete ui;
+        ui = new Ui::MainWindow;
+        ui->setupUi(this);
+        this->setStyleSheet(""); // Clear any stylesheet
+    }
+}*/
+
+
+
+
 
 // Validate form function remains the same if form fields are common
 
@@ -301,23 +338,65 @@ void MainWindow::on_printEmissions_clicked()
 //tri//////////////
 
 
-void MainWindow::on_sortComboBox_clicked() {
 
-    int index = ui->sortComboBox->currentIndex();
 
-    switch (index) {
-        case 0: // Default sorting
-            ui->tabb->setModel(Emission.ReadEmission()); // No sorting
-            break;
-        case 1: // A to Z ascending
-            ui->tabb->setModel(Emission.ReadEmissionSorted("ASC")); // Sorting by name ascending
-            break;
-        case 2: // A to Z descending
-            ui->tabb->setModel(Emission.ReadEmissionSorted("DESC")); // Sorting by name descending
-            break;
-        default:
-            break;
+
+//excel///////////:::
+void MainWindow::on_excel_clicked() {
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Export Excel"), QString(), "*.csv");
+    if (fileName.isEmpty()) {
+        return; // User canceled save
     }
+
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QMessageBox::critical(this, "Error", "Cannot create file");
+        return;
+    }
+
+    QTextStream stream(&file);
+
+    // Write headers
+    stream << "ID         ,         Name         ,         Host         ,Viewers         ,         Genre         ,         Type         ,         Date         ,         Duration\n";
+
+    // Fetch data from the EMISSION model
+    QSqlQueryModel* model = Emission.ReadEmission();
+    const int rowCount = model->rowCount();
+    const int columnCount = model->columnCount();
+
+    // Write data
+    for (int i = 0; i < rowCount; ++i) {
+        for (int j = 0; j < columnCount; ++j) {
+            QString data = model->data(model->index(i, j)).toString();
+            stream << '"' << data.replace("\"", "\"\"") << '"';
+            if (j < columnCount - 1) {
+                stream << "         ,         ";
+            } else {
+                stream << "\n";
+            }
+        }
+    }
+
+    file.close();
+
+    int response = QMessageBox::question(this, "Export Successful", "Data exported to CSV file successfully. Do you want to open it?", QMessageBox::Yes | QMessageBox::No);
+    if (response == QMessageBox::Yes) {
+        QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
+    }
+}
+
+
+QStringList MainWindow::readEmissionForExcel(const QSqlQueryModel* model, int row) {
+    QStringList rowData;
+    const int columnCount = model->columnCount();
+
+    // Read data for the given row
+    for (int j = 0; j < columnCount; ++j) {
+        QString data = model->data(model->index(row, j)).toString();
+        rowData.append(data);
+    }
+
+    return rowData;
 }
 
 

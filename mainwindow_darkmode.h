@@ -1,25 +1,25 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef MAINWINDOW_DARKMODE_H
+#define MAINWINDOW_DARKMODE_H
 
+#include <QMainWindow>
 #include "emission.h"
 #include <QMainWindow>
 #include <QObject>
-#
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow;
-; }
+
+namespace Ui {
+class MainWindowDarkMode;
+}
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
-
+class MainWindowDarkMode : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
-
+    explicit MainWindowDarkMode(QWidget *parent = nullptr);
+    ~MainWindowDarkMode();
 
 private slots:
     void on_ajouter_clicked();
@@ -30,15 +30,14 @@ private slots:
     void on_Generate_PDF_clicked();
     void on_stat_clicked();
     void on_printEmissions_clicked();
-    void on_excel_clicked() ;
-    QStringList readEmissionForExcel(const QSqlQueryModel* model, int row) ;
-
-
+    void on_sortComboBox_clicked() ;
+    void on_dark_mode_clicked();
 
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindowDarkMode *ui;
     EMISSION Emission;
 
 };
-#endif // MAINWINDOW_H
+
+#endif // MAINWINDOW_DARKMODE_H
