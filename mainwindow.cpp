@@ -10,6 +10,9 @@
 #include<QDesktopServices>
 #include<QUrl>
 #include <QPainter>
+#include <QtCharts>
+
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -181,5 +184,29 @@ void MainWindow::on_Generate_PDF_clicked()
     {
         painter.end();
     }
+}
+void MainWindow::on_stat_clicked()
+{
+    Sponsor sponsor;
+    QSqlQuery query = sponsor.getStatByTempsAffichage();
+
+    QtCharts::QPieSeries *series = new QtCharts::QPieSeries();
+    while (query.next()) {
+        QString tempsAffichage = query.value(0).toString();
+        int count = query.value(1).toInt();
+        QtCharts::QPieSlice *slice = new QtCharts::QPieSlice(tempsAffichage, count);
+        series->append(slice);
+    }
+
+    QtCharts::QChart *chart = new QtCharts::QChart();
+    chart->addSeries(series);
+    chart->setTitle("Statistiques de temps d'affichage des sponsors");
+    chart->setAnimationOptions(QtCharts::QChart::SeriesAnimations);
+
+    QtCharts::QChartView *chartView = new QtCharts::QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    chartView->setParent(ui->tableView);
+    chartView->resize(ui->tableView->size());
+    chartView->show();
 }
 

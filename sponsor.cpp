@@ -91,4 +91,18 @@ QSqlQueryModel* Sponsor::searchsponsorByName(QString name)
     model->setQuery("SELECT * FROM Sponsors WHERE sponsor_nom LIKE '%" + name + "%'");
     return model;
 }
+QSqlQuery Sponsor::getSPONSORData()
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM sponsor");
+    query.exec();
+    return query;
+}
+QSqlQuery Sponsor::getStatByTempsAffichage()
+{
+    QSqlQuery query;
+    query.exec("SELECT sponsor_tempsaffichage, COUNT(*) FROM sponsor GROUP BY sponsor_tempsaffichage");
+    return query;
+}
+
 

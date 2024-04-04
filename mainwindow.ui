@@ -1048,7 +1048,7 @@ font: 75 12pt &quot;8514oem&quot;;
        <string>    Sponsor list</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="stats_button">
+     <widget class="QPushButton" name="stat">
       <property name="geometry">
        <rect>
         <x>590</x>
@@ -1349,7 +1349,7 @@ font: 75 12pt &quot;8514oem&quot;;
 background:transparent;</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -1743,6 +1743,19 @@ background:transparent;</string>
          <string>type here</string>
         </property>
        </widget>
+       <widget class="QPushButton" name="ajouter_2">
+        <property name="geometry">
+         <rect>
+          <x>420</x>
+          <y>160</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Ajouter</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
@@ -1803,6 +1816,19 @@ background:transparent;</string>
          <string>enter the sponsor id :</string>
         </property>
        </widget>
+       <widget class="QTableView" name="tableView">
+        <property name="geometry">
+         <rect>
+          <x>400</x>
+          <y>0</y>
+          <width>431</width>
+          <height>391</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:rgb(3, 43, 67);</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
@@ -1851,7 +1877,7 @@ colour:rgb(131, 179, 216);
        </widget>
       </widget>
      </widget>
-     <zorder>stats_button</zorder>
+     <zorder>stat</zorder>
      <zorder>pushButton_2</zorder>
      <zorder>add_button</zorder>
      <zorder>search_lineEdit</zorder>

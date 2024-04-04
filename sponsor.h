@@ -45,6 +45,8 @@ public:
     bool updateSponsor(QString id) ;
     QSqlQueryModel *Readsponsor() ;
     QSqlQueryModel* searchsponsorByName(QString name) ;
+    QSqlQuery getSPONSORData() ;
+    QSqlQuery getStatByTempsAffichage() ;
 
     
 };
