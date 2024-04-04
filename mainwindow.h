@@ -18,6 +18,7 @@ public:
     ~MainWindow();
 
 private slots:
+    void on_tableHeader_clicked(int index) ;
     void on_ajouter_clicked();
     void on_delete_button_clicked();
     void on_list_all_button_clicked();
@@ -26,10 +27,14 @@ private slots:
     void on_update_clicked();
     void on_Generate_PDF_clicked() ;
     void on_stat_clicked() ;
+    void on_checkContracts_clicked();
+
 
 private:
     Ui::MainWindow *ui;
     Sponsor sponsor; // Instantiate the Sponsor class
 };
+
+
 
 #endif // MAINWINDOW_H

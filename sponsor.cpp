@@ -104,5 +104,12 @@ QSqlQuery Sponsor::getStatByTempsAffichage()
     query.exec("SELECT sponsor_tempsaffichage, COUNT(*) FROM sponsor GROUP BY sponsor_tempsaffichage");
     return query;
 }
+QSqlQuery Sponsor::getSponsorsWithNonValideContract()
+{
+    QSqlQuery query;
+    query.prepare("SELECT sponsor_id, sponsor_nom FROM sponsor WHERE sponsor_etatcontrat = 'non valide'");
+    query.exec();
+    return query;
+}
 
 

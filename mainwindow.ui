@@ -1349,7 +1349,7 @@ font: 75 12pt &quot;8514oem&quot;;
 background:transparent;</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -2256,6 +2256,19 @@ background:transparent;
       <string>Employees</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="checkContracts">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>450</y>
+       <width>93</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Check contracts</string>
+     </property>
+    </widget>
     <zorder>pushButton</zorder>
     <zorder>label_10</zorder>
     <zorder>label_12</zorder>
@@ -2270,6 +2283,7 @@ background:transparent;
     <zorder>label_17</zorder>
     <zorder>pushButton_7</zorder>
     <zorder>label_13</zorder>
+    <zorder>checkContracts</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

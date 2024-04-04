@@ -11,6 +11,11 @@
 #include<QUrl>
 #include <QPainter>
 #include <QtCharts>
+#include <QCoreApplication>
+#include <QtNetwork>
+#include <QHeaderView>
+
+
 
 
 
@@ -19,9 +24,18 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    // Connect signals and slots here if needed
-    ui->sponsor_tab->setModel(sponsor.showSponsor()); // Update to use the Sponsor class
+    connect(ui->sponsor_tab->horizontalHeader(), &QHeaderView::sectionClicked, this, &MainWindow::on_tableHeader_clicked);
+    ui->sponsor_tab->setModel(sponsor.showSponsor());
+    ui->sponsor_tab->setSortingEnabled(true);
+
 }
+
+void MainWindow::on_tableHeader_clicked(int index)
+{
+    // Sort the table based on the clicked column
+    ui->sponsor_tab->sortByColumn(index, Qt::AscendingOrder);
+}
+
 
 MainWindow::~MainWindow()
 {
@@ -30,6 +44,7 @@ MainWindow::~MainWindow()
 
 // Validate form function remains the same if form fields are common
 
+// Other functions remain unchanged
 void MainWindow::on_ajouter_clicked()
 {
     QString sponsor_id = ui->id_lineEdit->text();
@@ -209,4 +224,26 @@ void MainWindow::on_stat_clicked()
     chartView->resize(ui->tableView->size());
     chartView->show();
 }
+void MainWindow::on_checkContracts_clicked()
+{
+    Sponsor sponsor;
+    QSqlQuery query = sponsor.getSponsorsWithNonValideContract();
+
+    QString message;
+    while (query.next())
+    {
+        QString sponsor_nom = query.value(1).toString();
+        message += "Sponsor '" + sponsor_nom + "' has a non valide contract.\n";
+    }
+
+    if (!message.isEmpty())
+    {
+        QMessageBox::information(this, "Non Valide Contracts", message);
+    }
+    else
+    {
+        QMessageBox::information(this, "Non Valide Contracts", "No sponsors with non valide contracts found.");
+    }
+}
+
 

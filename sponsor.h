@@ -16,6 +16,7 @@ private:
     QString sponsor_nb_totalaffichage;
     QString sponsor_etatcontrat;
 
+
 public:
     Sponsor() {}
     Sponsor(QString id, QString nom, QString montant, QString tempsaffichage, QString nb_totalaffichage, QString etatcontrat);
@@ -47,8 +48,11 @@ public:
     QSqlQueryModel* searchsponsorByName(QString name) ;
     QSqlQuery getSPONSORData() ;
     QSqlQuery getStatByTempsAffichage() ;
+    QSqlQuery getSponsorsWithNonValideContract();
+
 
     
 };
+
 
 #endif // SPONSOR_H
