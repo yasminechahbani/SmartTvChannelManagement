@@ -1202,7 +1202,7 @@ font: 75 12pt &quot;8514oem&quot;;
 background:rgb(217, 237, 255);</string>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -1289,7 +1289,7 @@ background:rgb(217, 237, 255);</string>
        <widget class="QPushButton" name="ajouter">
         <property name="geometry">
          <rect>
-          <x>250</x>
+          <x>90</x>
           <y>330</y>
           <width>201</width>
           <height>81</height>
@@ -1522,6 +1522,35 @@ background:rgb(217, 237, 255);</string>
         </property>
         <property name="placeholderText">
          <string>...........</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="qrcode">
+        <property name="geometry">
+         <rect>
+          <x>590</x>
+          <y>180</y>
+          <width>241</width>
+          <height>211</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>                             QR</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="generateQRButton">
+        <property name="geometry">
+         <rect>
+          <x>320</x>
+          <y>320</y>
+          <width>201</width>
+          <height>81</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color:rgb(75, 255, 10)</string>
+        </property>
+        <property name="text">
+         <string>generate qr code</string>
         </property>
        </widget>
       </widget>
@@ -1944,8 +1973,8 @@ QPushButton:hover {
      <widget class="QComboBox" name="sortComboBox">
       <property name="geometry">
        <rect>
-        <x>530</x>
-        <y>220</y>
+        <x>440</x>
+        <y>210</y>
         <width>73</width>
         <height>22</height>
        </rect>
@@ -1973,8 +2002,8 @@ QPushButton:hover {
      <widget class="QPushButton" name="sort">
       <property name="geometry">
        <rect>
-        <x>420</x>
-        <y>220</y>
+        <x>330</x>
+        <y>200</y>
         <width>93</width>
         <height>28</height>
        </rect>

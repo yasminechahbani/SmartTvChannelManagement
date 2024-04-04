@@ -22,12 +22,14 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp\
     emission.cpp\
-    connexion.cpp
+    connexion.cpp\
+    qrcode.cpp
 
 HEADERS += \
     mainwindow.h\
     emission.h\
-    connexion.h
+    connexion.h\
+    qrcode.h
 
 FORMS += \
     mainwindow.ui
