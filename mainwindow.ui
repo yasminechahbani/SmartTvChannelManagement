@@ -1574,8 +1574,8 @@ background:transparent;</string>
        <widget class="QPushButton" name="update">
         <property name="geometry">
          <rect>
-          <x>510</x>
-          <y>120</y>
+          <x>410</x>
+          <y>200</y>
           <width>93</width>
           <height>28</height>
          </rect>

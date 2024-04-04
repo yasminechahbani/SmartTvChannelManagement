@@ -78,4 +78,17 @@ bool Sponsor::updateSponsor(QString id)
     query.bindValue(":id", id);
     return query.exec();
 }
+QSqlQueryModel *Sponsor::Readsponsor()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+    model->setQuery("SELECT * FROM Sponsors");
+    // Set header data here
+    return model;
+}
+QSqlQueryModel* Sponsor::searchsponsorByName(QString name)
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+    model->setQuery("SELECT * FROM Sponsors WHERE sponsor_nom LIKE '%" + name + "%'");
+    return model;
+}
 

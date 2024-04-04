@@ -43,6 +43,9 @@ public:
     QSqlQuery getSponsorData();
     QSqlQueryModel *showSearch(const QString &searchTerm);
     bool updateSponsor(QString id) ;
+    QSqlQueryModel *Readsponsor() ;
+    QSqlQueryModel* searchsponsorByName(QString name) ;
+
     
 };
 

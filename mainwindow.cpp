@@ -4,6 +4,12 @@
 #include <QMessageBox>
 #include <QSqlError>
 #include <QDebug>
+#include <QPdfWriter>
+#include<QPainter>
+#include<QDate>
+#include<QDesktopServices>
+#include<QUrl>
+#include <QPainter>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -56,7 +62,13 @@ void MainWindow::on_delete_button_clicked()
 
 void MainWindow::on_list_all_button_clicked()
 {
-    ui->sponsor_tab->setModel(sponsor.showSponsor());
+    //ui->sponsor_tab->setModel(sponsor.showSponsor());
+    QString searchName = ui->search_lineEdit->text();
+      //no search
+      //ui->sponsor_tab->setModel(sponsor.Readsponsor());
+      //with search
+      ui->sponsor_tab->setModel(sponsor.searchsponsorByName(searchName));
+
 }
 
 void MainWindow::on_clear_fields_add_clicked()
@@ -102,5 +114,72 @@ void MainWindow::on_update_clicked()
     }
 
     ui->sponsor_tab->setModel(sponsor.showSponsor());
+}
+void MainWindow::on_Generate_PDF_clicked()
+{
+    QPdfWriter pdf("C:/Users/MSI/Downloads/SmartTvChannelManagement-gestion_materiels/gen_UI/SPONSOR.pdf");
+    QPainter painter(&pdf);
+    int i = 4100;
+    const QImage image("C:/Users/MSI/Downloads/SmartTvChannelManagement-gestion_materiels/gen_U/logo.qrc");
+    const QPoint imageCoordinates(155,0);
+    int width1 = 2000;
+    int height1 = 2000;
+    QImage img=image.scaled(width1,height1);
+    painter.drawImage(imageCoordinates, img );
+
+    QColor dateColor(0x4a5bcf);
+    painter.setPen(dateColor);
+    painter.setFont(QFont("Montserrat SemiBold", 11));
+    QDate cd = QDate::currentDate();
+    painter.drawText(7700,250,cd.toString("Ariana, El Ghazela"));
+    painter.drawText(8100,500,cd.toString("dd/MM/yyyy"));
+
+    QColor titleColor(0x341763);
+    painter.setPen(titleColor);
+    painter.setFont(QFont("Montserrat SemiBold", 25));
+    painter.drawText(3000,2700,"SPONSOR LIST");
+
+    painter.setPen(Qt::black);
+    painter.setFont(QFont("Time New Roman", 15));
+    painter.drawRect(100,3300,9400,500);
+
+    painter.setFont(QFont("Montserrat SemiBold", 10));
+    painter.drawText(1000, 3600, "SPONSOR_ID");
+    painter.drawText(2000, 3600, "NOM");
+    painter.drawText(3000, 3600, "MONTANT");
+    painter.drawText(4000, 3600, "TEMPSAFFICHAGE");
+    painter.drawText(5000, 3600, "NB_TOTALAFFICHAGE");
+    painter.drawText(6000, 3600, "ETATCONTRAT");
+
+    painter.setFont(QFont("Montserrat", 10));
+    painter.drawRect(100,3300,9400,9000);
+
+    Sponsor sponsor;
+    QSqlQuery query = sponsor.getSponsorData();
+    int y=4300;
+    while (query.next())
+    {
+        painter.drawLine(100,y,9490,y);
+        y+=500;
+        painter.drawText(200,i,query.value(0).toString());
+        painter.drawText(2000,i,query.value(1).toString());
+        painter.drawText(3000,i,query.value(2).toString());
+        painter.drawText(4000,i,query.value(3).toString());
+        painter.drawText(5000,i,query.value(4).toString());
+        painter.drawText(6000,i,query.value(5).toString());
+
+        i = i + 500;
+    }
+
+    int reponse = QMessageBox::question(this, "Generate PDF", "PDF Saved. Do you want to open it?", QMessageBox::Yes | QMessageBox::No);
+    if (reponse == QMessageBox::Yes)
+    {
+        QDesktopServices::openUrl(QUrl::fromLocalFile("C:/Users/USER/Desktop/official_projectCPP_folder/pdf/SPONSOR.pdf"));
+        painter.end();
+    }
+    else
+    {
+        painter.end();
+    }
 }
 
