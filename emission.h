@@ -48,6 +48,7 @@ public:
     bool updateEmission(QString id);
     QSqlQuery getEMISSIONData();
     QSqlQuery getStatBynbviews();
+    QSqlQueryModel* ReadEmissionSorted(QString sortOrder) ;
 
 
 };

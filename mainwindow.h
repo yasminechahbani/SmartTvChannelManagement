@@ -26,6 +26,8 @@ private slots:
     void on_Generate_PDF_clicked();
     void on_stat_clicked();
     void on_printEmissions_clicked();
+    void on_sortComboBox_clicked() ;
+
 
 
 

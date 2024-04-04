@@ -85,3 +85,15 @@ QSqlQuery EMISSION::getStatBynbviews()
     query.exec("SELECT emission_nbviewers, COUNT(*) FROM emissions GROUP BY emission_nbviewers");
     return query;
 }
+
+QSqlQueryModel* EMISSION::ReadEmissionSorted(QString sortOrder) {
+    QSqlQueryModel* model = new QSqlQueryModel();
+    model->setQuery("SELECT * FROM emissions ORDER BY emission_nom " + sortOrder);
+    // Set header data here if needed
+    return model;
+}
+
+
+
+
+

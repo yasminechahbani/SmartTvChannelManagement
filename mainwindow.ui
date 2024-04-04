@@ -934,7 +934,7 @@ font: 75 12pt &quot;8514oem&quot;;
      <widget class="QLabel" name="label_15">
       <property name="geometry">
        <rect>
-        <x>390</x>
+        <x>50</x>
         <y>700</y>
         <width>91</width>
         <height>41</height>
@@ -983,7 +983,7 @@ QPushButton:hover {
      <widget class="QPushButton" name="Generate_PDF">
       <property name="geometry">
        <rect>
-        <x>400</x>
+        <x>60</x>
         <y>690</y>
         <width>231</width>
         <height>71</height>
@@ -1028,6 +1028,9 @@ background:transparent;</string>
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_2">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -1134,159 +1137,6 @@ background:transparent;</string>
        <string/>
       </property>
      </widget>
-     <widget class="QLabel" name="label_20">
-      <property name="geometry">
-       <rect>
-        <x>850</x>
-        <y>330</y>
-        <width>161</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image:url(:/Dark_ones /poubelle.png);
-background:transparent;</string>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_21">
-      <property name="geometry">
-       <rect>
-        <x>850</x>
-        <y>330</y>
-        <width>91</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image:url(:/Dark_ones /ajour.png);
-background:transparent;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_22">
-      <property name="geometry">
-       <rect>
-        <x>850</x>
-        <y>390</y>
-        <width>161</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image:url(:/Dark_ones /poubelle.png);
-background:transparent;</string>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_23">
-      <property name="geometry">
-       <rect>
-        <x>850</x>
-        <y>390</y>
-        <width>91</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image:url(:/Dark_ones /ajour.png);
-background:transparent;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_24">
-      <property name="geometry">
-       <rect>
-        <x>850</x>
-        <y>460</y>
-        <width>161</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image:url(:/Dark_ones /poubelle.png);
-background:transparent;</string>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_25">
-      <property name="geometry">
-       <rect>
-        <x>850</x>
-        <y>460</y>
-        <width>91</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image:url(:/Dark_ones /ajour.png);
-background:transparent;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_26">
-      <property name="geometry">
-       <rect>
-        <x>850</x>
-        <y>530</y>
-        <width>161</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image:url(:/Dark_ones /poubelle.png);
-background:transparent;</string>
-      </property>
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_27">
-      <property name="geometry">
-       <rect>
-        <x>850</x>
-        <y>530</y>
-        <width>91</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image:url(:/Dark_ones /ajour.png);
-background:transparent;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_28">
-      <property name="geometry">
-       <rect>
-        <x>870</x>
-        <y>610</y>
-        <width>81</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image:url(:/Dark_ones /refresh.png);
-background:transparent;</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_18">
       <property name="geometry">
        <rect>
@@ -1341,7 +1191,7 @@ font: 75 12pt &quot;8514oem&quot;;
      <widget class="QTabWidget" name="tabWidget">
       <property name="geometry">
        <rect>
-        <x>10</x>
+        <x>50</x>
         <y>250</y>
         <width>851</width>
         <height>431</height>
@@ -1930,19 +1780,6 @@ background:rgb(217, 237, 255);</string>
          <string>host</string>
         </property>
        </widget>
-       <widget class="QTableView" name="tableView">
-        <property name="geometry">
-         <rect>
-          <x>580</x>
-          <y>200</y>
-          <width>256</width>
-          <height>192</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background:rgb(3, 43, 67);</string>
-        </property>
-       </widget>
       </widget>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
@@ -2009,6 +1846,19 @@ background:rgb(217, 237, 255);</string>
          <string>enter the show id :</string>
         </property>
        </widget>
+       <widget class="QTableView" name="tableView">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>90</y>
+          <width>521</width>
+          <height>301</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background:rgb(3, 43, 67);</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
@@ -2064,7 +1914,7 @@ background:rgb(217, 237, 255);</string>
      <widget class="QPushButton" name="printEmissions">
       <property name="geometry">
        <rect>
-        <x>660</x>
+        <x>300</x>
         <y>690</y>
         <width>231</width>
         <height>71</height>
@@ -2091,6 +1941,59 @@ QPushButton:hover {
        <string>print</string>
       </property>
      </widget>
+     <widget class="QComboBox" name="sortComboBox">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>220</y>
+        <width>73</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:rgb(63, 136, 197);
+</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>A-Z </string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>default</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>tri 3</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QPushButton" name="sort">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>220</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">  background-color: #3F88C5;
+        border: none;
+        color: white;
+        font-weight: bold;
+        padding: 5px;
+        width: 30px;
+        height: 30px;
+        border-radius: 20px;
+font: 75 12pt &quot;8514oem&quot;;</string>
+      </property>
+      <property name="text">
+       <string>sort</string>
+      </property>
+     </widget>
      <zorder>stat</zorder>
      <zorder>pushButton_2</zorder>
      <zorder>add_button</zorder>
@@ -2104,19 +2007,12 @@ QPushButton:hover {
      <zorder>label_14</zorder>
      <zorder>label_16</zorder>
      <zorder>label_8</zorder>
-     <zorder>label_20</zorder>
-     <zorder>label_21</zorder>
-     <zorder>label_22</zorder>
-     <zorder>label_23</zorder>
-     <zorder>label_24</zorder>
-     <zorder>label_25</zorder>
-     <zorder>label_26</zorder>
-     <zorder>label_27</zorder>
-     <zorder>label_28</zorder>
      <zorder>label_18</zorder>
      <zorder>sort_button</zorder>
      <zorder>tabWidget</zorder>
      <zorder>printEmissions</zorder>
+     <zorder>sortComboBox</zorder>
+     <zorder>sort</zorder>
     </widget>
     <widget class="QLabel" name="label">
      <property name="geometry">
@@ -2493,7 +2389,7 @@ background:transparent;
      <x>0</x>
      <y>0</y>
      <width>1753</width>
-     <height>25</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuCreate">

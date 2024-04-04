@@ -13,6 +13,9 @@
 #include <QPrinter>
 #include <QPrintDialog>
 #include <QPainter>
+#include <QComboBox>
+#include <QSqlQueryModel>
+
 
 
 
@@ -81,6 +84,8 @@ void MainWindow::on_list_all_button_clicked()
 }
 
 
+
+
 void MainWindow::on_clear_all_in_table_clicked()
 {
     int reply = QMessageBox::question(this, "Confirmation", "Are you sure you want to clear all lines in the table?", QMessageBox::Yes | QMessageBox::No);
@@ -125,10 +130,39 @@ void MainWindow::on_update_clicked()
 }
 
 
+
+//chartssssssssssss
+
+
+void MainWindow::on_stat_clicked()
+{
+    EMISSION emission;
+         QSqlQuery query = emission.getStatBynbviews();
+
+         QtCharts::QPieSeries *series = new QtCharts::QPieSeries();
+         while (query.next()) {
+             QString type = query.value(0).toString();
+             int count = query.value(1).toInt();
+             QtCharts::QPieSlice *slice = new QtCharts::QPieSlice(type, count);
+             series->append(slice);
+         }
+
+         QtCharts::QChart *chart = new QtCharts::QChart();
+         chart->addSeries(series);
+         chart->setTitle("Statistiques");
+         chart->setAnimationOptions(QtCharts::QChart::SeriesAnimations);
+
+         QtCharts::QChartView *chartView = new QtCharts::QChartView(chart);
+         chartView->setRenderHint(QPainter::Antialiasing);
+         chartView->setParent(ui->tableView);
+         chartView->resize(ui->tableView->size());
+         chartView->show();
+}
+
 //pdf//////////////////
 void MainWindow::on_Generate_PDF_clicked()
 {
-    QPdfWriter pdf("C:/Users/USER/Desktop/official_projectCPP_folder/pdf/EMISSION.pdf");
+    QPdfWriter pdf("C:/Users/USER/Desktop/official_projectCPP_folder/print - 2/EMISSION.pdf");
     QPainter painter(&pdf);
     int i = 4100;
     const QImage image("C:/Users/USER/Desktop/official_projectCPP_folder/pdf/417529624_1870268480077915_5802465082538659099_n.png");
@@ -199,38 +233,9 @@ void MainWindow::on_Generate_PDF_clicked()
 }
 
 
-//chartssssssssssss
-
-
-void MainWindow::on_stat_clicked()
-{
-    EMISSION emission;
-         QSqlQuery query = emission.getStatBynbviews();
-
-         QtCharts::QPieSeries *series = new QtCharts::QPieSeries();
-         while (query.next()) {
-             QString type = query.value(0).toString();
-             int count = query.value(1).toInt();
-             QtCharts::QPieSlice *slice = new QtCharts::QPieSlice(type, count);
-             series->append(slice);
-         }
-
-         QtCharts::QChart *chart = new QtCharts::QChart();
-         chart->addSeries(series);
-         chart->setTitle("Statistiques");
-         chart->setAnimationOptions(QtCharts::QChart::SeriesAnimations);
-
-         QtCharts::QChartView *chartView = new QtCharts::QChartView(chart);
-         chartView->setRenderHint(QPainter::Antialiasing);
-         chartView->setParent(ui->tableView);
-         chartView->resize(ui->tableView->size());
-         chartView->show();
-}
-
-
 //printtttttttttttttttttt////////
 
-
+/*
 void MainWindow::on_printEmissions_clicked()
 {
     // Create a QPrinter object for high-resolution printing
@@ -266,6 +271,52 @@ void MainWindow::on_printEmissions_clicked()
 
         // Render the table view onto the painter
         ui->tabb->render(&painter); // Assuming your table view is named 'tabb'
+    }
+}
+
+*/
+void MainWindow::on_printEmissions_clicked()
+{
+#ifdef Q_OS_WIN
+    // Load the existing PDF file
+    QString pdfFilePath = "C:/Users/USER/Desktop/official_projectCPP_folder/print - 2/EMISSION.pdf";
+
+    // Create a QProcess to invoke the default PDF viewer and print the file
+    QProcess process;
+    process.start("cmd", QStringList() << "/c" << "start" << "/min" << "AcroRd32.exe" << "/t" << pdfFilePath);
+    process.waitForFinished(-1);
+
+    if (process.exitCode() != 0) {
+        QMessageBox::critical(this, "Error", "Failed to print PDF file.");
+        qDebug() << "Failed to print PDF file:" << pdfFilePath;
+    }
+#else
+    QMessageBox::critical(this, "Error", "Printing PDF files directly is not supported on this platform.");
+#endif
+}
+
+
+
+
+//tri//////////////
+
+
+void MainWindow::on_sortComboBox_clicked() {
+
+    int index = ui->sortComboBox->currentIndex();
+
+    switch (index) {
+        case 0: // Default sorting
+            ui->tabb->setModel(Emission.ReadEmission()); // No sorting
+            break;
+        case 1: // A to Z ascending
+            ui->tabb->setModel(Emission.ReadEmissionSorted("ASC")); // Sorting by name ascending
+            break;
+        case 2: // A to Z descending
+            ui->tabb->setModel(Emission.ReadEmissionSorted("DESC")); // Sorting by name descending
+            break;
+        default:
+            break;
     }
 }
 
