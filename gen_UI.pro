@@ -4,7 +4,8 @@ QT += charts
 QT += network
 TARGET = gen_UI.pro
 TEMPLATE = app
-INCLUDEPATH += "C:\Program Files\OpenSSL-Win64\include\openssl"
+INCLUDEPATH += "C:\Program Files (x86)\OpenSSL-Win32\include"
+INCLUDEPATH += openssl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -65,4 +66,10 @@ RESOURCES += \
     icons_ui_dark.qrc \
     logo.qrc
 
+
+
+win32: LIBS += -L$$PWD/'../../../../Program Files (x86)/OpenSSL-Win32/lib/' -lopenssl
+
+INCLUDEPATH += $$PWD/'../../../../Program Files (x86)/OpenSSL-Win32/include'
+DEPENDPATH += $$PWD/'../../../../Program Files (x86)/OpenSSL-Win32/include'
 

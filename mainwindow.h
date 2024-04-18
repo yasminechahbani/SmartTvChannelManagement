@@ -6,6 +6,8 @@
 #include <QHoverEvent>
 #include "invites.h"
 #include <QTableView>
+#include <QNetworkReply>
+
 //#include "stat.h"
 
 
@@ -51,6 +53,10 @@ void on_tableView_activated(const QModelIndex &);
     void on_pushButton_list_clicked();
 
     void on_pushButton_12_clicked();
+
+    void on_pushButton_3_clicked();
+    void sendSMS(const QString& recipient, const QString& message);
+         void onSMSRequestFinished(QNetworkReply* reply);
 
 private:
     Ui::MainWindow *ui;

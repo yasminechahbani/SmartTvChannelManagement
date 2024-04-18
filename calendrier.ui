@@ -13,14 +13,127 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+    background-color: #ffffff;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+}
+</string>
+  </property>
   <widget class="QCalendarWidget" name="calendarWidget">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>30</y>
-     <width>671</width>
-     <height>391</height>
+     <x>10</x>
+     <y>100</y>
+     <width>421</width>
+     <height>441</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCalendarWidget {
+    background-color: #3F88C5; /* Couleur de fond */
+    border: 2px solid #aaa; /* Bordure */
+    border-radius: 8px; /* Coins arrondis */
+    padding: 10px; /* Espace intérieur */
+    color: #333; /* Couleur du texte */
+}
+
+QCalendarWidget QAbstractItemView:enabled {
+    selection-background-color: #3F88C5; /* Couleur de fond de la sélection */
+    selection-color: #ffffff; /* Couleur du texte de la sélection */
+}
+</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="notesTextEdit">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>130</y>
+     <width>301</width>
+     <height>411</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QTextEdit {
+    background-color: white; /* Couleur de fond */
+    border: 1px solid #3F88C5; /* Bordure */
+    border-radius: 3px;
+    padding: 5px;
+    color: black; /* Couleur du texte */
+}
+</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="categoryComboBox">
+   <property name="geometry">
+    <rect>
+     <x>480</x>
+     <y>400</y>
+     <width>271</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QComboBox {
+    border: 1px solid rgb(107, 189, 171); /* Bordure */
+    border-radius: 5px; /* Coins arrondis */
+    padding: 5px; /* Espacement du texte */
+    min-width: 100px; /* Largeur minimale */
+    background-color: #fff; /* Couleur de fond */
+    font-size: 12px; /* Taille de la police */
+    color: #333; /* Couleur du texte */
+}
+
+QComboBox::drop-down {
+    border: none; /* Supprimer la bordure de la flèche */
+    subcontrol-origin: padding;
+    subcontrol-position: right;
+    width: 20px; /* Largeur de la flèche */
+    border-left-width: 1px;
+    border-left-color: rgb(107, 189, 171); /* Couleur de bordure de la flèche */
+    border-left-style: solid;
+    border-top-right-radius: 5px; /* Coins arrondis de la flèche */
+    border-bottom-right-radius: 5px; /* Coins arrondis de la flèche */
+    background: rgb(107, 189, 171); /* Couleur de fond de la flèche */
+}
+
+QComboBox::down-arrow {
+    width: 10px; /* Largeur de la flèche */
+    height: 10px; /* Hauteur de la flèche */
+    border-image: none; /* Supprimer toute image */
+    background-color: transparent; /* Fond transparent */
+    image: url(); /* Supprimer toute image */
+    border: none; /* Supprimer la bordure */
+}
+
+QComboBox::down-arrow:hover {
+    background-color: rgba(107, 189, 171, 0.7); /* Couleur de fond au survol */
+}
+
+QComboBox::down-arrow:pressed {
+    background-color: rgba(107, 189, 171, 0.9); /* Couleur de fond lorsqu'appuyé */
+}
+</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>10</y>
+     <width>361</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 28pt &quot;MS Shell Dlg 2&quot;;
+font: 75 26pt &quot;MS Shell Dlg 2&quot;;</string>
+   </property>
+   <property name="text">
+    <string>Nos programmes</string>
    </property>
   </widget>
  </widget>

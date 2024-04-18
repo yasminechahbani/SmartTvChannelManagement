@@ -8,7 +8,9 @@
 #include <QString>
 #include <QMessageBox>
 #include <QtSql/QSqlError>
-
+#include <QtCore>
+#include <openssl/ssl.h>
+#include <openssl/err.h>
 #include "dialog.h"
 #include <QPdfWriter>
 #include<QPainter>
@@ -18,6 +20,11 @@
 #include "calendrier.h"
 #include "chat.h"
 #include "ui_supp.h"
+#include <QNetworkRequest>
+#include <QProcess>
+
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
 //#include <QWidget>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -457,7 +464,7 @@ void MainWindow::on_pushButton_6_clicked() {
         supp->setCentralWidget(chartView);
 
 
-        QSize chartSize = chartView->size();
+       QSize chartSize = chartView->size();
         QSize windowSize(chartSize.width(), supp->size().height());
         supp->resize(windowSize);
 
@@ -468,18 +475,13 @@ void MainWindow::on_pushButton_6_clicked() {
 
 void MainWindow::on_pushButton_11_clicked()
 {
-    calendrier *myCalendrier = new calendrier(this); // Instancier votre widget calendrier
 
-            myCalendrier->show(); // Afficher le widget calendrier
-            ui->tableView->setModel(inv.afficher());
+        calendrier *myCalendrier = new calendrier(this);
+        myCalendrier->show();
+        ui->tableView->setModel(inv.afficher());
+
 }
 
-// Fonction de gestion de la sélection de date
-void MainWindow::handleDateSelection(const QDate &selectedDate)
-{
-    // Afficher la date sélectionnée
-    QMessageBox::information(this, "Date sélectionnée", "Vous avez sélectionné la date : " + selectedDate.toString());
-}
 
 
 void MainWindow::on_pushButton_list_clicked()
@@ -511,4 +513,112 @@ void MainWindow::on_pushButton_12_clicked()
     ui->metier_lineEdit_5->clear();
     ui->date_lineEdit_6->clear();
     ui->num_lineEdit_7->clear();
+}
+/*
+void MainWindow::on_pushButton_3_clicked()
+{
+    QString recipient = "96027492"; // Numéro de téléphone du destinataire
+        QString message = "Votre message WhatsApp ici"; // Message à envoyer
+
+        QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+
+        QUrl url("https://mmk3j9.api.infobip.com/omni/1/whatsapp");
+        QNetworkRequest request(url);
+        request.setRawHeader("Authorization", "App <0494b2a19ad04cc2d2c4c303bd9da375-77491f75-6f22-4d72-852c-cd5faee6cd32>");
+        request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+        QJsonObject requestBody;
+        requestBody["messages"] = QJsonArray::fromVariantList({
+            QJsonObject {
+                {"from", "whatsapp:<447860099299>"},
+                {"destinations", QJsonArray::fromVariantList({
+                    QJsonObject {
+                        {"to", recipient}
+                    }
+                })},
+                {"content", {
+                    {"text", message}
+                }}
+            }
+        });
+
+        QJsonDocument doc(requestBody);
+        QByteArray postData = doc.toJson();
+
+        QNetworkReply *reply = manager->post(request, postData);
+        connect(reply, &QNetworkReply::finished, this, [reply]() {
+            if (reply->error() == QNetworkReply::NoError) {
+                QByteArray responseData = reply->readAll();
+                qDebug() << "Réponse reçue de l'API Infobip :" << responseData;
+                // Traitement de la réponse si nécessaire
+            } else {
+                qDebug() << "Erreur lors de la réception de la réponse de l'API Infobip :" << reply->errorString();
+                // Gérer l'erreur si nécessaire
+            }
+            reply->deleteLater();
+        });
+}*/
+void MainWindow::on_pushButton_3_clicked()
+{
+    // Prompt the user to enter the recipient's phone number and the message
+    QString recipient = QInputDialog::getText(this, "Enter Recipient", "Enter the recipient's phone number:");
+    if (recipient.isEmpty()) {
+        // User cancelled or left the recipient field empty
+        QMessageBox::warning(this, "Error", "SMS sending cancelled. Please enter the recipient's phone number.");
+        return;
+    }
+
+    QString message = QInputDialog::getText(this, "Enter Message", "Enter the message to send:");
+    if (message.isEmpty()) {
+        // User cancelled or left the message field empty
+        QMessageBox::warning(this, "Error", "SMS sending cancelled. Please enter the message to send.");
+        return;
+    }
+
+    // Send the SMS message using the sendSMS function
+    sendSMS(recipient, message);
+}
+
+void MainWindow::sendSMS(const QString& recipient, const QString& message)
+{
+    QNetworkAccessManager* manager = new QNetworkAccessManager(this);
+    connect(manager, &QNetworkAccessManager::finished, this, &MainWindow::onSMSRequestFinished);
+
+    // Twilio API credentials
+   // QString accountSid = "ACe05a2ca8367c07f8a0769b6165da0635";
+    //QString authToken = "2f22a0063cf2c72cfd3e067e19acb84d";
+     QString accountSid = "ACd25f435fa45075b1a05079c1b08200a2";
+     QString authToken = "97989348834c400a4c239f6273f1cc63";
+
+    QUrl url("https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json");
+    QNetworkRequest request(url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+    // Construct request parameters
+    QUrlQuery params;
+    params.addQueryItem("To", recipient);
+    //params.addQueryItem("From", "+12132045869");
+    params.addQueryItem("From", "+ +12132960550");
+
+
+    params.addQueryItem("Body", message);
+    QByteArray postData = params.toString(QUrl::FullyEncoded).toUtf8();
+
+    // Set Twilio API authentication header
+    QString auth = accountSid + ":" + authToken;
+    QByteArray authData = auth.toUtf8().toBase64();
+    request.setRawHeader("Authorization", "Basic " + authData);
+
+    // Send HTTP POST request to Twilio API
+    manager->post(request, postData);
+}
+
+void MainWindow::onSMSRequestFinished(QNetworkReply* reply)
+{
+    if (reply->error() == QNetworkReply::NoError) {
+        QMessageBox::information(this, "SMS Sent", "The SMS message has been sent successfully.");
+    } else {
+        QMessageBox::critical(this, "Error", "Failed to send SMS message: " + reply->errorString());
+    }
+    reply->deleteLater();
 }

@@ -77,7 +77,7 @@ void calendrier::addCheckBox()
 void calendrier::showNotes(const QDate &date)
 {
     // Effacer les notes précédentes affichées
-    ui->notesTextEdit->clear();
+   // ui->notesTextEdit->clear();
 
 
 /*

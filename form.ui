@@ -112,7 +112,7 @@ QLineEdit:focus {
 }</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_SMS">
+   <widget class="QPushButton" name="pushButton_WhatsApp">
     <property name="geometry">
      <rect>
       <x>180</x>

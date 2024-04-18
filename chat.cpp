@@ -64,7 +64,7 @@ void chat::prepareTableViewNotification()
     QVector<QString> vectorNotification = getNotificationFromFile();
 
     QStandardItemModel *model = new QStandardItemModel(vectorNotification.size(), 1, this);
-    model->setHorizontalHeaderItem(0, new QStandardItem(QString("Notification")));
+    model->setHorizontalHeaderItem(0, new QStandardItem(QString("Programme du jour")));
     for (int i = 0; i < vectorNotification.size(); i++) {
         QStandardItem *Row = new QStandardItem(vectorNotification[i]);
         model->setItem(i, Row);

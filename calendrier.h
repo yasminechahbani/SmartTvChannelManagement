@@ -3,9 +3,18 @@
 
 #include <QDialog>
 #include <QDate>
+#include <QCalendarWidget>
+#include <QTextEdit>
 //#include <QTextEdit>
 //#include <QPushButton>
 
+
+
+
+#include <QMap>
+#include <QCheckBox>
+#include <QVBoxLayout>
+#include <QShortcut>
 namespace Ui {
 class calendrier;
 }
@@ -27,11 +36,16 @@ signals:
 private slots:
     void on_pushButton_11_clicked();
     //void dateSelected(const QDate &selectedDate);
-
-
+ void showNotes(const QDate &date);
+ //void on_notesTextEdit_textChanged();
+ void addCheckBox();
 
 private:
     Ui::calendrier *ui;
+    QCalendarWidget *calendarWidget;
+       QTextEdit *notesTextEdit;
+       QMap<QDate, QStringList> notesMap;
+       QList<QString> notesList;
 
 };
 
