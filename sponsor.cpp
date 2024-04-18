@@ -17,7 +17,7 @@ Sponsor::Sponsor(QString id, QString nom, QString montant, QString tempsaffichag
 bool Sponsor::addSponsor()
 {
     QSqlQuery query;
-    query.prepare("INSERT INTO sponsor (sponsor_id, sponsor_nom, sponsor_montant, sponsor_tempsaffichage, sponsor_nb_totalaffichage, sponsor_etatcontrat) "
+    query.prepare("INSERT INTO sponsor (spons   or_id, sponsor_nom, sponsor_montant, sponsor_tempsaffichage, sponsor_nb_totalaffichage, sponsor_etatcontrat) "
                   "VALUES (:sponsor_id, :sponsor_nom, :sponsor_montant, :sponsor_tempsaffichage, :sponsor_nb_totalaffichage, :sponsor_etatcontrat)");
     query.bindValue(":sponsor_id", sponsor_id);
     query.bindValue(":sponsor_nom", sponsor_nom);
@@ -120,43 +120,7 @@ QSqlQuery Sponsor::getSponsorsWithNonValideContract()
     query.exec();
     return query;
 }
-bool Sponsor::sendSMS(const QString& from, const QString& to, const QString& message) {
-    // Replace with your actual Infobip base URL and API key (Base64 encoded)
-    QUrl url("https://k2l38x.api.infobip.com");
-    QString apiKey = "e59d4b3da931706551a9ff5c675eb6a2-69a50cd4-cc59-45cd-b0e7-9fc8dd4e7a8f";
 
-    // Create a QNetworkAccessManager instance
-    QNetworkAccessManager* manager = new QNetworkAccessManager();
-
-    // Set up the request
-    QNetworkRequest request(url);
-    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    QString authorization = "Basic " + apiKey;
-    request.setRawHeader("Authorization", authorization.toUtf8());
-
-    // Create the JSON message body
-    QJsonObject messageBody;
-    messageBody["from"] = from;
-    messageBody["to"] = to;
-    messageBody["text"] = message;
-    QJsonDocument doc(messageBody);
-    QByteArray jsonData = doc.toJson(QJsonDocument::Compact);
-
-    // Send the POST request asynchronously
-    QNetworkReply *reply = manager->post(request, jsonData);
-    connect(reply, &QNetworkReply::finished, [reply]() {
-        if (reply->error() == QNetworkReply::NoError) {
-            // SMS sent successfully
-            qDebug() << "SMS sent successfully!";
-        } else {
-            // Handle errors
-            qDebug() << "Error sending SMS:" << reply->errorString();
-        }
-        reply->deleteLater(); // Clean up the reply object
-    });
-
-    return true; // Indicate asynchronous operation (success will be determined in the callback)
-}
 
 QSqlQueryModel* Sponsor::getAllSponsorsSorted()
 {
@@ -168,4 +132,3 @@ QSqlQueryModel* Sponsor::getAllSponsorsSorted()
 
 
 }
-

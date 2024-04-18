@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>MainWindowFr</class>
+ <widget class="QMainWindow" name="MainWindowFr">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -82,7 +82,7 @@ QPushButton:hover {
     <widget class="QLabel" name="label_10">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>120</x>
        <y>230</y>
        <width>300</width>
        <height>60</height>
@@ -301,7 +301,7 @@ font: 75 12pt &quot;8514oem&quot;;</string>
       <enum>QFrame::Panel</enum>
      </property>
      <property name="text">
-      <string>           Shows</string>
+      <string>emissions</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_12">
@@ -532,7 +532,7 @@ font: 75 12pt &quot;8514oem&quot;;</string>
     <widget class="QLabel" name="label_11">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>120</x>
        <y>310</y>
        <width>300</width>
        <height>60</height>
@@ -752,7 +752,7 @@ background:transparent;
       <enum>QFrame::Panel</enum>
      </property>
      <property name="text">
-      <string>         Guests</string>
+      <string>invites</string>
      </property>
     </widget>
     <widget class="QFrame" name="frame_4">
@@ -894,7 +894,7 @@ font: 8pt &quot;8514oem&quot;;</string>
        <string/>
       </property>
       <property name="placeholderText">
-       <string> type in your search</string>
+       <string>votre recherche ici </string>
       </property>
      </widget>
      <widget class="QToolButton" name="toolButton_2">
@@ -928,7 +928,7 @@ font: 75 12pt &quot;8514oem&quot;;
     }</string>
       </property>
       <property name="text">
-       <string>    Filter</string>
+       <string>filtre</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_15">
@@ -977,7 +977,7 @@ QPushButton:hover {
 }</string>
       </property>
       <property name="text">
-       <string>     Add a sponsor</string>
+       <string>    Ajouter Sponsor</string>
       </property>
      </widget>
      <widget class="QPushButton" name="Generate_PDF">
@@ -1007,7 +1007,7 @@ QPushButton:hover {
 </string>
       </property>
       <property name="text">
-       <string>   Generate PDF</string>
+       <string>   generer pdf</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_9">
@@ -1051,7 +1051,7 @@ font: 75 12pt &quot;8514oem&quot;;
 </string>
       </property>
       <property name="text">
-       <string>    Sponsor list</string>
+       <string>Liste des Sponsors</string>
       </property>
      </widget>
      <widget class="QPushButton" name="stat">
@@ -1080,7 +1080,7 @@ QPushButton:hover {
 }</string>
       </property>
       <property name="text">
-       <string>Stats</string>
+       <string>Statistiques</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_14">
@@ -1335,7 +1335,7 @@ font: 75 12pt &quot;8514oem&quot;;
     }</string>
       </property>
       <property name="text">
-       <string>sort by </string>
+       <string>tri</string>
       </property>
      </widget>
      <widget class="QTabWidget" name="tabWidget">
@@ -1355,11 +1355,11 @@ font: 75 12pt &quot;8514oem&quot;;
 background:transparent;</string>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
-        <string>add</string>
+        <string>ajouter</string>
        </attribute>
        <widget class="QLabel" name="label_19">
         <property name="geometry">
@@ -1384,7 +1384,7 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>name</string>
+         <string>nom</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_30">
@@ -1397,7 +1397,7 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>price</string>
+         <string>montant</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_31">
@@ -1410,7 +1410,7 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>viewing time </string>
+         <string>temps d'affichage</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_32">
@@ -1423,7 +1423,7 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>contract state</string>
+         <string>etat contrat</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_34">
@@ -1449,7 +1449,7 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>add</string>
+         <string>ajouter</string>
         </property>
        </widget>
        <widget class="QPushButton" name="clear_fields_add">
@@ -1587,13 +1587,13 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>total viewing time</string>
+         <string>nb total affichage</string>
         </property>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_5">
        <attribute name="title">
-        <string>SendMail</string>
+        <string>Envoyer Mail</string>
        </attribute>
        <widget class="QLineEdit" name="emailLineEdit">
         <property name="geometry">
@@ -1608,7 +1608,10 @@ background:transparent;</string>
          <string notr="true"/>
         </property>
         <property name="text">
-         <string>Type here</string>
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>ecrire ici</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="passwordLineEdit">
@@ -1621,7 +1624,10 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>type_here </string>
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>ecrire ici</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_43">
@@ -1647,7 +1653,7 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>Password :  </string>
+         <string>mot de passe</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_45">
@@ -1673,7 +1679,7 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>Content:</string>
+         <string>contenu</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="recipientLineEdit">
@@ -1686,7 +1692,10 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>type_here </string>
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>ecrire ici</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="contentTextEdit">
@@ -1699,7 +1708,10 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>type_here </string>
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>ecrire ici</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_47">
@@ -1712,7 +1724,7 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>Subject</string>
+         <string>sujet</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="subjectLineEdit">
@@ -1725,7 +1737,10 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>type_here </string>
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>ecrire ici</string>
         </property>
        </widget>
        <widget class="QPushButton" name="sendButton">
@@ -1738,13 +1753,13 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>SEND!</string>
+         <string>envoyer</string>
         </property>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_4">
        <attribute name="title">
-        <string>Update</string>
+        <string>Mise a ajour</string>
        </attribute>
        <widget class="QPushButton" name="update">
         <property name="geometry">
@@ -1782,7 +1797,7 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>viewing time</string>
+         <string>temps d'affichage</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_39">
@@ -1795,7 +1810,7 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>total viewing time</string>
+         <string>nb total affichage</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_36">
@@ -1834,7 +1849,7 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>contract state</string>
+         <string>etat contrat</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_41">
@@ -1847,7 +1862,7 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>name</string>
+         <string>nom</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="tempsaffichage_lineEdit_2">
@@ -1886,7 +1901,7 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>price</string>
+         <string>montant</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="nb_totalaffichage_lineEdit_2">
@@ -1928,13 +1943,13 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>add</string>
+         <string>Ajouter</string>
         </property>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
-        <string>Delete</string>
+        <string>Supprimer</string>
        </attribute>
        <widget class="QLabel" name="label_35">
         <property name="geometry">
@@ -1962,7 +1977,7 @@ background:transparent;</string>
          <string notr="true"/>
         </property>
         <property name="text">
-         <string>type here</string>
+         <string>ecrire ici</string>
         </property>
        </widget>
        <widget class="QPushButton" name="delete_button">
@@ -1988,7 +2003,7 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
-         <string>enter the sponsor id :</string>
+         <string>taper l'id de sponsor</string>
         </property>
        </widget>
        <widget class="QTableView" name="tableView">
@@ -2007,7 +2022,7 @@ background:transparent;</string>
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
-        <string>view tablee</string>
+        <string>affichage</string>
        </attribute>
        <widget class="QTableView" name="sponsor_tab">
         <property name="geometry">
@@ -2034,7 +2049,7 @@ colour:rgb(131, 179, 216);
          </rect>
         </property>
         <property name="text">
-         <string>delete all sponsors</string>
+         <string>supprimer tout les sponsors</string>
         </property>
        </widget>
        <widget class="QPushButton" name="list_all_button">
@@ -2053,7 +2068,7 @@ colour:rgb(131, 179, 216);
       </widget>
       <widget class="QWidget" name="tab_16">
        <attribute name="title">
-        <string>Calendar</string>
+        <string>Calendrier</string>
        </attribute>
        <widget class="QCalendarWidget" name="calendarWidget">
         <property name="geometry">
@@ -2075,20 +2090,20 @@ colour:rgb(131, 179, 216);
          </rect>
         </property>
         <property name="text">
-         <string>START</string>
+         <string>debut</string>
         </property>
        </widget>
        <widget class="QLabel" name="label_49">
         <property name="geometry">
          <rect>
           <x>60</x>
-          <y>130</y>
+          <y>129</y>
           <width>41</width>
-          <height>20</height>
+          <height>21</height>
          </rect>
         </property>
         <property name="text">
-         <string>END</string>
+         <string>fin</string>
         </property>
        </widget>
        <widget class="QPushButton" name="SendButton">
@@ -2115,7 +2130,7 @@ font: 75 12pt &quot;8514oem&quot;;
 </string>
         </property>
         <property name="text">
-         <string>SAVE DATE</string>
+         <string>sauvegarder</string>
         </property>
        </widget>
        <widget class="QDateTimeEdit" name="StartTimeEdit">
@@ -2164,7 +2179,7 @@ font: 75 12pt &quot;8514oem&quot;;
 </string>
       </property>
       <property name="text">
-       <string>Check contracts</string>
+       <string>contrats</string>
       </property>
      </widget>
      <widget class="QPushButton" name="sms">
@@ -2191,7 +2206,7 @@ font: 75 12pt &quot;8514oem&quot;;
 </string>
       </property>
       <property name="text">
-       <string>Send sms</string>
+       <string>envoyer sms</string>
       </property>
      </widget>
      <widget class="QPushButton" name="excel">
@@ -2221,7 +2236,7 @@ QPushButton:hover {
 </string>
       </property>
       <property name="text">
-       <string>Generate Excel</string>
+       <string>Generer excel</string>
       </property>
      </widget>
      <widget class="QComboBox" name="sortComboBox">
@@ -2248,10 +2263,10 @@ QPushButton:hover {
        </property>
       </item>
      </widget>
-     <widget class="QPushButton" name="fr">
+     <widget class="QPushButton" name="eng">
       <property name="geometry">
        <rect>
-        <x>520</x>
+        <x>540</x>
         <y>190</y>
         <width>131</width>
         <height>51</height>
@@ -2279,7 +2294,7 @@ font: 75 12pt &quot;8514oem&quot;;
     }</string>
       </property>
       <property name="text">
-       <string>FR</string>
+       <string>ENG</string>
       </property>
      </widget>
      <zorder>stat</zorder>
@@ -2311,7 +2326,7 @@ font: 75 12pt &quot;8514oem&quot;;
      <zorder>sms</zorder>
      <zorder>excel</zorder>
      <zorder>sortComboBox</zorder>
-     <zorder>fr</zorder>
+     <zorder>eng</zorder>
     </widget>
     <widget class="QLabel" name="label">
      <property name="geometry">
@@ -2425,7 +2440,7 @@ border:0px;</string>
       <rect>
        <x>124</x>
        <y>720</y>
-       <width>93</width>
+       <width>161</width>
        <height>28</height>
       </rect>
      </property>
@@ -2437,7 +2452,7 @@ background:transparent;
 font: 75 12pt &quot;8514oem&quot;;</string>
      </property>
      <property name="text">
-      <string>Log Out</string>
+      <string>se deconnecter</string>
      </property>
     </widget>
     <widget class="QLabel" name="label_13">

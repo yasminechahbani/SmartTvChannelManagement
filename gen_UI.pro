@@ -26,17 +26,20 @@ SOURCES += \
     connexion.cpp \
     main.cpp \
     mainwindow.cpp \
+    mainwindow_fr.cpp \
     smtp.cpp \
     sponsor.cpp
 
 HEADERS += \
     connexion.h \
     mainwindow.h \
+    mainwindow_fr.h \
     smtp.h \
     sponsor.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    mainwindow_fr.ui
 DISTFILES +=\
 fonts/Kabel Book BT_0.ttf
 

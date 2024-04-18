@@ -1,8 +1,6 @@
 #include "mainwindow_fr.h"
-
 #include "mainwindow.h"
 #include "ui_mainwindow_fr.h"
-
 #include "ui_mainwindow.h"
 #include "sponsor.h" // Include the sponsor header file
 #include <QMessageBox>
@@ -40,26 +38,26 @@
 
 
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindowFr::MainWindowFr(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::MainWindowFr)
 {
     ui->setupUi(this);
      /*connect(ui->sendButton, SIGNAL(clicked()), this, SLOT(on_sendButton_clicked()));
-    connect(ui->sponsor_tab->horizontalHeader(), &QHeaderView::sectionClicked, this, &MainWindow::on_tableHeader_clicked);
+    connect(ui->sponsor_tab->horizontalHeader(), &QHeaderView::sectionClicked, this, &MainWindowFr::on_tableHeader_clicked);
     ui->sponsor_tab->setModel(sponsor.showSponsor());
     ui->sponsor_tab->setSortingEnabled(true);
     connect(ui->sponsor_tab->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(on_tableHeader_clicked(int)));
-    connect(ui->StartTimeEdit, &QTimeEdit::timeChanged, this, &MainWindow::onStartTimeChanged);
-    connect(ui->EndTimeEdit, &QTimeEdit::timeChanged, this, &MainWindow::onEndTimeChanged);
-    connect(ui->sendSMSButton, &QPushButton::clicked, this, &MainWindow::onSendSMSButtonClicked);
+    connect(ui->StartTimeEdit, &QTimeEdit::timeChanged, this, &MainWindowFr::onStartTimeChanged);
+    connect(ui->EndTimeEdit, &QTimeEdit::timeChanged, this, &MainWindowFr::onEndTimeChanged);
+    connect(ui->sendSMSButton, &QPushButton::clicked, this, &MainWindowFr::onSendSMSButtonClicked);
 
 */
 
 
 
 }
-/*void MainWindow::on_sendButton_clicked()
+/*void MainWindowFr::on_sendButton_clicked()
 {
     Smtp* smtp = new Smtp(ui->emailLineEdit->text(),
                            ui->passwordLineEdit->text(),
@@ -77,14 +75,23 @@ MainWindow::MainWindow(QWidget *parent)
     });
 }
 */
-void MainWindow::on_tableHeader_clicked(int index)
+void MainWindowFr::on_tableHeader_clicked(int index)
 {
     // Sort the table based on the clicked column
     ui->sponsor_tab->sortByColumn(index, Qt::AscendingOrder);
 }
 
+void MainWindowFr::on_eng_clicked()
+{
+this->close();
+    MainWindow *newwindow= new MainWindow(this);
+    newwindow->show();
 
-MainWindow::~MainWindow()
+}
+
+
+
+MainWindowFr::~MainWindowFr()
 {
     delete ui;
 }
@@ -92,7 +99,7 @@ MainWindow::~MainWindow()
 // Validate form function remains the same if form fields are common
 
 // Other functions remain unchanged
-void MainWindow::on_ajouter_clicked()
+void MainWindowFr::on_ajouter_clicked()
 {
     QString sponsor_id = ui->id_lineEdit->text();
     QString sponsor_nom = ui->name_lineEdit->text();
@@ -112,7 +119,7 @@ void MainWindow::on_ajouter_clicked()
     QMessageBox::information(nullptr, "Success", "Sponsor added successfully.");
 }
 
-void MainWindow::on_delete_button_clicked()
+void MainWindowFr::on_delete_button_clicked()
 {
     QString sponsor_id = ui->id_lineEdit_delete->text();
     if (!sponsor.deleteSponsor(sponsor_id)) {
@@ -125,14 +132,14 @@ void MainWindow::on_delete_button_clicked()
 }
 
 
-void MainWindow::on_list_all_button_clicked()
+void MainWindowFr::on_list_all_button_clicked()
 {
       //with search
       ui->sponsor_tab->setModel(sponsor.showSponsor());
 
 }
 
-void MainWindow::on_search_clicked()
+void MainWindowFr::on_search_clicked()
 {
     //ui->sponsor_tab->setModel(sponsor.showSponsor());
     QString searchName = ui->search_lineEdit->text();
@@ -143,7 +150,7 @@ void MainWindow::on_search_clicked()
 
 }
 
-void MainWindow::on_clear_fields_add_clicked()
+void MainWindowFr::on_clear_fields_add_clicked()
 {
     ui->id_lineEdit->clear();
     ui->name_lineEdit->clear();
@@ -153,7 +160,7 @@ void MainWindow::on_clear_fields_add_clicked()
     ui->etatcontrat_lineEdit->clear();
 }
 
-void MainWindow::on_clear_all_in_table_clicked()
+void MainWindowFr::on_clear_all_in_table_clicked()
 {
     int reply = QMessageBox::question(this, "Confirmation", "Are you sure you want to clear all lines in the table?", QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
@@ -166,7 +173,7 @@ void MainWindow::on_clear_all_in_table_clicked()
         ui->sponsor_tab->setModel(sponsor.showSponsor());
     }
 }
-void MainWindow::on_update_clicked()
+void MainWindowFr::on_update_clicked()
 {
     QString sponsor_id = ui->id_lineEdit_2->text();
     QString sponsor_nom = ui->name_lineEdit_2->text();
@@ -187,7 +194,7 @@ void MainWindow::on_update_clicked()
 
     ui->sponsor_tab->setModel(sponsor.showSponsor());
 }
-void MainWindow::on_Generate_PDF_clicked()
+void MainWindowFr::on_Generate_PDF_clicked()
 {
     QPdfWriter pdf("C:/Users/MSI/Downloads/SmartTvChannelManagement-gestion_materiels/gen_UI/SPONSOR.pdf");
     QPainter painter(&pdf);
@@ -254,7 +261,7 @@ void MainWindow::on_Generate_PDF_clicked()
         painter.end();
     }
 }
-void MainWindow::on_stat_clicked()
+void MainWindowFr::on_stat_clicked()
 {
     Sponsor sponsor;
     QSqlQuery query = sponsor.getStatByTempsAffichage();
@@ -278,7 +285,7 @@ void MainWindow::on_stat_clicked()
     chartView->resize(ui->tableView->size());
     chartView->show();
 }
-void MainWindow::on_checkContracts_clicked()
+void MainWindowFr::on_checkContracts_clicked()
 {
     Sponsor sponsor;
     QSqlQuery query = sponsor.getSponsorsWithNonValideContract();
@@ -299,24 +306,13 @@ void MainWindow::on_checkContracts_clicked()
         QMessageBox::information(this, "Non Valide Contracts", "No sponsors with non valide contracts found.");
     }
 }
-void MainWindow::on_Sponsor_tabHeader_clicked(int index)
+void MainWindowFr::on_Sponsor_tabHeader_clicked(int index)
 {
     // Sort the table based on the clicked column
     ui->sponsor_tab->sortByColumn(index, Qt::AscendingOrder);
 }
 
-
-
-void MainWindow::on_fr_clicked()
-{
-this->close();
-    MainWindowFr *newwindow= new MainWindowFr(this);
-    newwindow->show();
-
-}
-
-
-void MainWindow::onStartTimeChanged(const QTime &time)
+void MainWindowFr::onStartTimeChanged(const QTime &time)
 {
     startTime = time;
     if (endTime <= startTime)
@@ -327,7 +323,7 @@ void MainWindow::onStartTimeChanged(const QTime &time)
 }
 
 
-void MainWindow::onEndTimeChanged(const QTime &time)
+void MainWindowFr::onEndTimeChanged(const QTime &time)
 {
     endTime = time;
     if (endTime <= startTime)
@@ -336,7 +332,7 @@ void MainWindow::onEndTimeChanged(const QTime &time)
         ui->StartTimeEdit->setTime(startTime); // Update the start time edit widget
     }
 }
-/*void MainWindow::sendEmail(const QString& recipient, const QString& subject, const QString& body)
+/*void MainWindowFr::sendEmail(const QString& recipient, const QString& subject, const QString& body)
 {
     // Set up Infobip API details
     QString authToken = "e59d4b3da931706551a9ff5c675eb6a2-69a50cd4-cc59-45cd-b0e7-9fc8dd4e7a8f";
@@ -393,14 +389,14 @@ void MainWindow::onEndTimeChanged(const QTime &time)
 }*/
 
 
-void MainWindow::on_use_return_clicked()
+void MainWindowFr::on_use_return_clicked()
 {
     // Example usage of sendEmail function
     //sendEmail("khayati.mohamedaziz@esprit.com", "yo yo ", "khedmet");
 
 
 }
-/*void MainWindow::onSendSMSButtonClicked()
+/*void MainWindowFr::onSendSMSButtonClicked()
 {
     Sponsor sponsor;
     QString fromNumber = "+21627888536"; // Replace with your sender number
@@ -413,7 +409,7 @@ void MainWindow::on_use_return_clicked()
         qDebug() << "Error initiating SMS sending request.";
     }
 }*/
-void MainWindow::on_excel_clicked() {
+void MainWindowFr::on_excel_clicked() {
     QString fileName = QFileDialog::getSaveFileName(this, tr("Export Excel"), QString(), "*.csv");
     if (fileName.isEmpty()) {
         return; // User canceled save
@@ -455,7 +451,7 @@ void MainWindow::on_excel_clicked() {
         QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
     }
 }
-void MainWindow::on_sort_clicked()
+void MainWindowFr::on_sort_clicked()
 {
     int i = ui->sortComboBox->currentIndex();
 
@@ -467,7 +463,7 @@ void MainWindow::on_sort_clicked()
         ui->sponsor_tab->setModel(sponsor.getAllSponsorsSorted());
     }
 }
-void MainWindow::on_sms_clicked()
+void MainWindowFr::on_sms_clicked()
 {
     // Prompt the user to enter the recipient's phone number and the message
     QString recipient = "+21627888536" ;
@@ -478,10 +474,10 @@ void MainWindow::on_sms_clicked()
     sendSMS(recipient, message);
 }
 
-void MainWindow::sendSMS(const QString& recipient, const QString& message)
+void MainWindowFr::sendSMS(const QString& recipient, const QString& message)
 {
     QNetworkAccessManager* manager = new QNetworkAccessManager(this);
-    connect(manager, &QNetworkAccessManager::finished, this, &MainWindow::onSMSRequestFinished);
+    connect(manager, &QNetworkAccessManager::finished, this, &MainWindowFr::onSMSRequestFinished);
 
     // Twilio API credentials
 
@@ -511,7 +507,7 @@ void MainWindow::sendSMS(const QString& recipient, const QString& message)
     manager->post(request, postData);
 }
 
-void MainWindow::onSMSRequestFinished(QNetworkReply* reply)
+void MainWindowFr::onSMSRequestFinished(QNetworkReply* reply)
 {
     if (reply->error() == QNetworkReply::NoError) {
         QMessageBox::information(this, "SMS Sent", "The SMS message has been sent successfully.");

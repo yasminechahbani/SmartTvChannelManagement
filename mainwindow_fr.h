@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef MAINWINDOW_FR_H
+#define MAINWINDOW_FR_H
 
 #include "sponsor.h"
 #include <QMainWindow>
@@ -8,16 +8,16 @@
 
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui { class MainWindowFr; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class MainWindowFr : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    MainWindowFr(QWidget *parent = nullptr);
+    ~MainWindowFr();
 
 private slots:
     void on_tableHeader_clicked(int index) ;
@@ -45,7 +45,7 @@ private slots:
     void sendSMS(const QString& recipient, const QString& message) ;
     void onSMSRequestFinished(QNetworkReply* reply) ;
     void on_sms_clicked();
-    void on_fr_clicked();
+    void on_eng_clicked();
 
 
 
@@ -55,10 +55,10 @@ private slots:
 private:
     QTime startTime;
     QTime endTime;
-    Ui::MainWindow *ui;
+    Ui::MainWindowFr *ui;
     Sponsor sponsor; // Instantiate the Sponsor class
 };
 
 
 
-#endif // MAINWINDOW_H
+#endif // MAINWINDOW_FR_H
