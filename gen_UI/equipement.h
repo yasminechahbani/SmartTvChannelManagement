@@ -5,6 +5,7 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <iostream>
+#include <QtCharts>
 
 class EQUIPEMENT
 {
@@ -44,6 +45,11 @@ public:
     QSqlQuery getEQUIPEMENTData();
     //search
        QSqlQueryModel* showSearch(const QString &searchTerm);
+       // stat
+
+       QSqlQuery getStatByType();
+
+
 
 
 

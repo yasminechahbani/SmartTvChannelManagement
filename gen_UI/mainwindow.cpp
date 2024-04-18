@@ -1,20 +1,56 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "equipement.h"
+#include "qrgeneratewindow.h"
+#include "returnequipmentwindow.h"
+#include "chooseequipforqr.h"
+#include "QrCodeGenerator.h"
+#include "chat.h"
 #include <QMessageBox>
 #include <QSqlError>
 #include<QDebug>
 #include <QPdfWriter>
+#include<QHttpPart>
 #include<QPainter>
 #include<QDate>
 #include<QDesktopServices>
 #include<QUrl>
+#include <QtCharts>
+#include <QtCore>
+//#include <C:\Users\user\OneDrive\Documents\SmtpClient-for-Qt-2.0\src\SmtpMime>
+#include <QCoreApplication>
+#include "SmtpMime"
+#include <openssl/ssl.h>
+#include <openssl/err.h>
+#include <QInputDialog>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QUrlQuery>
+//MESSAGE INCLUDES
+/*#include <QMessageManager>
+#include <QMessage>
+#include <QMessageAddress>*/
+#include <QProcess>
+#include <QStringList>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include "useequipmentwindow.h"
+
+
+
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     //connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::changeCursor);
+    //show el statwindow
+     connect(ui->stats_button, &QPushButton::clicked, this, &MainWindow::on_stats_button_clicked);
+
+    //
     ui->equip_tab->setModel(Equipmp.showEquipement());
 }
 
@@ -22,20 +58,17 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-//added code to change the cursor to pointing hand upon click
 ////validate form////
 bool MainWindow::validateFormData()
 {
-    // Retrieve data from UI
     QString EQUIPEMENT_ID = ui->id_lineEdit->text();
     QString EQUIPEMENT_NAME = ui->name_lineEdit->text();
-    QString EQUIPEMENT_TYPE = ui->type_lineEdit->text();
+    //QString EQUIPEMENT_TYPE = ui->type_lineEdit->text();
     QString EQUIPEMENT_AVAILABILITY = ui->availability_lineEdit->text();
     QString EQUIPEMENT_STATE = ui->state_lineEdit->text();
     QString EQUIPEMENT_CURRENTHOLDER = ui->currentholder_linedit->text();
     QString EMPLOYEE_ID = ui->employee_id_lineEdit->text();
 
-    // Check constraints for each field
     if (EQUIPEMENT_ID.isEmpty()) {
         QMessageBox::critical(this, "Error", "EQUIPEMENT_ID cannot be empty.");
         return false;
@@ -46,10 +79,16 @@ bool MainWindow::validateFormData()
         return false;
     }
 
-    if (EQUIPEMENT_TYPE.isEmpty()) {
+    /*    // bel linedit
+     * if (EQUIPEMENT_TYPE.isEmpty()) {
         QMessageBox::critical(this, "Error", "EQUIPEMENT_TYPE cannot be empty.");
         return false;
-    }
+    }*/
+    //bel combo bow
+    if (ui->type_comboBox->currentText().isEmpty()) {
+          QMessageBox::critical(this, "Error", "EQUIPEMENT_TYPE cannot be empty.");
+          return false;
+      }
 
     if (EQUIPEMENT_AVAILABILITY.isEmpty()) {
         QMessageBox::critical(this, "Error", "EQUIPEMENT_AVAILABILITY cannot be empty.");
@@ -71,9 +110,8 @@ bool MainWindow::validateFormData()
         return false;
     }
 
-    // Add more checks for other fields if needed
 
-    return true; // All checks passed
+    return true;
 }
 
 
@@ -84,23 +122,29 @@ void MainWindow::on_ajouter_clicked()
 {
     QString EQUIPEMENT_ID = ui->id_lineEdit->text();
         QString EQUIPEMENT_NAME = ui->name_lineEdit->text();
-        QString EQUIPEMENT_TYPE = ui->type_lineEdit->text();
+        //linedit
+        //QString EQUIPEMENT_TYPE = ui->type_lineEdit->text();
+        //type combobox
+        QString EQUIPEMENT_TYPE = ui->type_comboBox->currentText(); // Read from the combo box
+
         QString EQUIPEMENT_AVAILABILITY = ui->availability_lineEdit->text();
         QString EQUIPEMENT_STATE = ui->state_lineEdit->text();
         QString EQUIPEMENT_CURRENTHOLDER = ui->currentholder_linedit->text();
         int EMPLOYEE_ID = ui->employee_id_lineEdit->text().toInt();
+
+
  EQUIPEMENT Equip(EQUIPEMENT_ID,EQUIPEMENT_NAME,EQUIPEMENT_TYPE,EQUIPEMENT_AVAILABILITY,EQUIPEMENT_STATE,EQUIPEMENT_CURRENTHOLDER,EMPLOYEE_ID);
  bool test=Equip.addEquipement();
  if (!validateFormData()) {
-        return; // Stop further processing if validation fails
+        return;
     }
  if(test){
      ui->equip_tab->setModel(Equipmp.showEquipement());
 
-     QMessageBox::information(nullptr,QObject::tr("ok"),QObject::tr("ajout effectué\n"),QMessageBox::Cancel);
+     QMessageBox::information(nullptr,QObject::tr("ADD"),QObject::tr("added.\n"),QMessageBox::Cancel);
  }
  else{
-     QMessageBox::critical(nullptr,QObject::tr("not ok"),QObject::tr("ajout non effectué\n"),QMessageBox::Cancel);
+     QMessageBox::critical(nullptr,QObject::tr("ADD"),QObject::tr("adding unsuccesful\n"),QMessageBox::Cancel);
 
 
  }
@@ -108,22 +152,28 @@ void MainWindow::on_ajouter_clicked()
 }
 
 //delete
-void MainWindow::on_delete_button_clicked()
-{
-    QString E_ID =ui->id_lineEdit_delete->text();
-    bool test=Equipmp.deleteEquipement(E_ID);
-    if (test){
-        ui->equip_tab->setModel(Equipmp.showEquipement());
 
-        QMessageBox::information(nullptr,QObject::tr("ok"),QObject::tr("deletion done\n"),QMessageBox::Cancel);
+    void MainWindow::on_delete_button_clicked()
+    {
+        QString E_ID = ui->id_lineEdit_delete->text().trimmed();
+
+        if (E_ID.isEmpty()) {
+            QMessageBox::warning(nullptr, QObject::tr("Empty ID"), QObject::tr("Please enter an ID for deletion."), QMessageBox::Cancel);
+            return;
+        }
+
+        bool test = Equipmp.deleteEquipement(E_ID);
+
+        if (test) {
+            ui->equip_tab->setModel(Equipmp.showEquipement());
+            QMessageBox::information(nullptr, QObject::tr("DELETE"), QObject::tr("Deletion done."), QMessageBox::Cancel);
+        } else {
+            QMessageBox::critical(nullptr, QObject::tr("DELETE"), QObject::tr("Deletion not done."), QMessageBox::Cancel);
+        }
     }
-    else {
-        QMessageBox::critical(nullptr,QObject::tr("not ok"),QObject::tr("deletion not done\n"),QMessageBox::Cancel);
 
 
-    }
 
-}
 //update
 
 void MainWindow::on_updatebutton_clicked()
@@ -134,7 +184,11 @@ void MainWindow::on_updatebutton_clicked()
     if (reply == QMessageBox::Yes) {
         QString EQUIPEMENT_ID = ui->id_lineEdit->text();
             QString EQUIPEMENT_NAME = ui->name_lineEdit->text();
-            QString EQUIPEMENT_TYPE = ui->type_lineEdit->text();
+            //line edit
+            //QString EQUIPEMENT_TYPE = ui->type_lineEdit->text();
+            //combo box
+            QString EQUIPEMENT_TYPE = ui->type_comboBox->currentText(); // Read from the combo box
+
             QString EQUIPEMENT_AVAILABILITY = ui->availability_lineEdit->text();
             QString EQUIPEMENT_STATE = ui->state_lineEdit->text();
             QString EQUIPEMENT_CURRENTHOLDER = ui->currentholder_linedit->text();
@@ -181,7 +235,11 @@ void MainWindow::on_equip_tab_activated(const QModelIndex &index)
             //ui->id_lineEdit->setReadOnly(false);
 
             ui->name_lineEdit->setText(qry.value(1).toString());
-            ui->type_lineEdit->setText(qry.value(2).toString());
+            //linedit
+            //ui->type_lineEdit->setText(qry.value(2).toString());
+            //combo bow
+            // Set the selected value in the combo box
+            ui->type_comboBox->setCurrentText(qry.value(2).toString());
             ui->availability_lineEdit->setText(qry.value(3).toString());
             ui->state_lineEdit->setText(qry.value(4).toString());
             ui->currentholder_linedit->setText(qry.value(5).toString());
@@ -206,11 +264,15 @@ void MainWindow::on_clear_fields_add_clicked()
 {
     ui->id_lineEdit->clear();
        ui->name_lineEdit->clear();
-       ui->type_lineEdit->clear();
+       //ui->type_lineEdit->clear();
+       ui->type_comboBox->setCurrentIndex(-1); // Clear the selected item in the combo box
+
        ui->availability_lineEdit->clear();
        ui->state_lineEdit->clear();
        ui->currentholder_linedit->clear();
        ui->employee_id_lineEdit->clear();
+       ui->id_lineEdit->setReadOnly(false);
+
 }
 
 void MainWindow::on_clear_all_in_table_clicked()
@@ -266,11 +328,11 @@ void MainWindow::on_Generate_PDF_clicked()
 
                   painter.setFont(QFont("Montserrat SemiBold", 10));
                   painter.drawText(1000, 3600, "EQUIPEMENT_ID");
-                  painter.drawText(2000, 3600, "EQUIPEMENT_NAME");
-                  painter.drawText(3000, 3600, "EQUIPEMENT_TYPE");
-                  painter.drawText(4000, 3600, "EQUIPEMENT_AVAILABILITY");
-                  painter.drawText(5000, 3600, "EQUIPEMENT_STATE");
-                  painter.drawText(6000, 3600, "EQUIPEMENT_CURRENTHOLDER");
+                  painter.drawText(2000, 3600, "NAME");
+                  painter.drawText(3000, 3600, "TYPE");
+                  painter.drawText(4000, 3600, "AVAILABILITY");
+                  painter.drawText(5000, 3600, "STATE");
+                  painter.drawText(6000, 3600, "CURRENTHOLDER");
                   painter.drawText(7000, 3600, "EMPLOYEE_ID");
 
                   painter.setFont(QFont("Montserrat", 10));
@@ -324,12 +386,17 @@ QSqlQueryModel* EQUIPEMENT::showSearch(const QString &searchTerm)
 
     model->setQuery(queryString);
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("EQUIPEMENT_ID"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("EQUIPEMENT_NAME"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NAME"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("TYPE"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("AVAILABILITY"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("STATE"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("CURRENTHOLDER"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("EMPLOYEE_ID"));
 
     return model;
 }
 
-
+///////
 void MainWindow::on_search_button_clicked()
 {
     QString searchTerm = ui->search_lineEdit->text();
@@ -337,4 +404,264 @@ void MainWindow::on_search_button_clicked()
     ui->equip_tab->setModel(searchModel);
 
 }
+///////////
 
+void MainWindow::on_stats_button_clicked()
+{
+
+    QMainWindow *statsWindow = new QMainWindow;
+    statsWindow->setWindowTitle("Stats");
+
+    EQUIPEMENT equ;
+    QSqlQuery query = equ.getStatByType();
+
+    QtCharts::QPieSeries *series = new QtCharts::QPieSeries();
+    while (query.next()) {
+        QString type = query.value(0).toString();
+        int count = query.value(1).toInt();
+        QtCharts::QPieSlice *slice = new QtCharts::QPieSlice(type, count);
+        series->append(slice);
+    }
+
+    QtCharts::QChart *chart = new QtCharts::QChart();
+    chart->addSeries(series);
+    chart->setTitle("Types of Equipment");
+    chart->setAnimationOptions(QtCharts::QChart::SeriesAnimations);
+
+    QtCharts::QChartView *chartView = new QtCharts::QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+
+    statsWindow->setCentralWidget(chartView);
+
+
+    QSize chartSize = chartView->size();
+    QSize windowSize(chartSize.width(), statsWindow->size().height());
+    statsWindow->resize(windowSize);
+
+
+    statsWindow->show();
+}
+
+void MainWindow::on_qr_button_clicked()
+{
+
+    chooseEquipForQr *chooseWindow = new chooseEquipForQr(this);
+    chooseWindow->show();
+ /*QRGenerateWindow *qrWindow = new QRGenerateWindow(this);
+    // Set equipment data to QRGenerateWindow
+    //qrWindow->setEquipmentData(Equipmp.showEquipement());
+
+    // Generate QR code image
+    QrCodeGenerator generator;
+    QString data = "https://github.com/zxing-cpp/zxing-cpp";
+    QImage qrCodeImage = generator.generateQr(data);
+
+    // Set the QR code image to qrCodeLabel in QRGenerateWindow
+    QLabel *qrCodeLabel = qrWindow->findChild<QLabel*>("qrCodeLabel");
+    if (qrCodeLabel) {
+        // Resize the QLabel to fit the QR code image
+        qrCodeLabel->setPixmap(QPixmap::fromImage(qrCodeImage).scaled(qrCodeLabel->size(), Qt::KeepAspectRatio));
+
+        // Resize the window to fit the QLabel and make it larger
+        QSize newSize = qrCodeLabel->size() + QSize(100, 100); // Adjust the size as needed
+        qrWindow->resize(newSize);
+
+        qrWindow->show();
+
+    } else {
+        // Handle error: qrCodeLabel not found
+        delete qrWindow; // Clean up the allocated memory
+    }*/
+
+}
+
+
+////////////////////////////////
+
+///SMS
+///
+/// workss (twilio api) but issue is that its limited
+
+void MainWindow::on_sms_clicked()
+{
+    // Prompt the user to enter the recipient's phone number and the message
+    QString recipient = QInputDialog::getText(this, "Enter Recipient", "Enter the recipient's phone number:");
+    if (recipient.isEmpty()) {
+        // User cancelled or left the recipient field empty
+        QMessageBox::warning(this, "Error", "SMS sending cancelled. Please enter the recipient's phone number.");
+        return;
+    }
+
+    QString message = QInputDialog::getText(this, "Enter Message", "Enter the message to send:");
+    if (message.isEmpty()) {
+        // User cancelled or left the message field empty
+        QMessageBox::warning(this, "Error", "SMS sending cancelled. Please enter the message to send.");
+        return;
+    }
+
+    // Send the SMS message using the sendSMS function
+    sendSMS(recipient, message);
+}
+
+void MainWindow::sendSMS(const QString& recipient, const QString& message)
+{
+    QNetworkAccessManager* manager = new QNetworkAccessManager(this);
+    connect(manager, &QNetworkAccessManager::finished, this, &MainWindow::onSMSRequestFinished);
+
+    // Twilio API credentials
+   // QString accountSid = "ACe05a2ca8367c07f8a0769b6165da0635";
+    //QString authToken = "2f22a0063cf2c72cfd3e067e19acb84d";
+     QString accountSid = "ACc4e0e1d307fcab357fa13b5542474fc2";
+     QString authToken = "c3fc5436f92a7a9da560dac1acb8c6db";
+
+    QUrl url("https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json");
+    QNetworkRequest request(url);
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+    // Construct request parameters
+    QUrlQuery params;
+    params.addQueryItem("To", recipient);
+    //params.addQueryItem("From", "+12132045869");
+    params.addQueryItem("From", "+ +12403123881");
+
+
+    params.addQueryItem("Body", message);
+    QByteArray postData = params.toString(QUrl::FullyEncoded).toUtf8();
+
+    // Set Twilio API authentication header
+    QString auth = accountSid + ":" + authToken;
+    QByteArray authData = auth.toUtf8().toBase64();
+    request.setRawHeader("Authorization", "Basic " + authData);
+
+    // Send HTTP POST request to Twilio API
+    manager->post(request, postData);
+}
+
+void MainWindow::onSMSRequestFinished(QNetworkReply* reply)
+{
+    if (reply->error() == QNetworkReply::NoError) {
+        QMessageBox::information(this, "SMS Sent", "The SMS message has been sent successfully.");
+    } else {
+        QMessageBox::critical(this, "Error", "Failed to send SMS message: " + reply->errorString());
+    }
+    reply->deleteLater();
+}
+
+
+
+
+/////////////////////////////////////////////////infobip/////////////////////////
+// bel name , pass : infobip   //Connected to SMTP server ✅
+void MainWindow::sendEmail(const QString& recipient, const QString& subject, const QString& body)
+{
+    // Set up Infobip API details
+    QString authToken = "5609830a95e4a56e5e6cd1cae191177f-02ef3452-6d3f-40df-88d4-066ff97a9207";
+    QString url = "https://qy9wy3.api.infobip.com/email/3/send";
+
+    // Set up email content
+    QString from = "Yasmine Chahbani <yasmine.chahbani@esprit.tn>";
+
+    // Create form data
+    QHttpMultiPart *multiPart = new QHttpMultiPart(QHttpMultiPart::FormDataType);
+
+    // Add form fields
+    QHttpPart fromPart;
+    fromPart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"from\""));
+    fromPart.setBody(from.toUtf8());
+
+    QHttpPart toPart;
+    toPart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"to\""));
+    toPart.setBody(recipient.toUtf8());
+
+    QHttpPart subjectPart;
+    subjectPart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"subject\""));
+    subjectPart.setBody(subject.toUtf8());
+
+    QHttpPart bodyPart;
+    bodyPart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"text\""));
+    bodyPart.setBody(body.toUtf8());
+
+    // Add parts to the multiPart
+    multiPart->append(fromPart);
+    multiPart->append(toPart);
+    multiPart->append(subjectPart);
+    multiPart->append(bodyPart);
+
+    // Create network access manager
+    QNetworkAccessManager* manager = new QNetworkAccessManager(this);
+
+    // Connect signals and slots for request handling
+    connect(manager, &QNetworkAccessManager::finished, this, [=](QNetworkReply *reply){
+        if (reply->error() == QNetworkReply::NoError) {
+            qDebug() << "Email sent successfully";
+        } else {
+            qDebug() << "Error sending email:" << reply->errorString();
+        }
+        reply->deleteLater();
+    });
+
+    // Create network request
+    QNetworkRequest request(url);
+    request.setRawHeader("Authorization", "App " + authToken.toUtf8());
+
+    // Send POST request
+    manager->post(request, multiPart);
+}
+
+
+void MainWindow::on_use_return_clicked()
+{
+    // Example usage of sendEmail function
+    sendEmail("chahbaniyesmine@gmail.com", "equipment notification", "you have successfully rented the equipement");
+
+
+}
+
+/*void onEmailRequestFinished(QNetworkReply *reply) {
+    if (reply->error() == QNetworkReply::NoError) {
+        qDebug() << "Email sent successfully!";
+    } else {
+        qDebug() << "Failed to send email:" << reply->errorString();
+    }
+    reply->deleteLater();
+}*/
+/////////////////////////private mail api/////////////////////////
+
+
+
+
+void MainWindow::on_useEquipment_clicked()
+{
+    useequipmentwindow *use = new useequipmentwindow(this);
+       use->setAttribute(Qt::WA_DeleteOnClose); // Ensure that the instance is deleted when closed
+       use->show();
+       //use->ui->equip_tab(Equipmp.showEquipement());
+       ui->equip_tab->setModel(Equipmp.showEquipement());
+
+
+
+
+}
+// Return equipment
+void MainWindow::on_returnEquipment_clicked()
+{
+    returnequipmentwindow *use = new returnequipmentwindow(this);
+       use->setAttribute(Qt::WA_DeleteOnClose); // Ensure that the instance is deleted when closed
+       use->show();
+       //use->ui->equip_tab(Equipmp.showEquipement());
+       ui->equip_tab->setModel(Equipmp.showEquipement());
+
+}
+
+
+
+void MainWindow::on_notif_clicked()
+{ chat *use = new chat(this);
+
+
+    use->setAttribute(Qt::WA_DeleteOnClose);
+
+    // Show the chat window
+    use->show();
+}

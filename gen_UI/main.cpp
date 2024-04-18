@@ -1,7 +1,9 @@
+#include "statwindow.h"
 
 #include "mainwindow.h"
 #include <QMessageBox>
 #include <QApplication>
+#include <QLineEdit>
 //#include <QFrame>
 #include <QPushButton>
 #include <QHoverEvent>
@@ -10,12 +12,18 @@
 //#include<QFile>
 //#include<QDebug>
 #include "connexion.h"
+#include <openssl/ssl.h>
+#include <openssl/err.h>
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
     Connection c;
+
+
    bool test=c.createconnect();
+
+
    if (test)
    {w.show();
        QMessageBox::information(nullptr,QObject::tr("database is open"),
@@ -26,10 +34,6 @@ int main(int argc, char *argv[])
        QMessageBox::critical(nullptr,QObject::tr("database is not open"),
                              QObject::tr("connection failed.\n"
                                          "Clicl cancel to exit ."), QMessageBox::Cancel);
-
-
-
-
 
 return a.exec();
 

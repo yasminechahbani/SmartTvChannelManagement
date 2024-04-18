@@ -2,6 +2,16 @@
 #define MAINWINDOW_H
 #include "equipement.h"
 #include <QMainWindow>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QUrlQuery>
+#include <QSslSocket>
+#include <QCoreApplication>
+#include <QByteArray>
+
+
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -35,11 +45,42 @@ private slots:
     void on_search_button_clicked();
     bool validateFormData();
 
+    void on_stats_button_clicked();
+
+    void on_qr_button_clicked();
+
+
+    void on_use_return_clicked();
+
+    void on_sms_clicked();
+    void sendSMS(const QString& recipient, const QString& message);
+     void onSMSRequestFinished(QNetworkReply* reply);
+     //lel twilio mail
+     //void sendEmail(const QString& recipient, const QString& subject, const QString& body);
+     //void sendEmail(const QString& apiKey, const QString& recipient, const QString& subject, const QString& body) ;
+          //void sendEmail(const QString& , const QString& , const QString& , const QString& );
+
+           //void onEmailRequestFinished(QNetworkReply *reply);
+//lel smtp
+          void sendEmail(const QString& recipient, const QString& subject, const QString& body);
+          //bool promptUserForConfirmation();
+
+     // Use equipment
+     void on_useEquipment_clicked();
+
+     // Return equipment
+     void on_returnEquipment_clicked();
+
+
+
+
+
+
+     void on_notif_clicked();
 
 private:
     Ui::MainWindow *ui;
     EQUIPEMENT Equipmp;
-    //added this now
     QSqlDatabase db;
 };
 #endif // MAINWINDOW_H
