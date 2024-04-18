@@ -841,7 +841,7 @@ border:0px;</string>
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QToolButton" name="search_button">
+     <widget class="QPushButton" name="search">
       <property name="geometry">
        <rect>
         <x>890</x>
@@ -852,7 +852,7 @@ border:0px;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">
-    QToolButton {
+    QPushButton {
         background-color: #3F88C5;
         border: none;
         color: white;
@@ -863,7 +863,7 @@ border:0px;</string>
         border-radius: 20px;
                 image:url(:/Dark_ones /magnifier.png);
     }
-    QToolButton::menu-indicator {
+    QPushButton::menu-indicator {
         image:none;
     }
 </string>
@@ -873,6 +873,9 @@ border:0px;</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="search_lineEdit">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>680</x>
@@ -888,6 +891,9 @@ color:#999999;
 font: 8pt &quot;8514oem&quot;;</string>
       </property>
       <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
        <string> type in your search</string>
       </property>
      </widget>
@@ -928,7 +934,7 @@ font: 75 12pt &quot;8514oem&quot;;
      <widget class="QLabel" name="label_15">
       <property name="geometry">
        <rect>
-        <x>390</x>
+        <x>280</x>
         <y>700</y>
         <width>91</width>
         <height>41</height>
@@ -977,7 +983,7 @@ QPushButton:hover {
      <widget class="QPushButton" name="Generate_PDF">
       <property name="geometry">
        <rect>
-        <x>400</x>
+        <x>280</x>
         <y>690</y>
         <width>231</width>
         <height>71</height>
@@ -1298,7 +1304,7 @@ background:transparent;</string>
        <string/>
       </property>
      </widget>
-     <widget class="QToolButton" name="sort_button">
+     <widget class="QPushButton" name="sort">
       <property name="geometry">
        <rect>
         <x>180</x>
@@ -1312,7 +1318,7 @@ background:transparent;</string>
       </property>
       <property name="styleSheet">
        <string notr="true">
-    QToolButton {
+    QPushButton {
         background-color: #3F88C5;
         border: none;
         color: white;
@@ -1324,7 +1330,7 @@ background:transparent;</string>
 font: 75 12pt &quot;8514oem&quot;;
 
     }
-    QToolButton::menu-indicator {
+    QPushButton::menu-indicator {
         image: none;
     }</string>
       </property>
@@ -1338,8 +1344,8 @@ font: 75 12pt &quot;8514oem&quot;;
       </property>
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>250</y>
+        <x>0</x>
+        <y>260</y>
         <width>851</width>
         <height>431</height>
        </rect>
@@ -1349,7 +1355,7 @@ font: 75 12pt &quot;8514oem&quot;;
 background:transparent;</string>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -1469,6 +1475,9 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
          <string>type here</string>
         </property>
        </widget>
@@ -1485,6 +1494,9 @@ background:transparent;</string>
          <string notr="true"/>
         </property>
         <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
          <string>type here</string>
         </property>
        </widget>
@@ -1498,6 +1510,9 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
          <string>type here</string>
         </property>
        </widget>
@@ -1524,6 +1539,9 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
          <string>type here</string>
         </property>
        </widget>
@@ -1537,6 +1555,9 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
          <string>type here</string>
         </property>
        </widget>
@@ -1550,6 +1571,9 @@ background:transparent;</string>
          </rect>
         </property>
         <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
          <string>type here</string>
         </property>
        </widget>
@@ -1564,6 +1588,157 @@ background:transparent;</string>
         </property>
         <property name="text">
          <string>nb total affichage</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_5">
+       <attribute name="title">
+        <string>SendMail</string>
+       </attribute>
+       <widget class="QLineEdit" name="emailLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>70</y>
+          <width>291</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="text">
+         <string>Type here</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="passwordLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>130</y>
+          <width>291</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>type_here </string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_43">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>40</y>
+          <width>56</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Email :</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_44">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>100</y>
+          <width>56</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Password :  </string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_45">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>160</y>
+          <width>56</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Recepient :</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_46">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>240</y>
+          <width>56</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Content:</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="recipientLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>190</y>
+          <width>291</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>type_here </string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="contentTextEdit">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>270</y>
+          <width>291</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>type_here </string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_47">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>310</y>
+          <width>56</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Subject</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="subjectLineEdit">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>340</y>
+          <width>291</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>type_here </string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="sendButton">
+        <property name="geometry">
+         <rect>
+          <x>230</x>
+          <y>160</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>SEND!</string>
         </property>
        </widget>
       </widget>
@@ -1849,19 +2024,6 @@ colour:rgb(131, 179, 216);
 </string>
         </property>
        </widget>
-       <widget class="QPushButton" name="list_all_button">
-        <property name="geometry">
-         <rect>
-          <x>530</x>
-          <y>360</y>
-          <width>231</width>
-          <height>28</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>sponsors list</string>
-        </property>
-       </widget>
        <widget class="QPushButton" name="clear_all_in_table">
         <property name="geometry">
          <rect>
@@ -1875,14 +2037,223 @@ colour:rgb(131, 179, 216);
          <string>delete all sponsors</string>
         </property>
        </widget>
+       <widget class="QPushButton" name="list_all_button">
+        <property name="geometry">
+         <rect>
+          <x>540</x>
+          <y>360</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>sponsor list</string>
+        </property>
+       </widget>
       </widget>
+      <widget class="QWidget" name="tab_16">
+       <attribute name="title">
+        <string>Calendar</string>
+       </attribute>
+       <widget class="QCalendarWidget" name="calendarWidget">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>30</y>
+          <width>581</width>
+          <height>371</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_48">
+        <property name="geometry">
+         <rect>
+          <x>50</x>
+          <y>90</y>
+          <width>41</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>START</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_49">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>130</y>
+          <width>41</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>END</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="SendButton">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>190</y>
+          <width>101</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+border-radius:20px;
+border: 1px solid rgb(107, 189, 171);
+font: 75 12pt &quot;8514oem&quot;;
+  background: rgb(107, 189, 171);
+        color:white;
+
+}
+</string>
+        </property>
+        <property name="text">
+         <string>SAVE DATE</string>
+        </property>
+       </widget>
+       <widget class="QDateTimeEdit" name="StartTimeEdit">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>90</y>
+          <width>194</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QDateTimeEdit" name="EndTimeEdit">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>130</y>
+          <width>194</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="jgcugedu">
+      <property name="geometry">
+       <rect>
+        <x>760</x>
+        <y>690</y>
+        <width>251</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+border-radius:20px;
+border: 1px solid rgb(107, 189, 171);
+font: 75 12pt &quot;8514oem&quot;;
+  background: rgb(107, 189, 171);
+        color:white;
+
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Check contracts</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="sendSMSButton">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>690</y>
+        <width>221</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+border-radius:20px;
+border: 1px solid rgb(107, 189, 171);
+font: 75 12pt &quot;8514oem&quot;;
+  background: rgb(107, 189, 171);
+        color:white;
+
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Send sms</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="excel">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>690</y>
+        <width>231</width>
+        <height>71</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{color:#D00000;
+border-radius:20px;
+border: 1px solid #D00000;
+font: 75 12pt &quot;8514oem&quot;;
+}
+QPushButton:hover {
+    background: #D00000;
+        color:white;
+
+
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Generate Excel</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="sortComboBox">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>200</y>
+        <width>73</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color :black;
+</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>default</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>A-Z</string>
+       </property>
+      </item>
      </widget>
      <zorder>stat</zorder>
      <zorder>pushButton_2</zorder>
      <zorder>add_button</zorder>
      <zorder>search_lineEdit</zorder>
      <zorder>label_3</zorder>
-     <zorder>search_button</zorder>
+     <zorder>search</zorder>
      <zorder>toolButton_2</zorder>
      <zorder>Generate_PDF</zorder>
      <zorder>label_15</zorder>
@@ -1900,8 +2271,12 @@ colour:rgb(131, 179, 216);
      <zorder>label_27</zorder>
      <zorder>label_28</zorder>
      <zorder>label_18</zorder>
-     <zorder>sort_button</zorder>
+     <zorder>sort</zorder>
      <zorder>tabWidget</zorder>
+     <zorder>jgcugedu</zorder>
+     <zorder>sendSMSButton</zorder>
+     <zorder>excel</zorder>
+     <zorder>sortComboBox</zorder>
     </widget>
     <widget class="QLabel" name="label">
      <property name="geometry">
@@ -2256,19 +2631,6 @@ background:transparent;
       <string>Employees</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="checkContracts">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>450</y>
-       <width>93</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Check contracts</string>
-     </property>
-    </widget>
     <zorder>pushButton</zorder>
     <zorder>label_10</zorder>
     <zorder>label_12</zorder>
@@ -2283,7 +2645,6 @@ background:transparent;
     <zorder>label_17</zorder>
     <zorder>pushButton_7</zorder>
     <zorder>label_13</zorder>
-    <zorder>checkContracts</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -2329,22 +2690,5 @@ background:transparent;
   <tabstop>pushButton</tabstop>
  </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>search_button</sender>
-   <signal>pressed()</signal>
-   <receiver>search_button</receiver>
-   <slot>showMenu()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>2456</x>
-     <y>294</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>2456</x>
-     <y>294</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

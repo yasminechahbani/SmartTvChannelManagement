@@ -14,7 +14,24 @@
 #include <QCoreApplication>
 #include <QtNetwork>
 #include <QHeaderView>
-
+#include <QProcess>
+#include <QStringList>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QInputDialog>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QUrlQuery>
+#include<QUrl>
+#include<QHttpPart>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QUrl>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QByteArray>
+#include <QCryptographicHash>
 
 
 
@@ -24,12 +41,38 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+     /*connect(ui->sendButton, SIGNAL(clicked()), this, SLOT(on_sendButton_clicked()));
     connect(ui->sponsor_tab->horizontalHeader(), &QHeaderView::sectionClicked, this, &MainWindow::on_tableHeader_clicked);
     ui->sponsor_tab->setModel(sponsor.showSponsor());
     ui->sponsor_tab->setSortingEnabled(true);
+    connect(ui->sponsor_tab->horizontalHeader(), SIGNAL(sectionClicked(int)), this, SLOT(on_tableHeader_clicked(int)));
+    connect(ui->StartTimeEdit, &QTimeEdit::timeChanged, this, &MainWindow::onStartTimeChanged);
+    connect(ui->EndTimeEdit, &QTimeEdit::timeChanged, this, &MainWindow::onEndTimeChanged);
+    connect(ui->sendSMSButton, &QPushButton::clicked, this, &MainWindow::onSendSMSButtonClicked);
+
+*/
+
+
 
 }
+/*void MainWindow::on_sendButton_clicked()
+{
+    Smtp* smtp = new Smtp(ui->emailLineEdit->text(),
+                           ui->passwordLineEdit->text(),
+                           "smtp.gmail.com",
+                           465);
 
+    smtp->sendMail(ui->emailLineEdit->text(),
+                    ui->recipientLineEdit->text(),
+                    ui->subjectLineEdit->text(),
+                    ui->contentTextEdit->text());
+
+    // Assuming smtp->sendMail() emits a signal when the sending is finished
+    connect(smtp, &Smtp::status, [=](const QString &status) {
+        QMessageBox::information(this, "Email Status", status);
+    });
+}
+*/
 void MainWindow::on_tableHeader_clicked(int index)
 {
     // Sort the table based on the clicked column
@@ -79,6 +122,13 @@ void MainWindow::on_delete_button_clicked()
 
 
 void MainWindow::on_list_all_button_clicked()
+{
+      //with search
+      ui->sponsor_tab->setModel(sponsor.showSponsor());
+
+}
+
+void MainWindow::on_search_clicked()
 {
     //ui->sponsor_tab->setModel(sponsor.showSponsor());
     QString searchName = ui->search_lineEdit->text();
@@ -245,5 +295,164 @@ void MainWindow::on_checkContracts_clicked()
         QMessageBox::information(this, "Non Valide Contracts", "No sponsors with non valide contracts found.");
     }
 }
+void MainWindow::on_Sponsor_tabHeader_clicked(int index)
+{
+    // Sort the table based on the clicked column
+    ui->sponsor_tab->sortByColumn(index, Qt::AscendingOrder);
+}
+
+void MainWindow::onStartTimeChanged(const QTime &time)
+{
+    startTime = time;
+    if (endTime <= startTime)
+    {
+        endTime = startTime.addSecs(60); // Add one minute
+        ui->EndTimeEdit->setTime(endTime); // Update the end time edit widget
+    }
+}
+
+
+void MainWindow::onEndTimeChanged(const QTime &time)
+{
+    endTime = time;
+    if (endTime <= startTime)
+    {
+        startTime = endTime.addSecs(-60); // Subtract one minute from end time
+        ui->StartTimeEdit->setTime(startTime); // Update the start time edit widget
+    }
+}
+/*void MainWindow::sendEmail(const QString& recipient, const QString& subject, const QString& body)
+{
+    // Set up Infobip API details
+    QString authToken = "e59d4b3da931706551a9ff5c675eb6a2-69a50cd4-cc59-45cd-b0e7-9fc8dd4e7a8f";
+    QString url = "k2l38x.api.infobip.com";
+
+    // Set up email content
+    QString from = "Aziz Khayati <khayati.mohamedaziz@esprit.tn>";
+
+    // Create form data
+    QHttpMultiPart *multiPart = new QHttpMultiPart(QHttpMultiPart::FormDataType);
+
+    // Add form fields
+    QHttpPart fromPart;
+    fromPart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"from\""));
+    fromPart.setBody(from.toUtf8());
+
+    QHttpPart toPart;
+    toPart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"to\""));
+    toPart.setBody(recipient.toUtf8());
+
+    QHttpPart subjectPart;
+    subjectPart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"subject\""));
+    subjectPart.setBody(subject.toUtf8());
+
+    QHttpPart bodyPart;
+    bodyPart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"text\""));
+    bodyPart.setBody(body.toUtf8());
+
+    // Add parts to the multiPart
+    multiPart->append(fromPart);
+    multiPart->append(toPart);
+    multiPart->append(subjectPart);
+    multiPart->append(bodyPart);
+
+    // Create network access manager
+    QNetworkAccessManager* manager = new QNetworkAccessManager(this);
+
+    // Connect signals and slots for request handling
+    connect(manager, &QNetworkAccessManager::finished, this, [=](QNetworkReply *reply){
+        if (reply->error() == QNetworkReply::NoError) {
+            qDebug() << "Email sent successfully";
+        } else {
+            qDebug() << "Error sending email:" << reply->errorString();
+        }
+        reply->deleteLater();
+    });
+
+    // Create network request
+    QNetworkRequest request(url);
+    request.setRawHeader("Authorization", "App " + authToken.toUtf8());
+
+    // Send POST request
+    manager->post(request, multiPart);
+}*/
+
+
+void MainWindow::on_use_return_clicked()
+{
+    // Example usage of sendEmail function
+    //sendEmail("khayati.mohamedaziz@esprit.com", "yo yo ", "khedmet");
+
+
+}
+void MainWindow::onSendSMSButtonClicked()
+{
+    Sponsor sponsor;
+    QString fromNumber = "+21627888536"; // Replace with your sender number
+    QString toNumber = "+21627888536";   // Replace with recipient number
+    QString messageText = "This is a test SMS from Qt Creator app.";
+
+    if (sponsor.sendSMS(fromNumber, toNumber, messageText)) {
+        qDebug() << "SMS sending request initiated.";
+    } else {
+        qDebug() << "Error initiating SMS sending request.";
+    }
+}
+void MainWindow::on_excel_clicked() {
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Export Excel"), QString(), "*.csv");
+    if (fileName.isEmpty()) {
+        return; // User canceled save
+    }
+
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QMessageBox::critical(this, "Error", "Cannot create file");
+        return;
+    }
+
+    QTextStream stream(&file);
+
+    // Write headers
+    stream << "sponsor_id        ,        sponsor_nom         ,       sponsor_montant         , sponsor_tempsaffichage      ,        sponsor_nb_totalaffichage        ,      sponsor_etatcontrat     ";
+
+    QSqlQueryModel* model = sponsor.Readsponsor();
+    const int rowCount = model->rowCount();
+    const int columnCount = model->columnCount();
+
+    // Write data
+    for (int i = 0; i < rowCount; ++i) {
+        for (int j = 0; j < columnCount; ++j) {
+            QString data = model->data(model->index(i, j)).toString();
+            stream << '"' << data.replace("\"", "\"\"") << '"';
+            if (j < columnCount - 1) {
+                stream << "         ,         ";
+            } else {
+                // Write newline after each row's data
+                stream << "\n";
+            }
+        }
+    }
+
+    file.close();
+
+    int response = QMessageBox::question(this, "Export Successful", "Data exported to CSV file successfully. Do you want to open it?", QMessageBox::Yes | QMessageBox::No);
+    if (response == QMessageBox::Yes) {
+        QDesktopServices::openUrl(QUrl::fromLocalFile(fileName));
+    }
+}
+void MainWindow::on_sort_clicked()
+{
+    int i = ui->sortComboBox->currentIndex();
+
+    if (i == 0) {
+        // Show the unsorted list
+        ui->sponsor_tab->setModel(sponsor.Readsponsor());
+    } else if (i == 1) {
+        // Show the sorted list alphabetically
+        ui->sponsor_tab->setModel(sponsor.getAllSponsorsSorted());
+    }
+}
+
+
 
 

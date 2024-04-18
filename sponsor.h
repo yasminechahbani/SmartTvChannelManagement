@@ -5,9 +5,18 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
 #include <QDebug>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QObject>
 
-class Sponsor
+
+class Sponsor : public QObject
 {
+    Q_OBJECT
+
 private:
     QString sponsor_id;
     QString sponsor_nom;
@@ -49,6 +58,10 @@ public:
     QSqlQuery getSPONSORData() ;
     QSqlQuery getStatByTempsAffichage() ;
     QSqlQuery getSponsorsWithNonValideContract();
+    QSqlQueryModel* getAllSponsorsSorted();
+
+
+    bool sendSMS(const QString& from, const QString& to, const QString& message);
 
 
     

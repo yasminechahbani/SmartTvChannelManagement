@@ -5,6 +5,8 @@
 //#include <QFrame>
 #include <QPushButton>
 #include <QHoverEvent>
+#include <QSslSocket>
+
 //#include <QVBoxLayout>
 //added
 //#include<QFile>

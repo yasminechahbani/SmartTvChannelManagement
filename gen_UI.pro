@@ -5,6 +5,8 @@ CONFIG+=console;
 CONFIG += c++11
 QT += charts
 QT += network
+CONFIG += linkstaticlib
+
 
 
 
@@ -24,11 +26,13 @@ SOURCES += \
     connexion.cpp \
     main.cpp \
     mainwindow.cpp \
+    smtp.cpp \
     sponsor.cpp
 
 HEADERS += \
     connexion.h \
     mainwindow.h \
+    smtp.h \
     sponsor.h
 
 FORMS += \
