@@ -1,5 +1,7 @@
 #include "dark_mode.h"
 #include "ui_mainwindow_dark_mode.h"
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
 #include "emission.h" // Include the emission header file
 #include <QMessageBox>
 #include <QSqlError>
@@ -19,15 +21,14 @@
 #include <QTextDocument>
 #include <QTextStream>
 #include <QStringListModel>
-#include "qrcode.h"
 #include <QApplication>
 #include <QMenuBar>
 #include <QSettings>
 #include <QUiLoader>
 #include <QFile>
+#include "QrCodeGenerator.h"
 
 
-using namespace qrcodegen;
 
 
 MainWindowDarkMode::MainWindowDarkMode(QWidget *parent)
@@ -52,6 +53,11 @@ MainWindowDarkMode::~MainWindowDarkMode()
 void MainWindowDarkMode::on_dark_mode_clicked()
 {
 
+    this->close();
+
+    MainWindow *chooseWindow = new MainWindow(this);
+
+        chooseWindow->show();
 }
 
 
@@ -402,93 +408,6 @@ QStringList MainWindowDarkMode::readEmissionForExcel(const QSqlQueryModel* model
 
 
 
-/*
-
-void MainWindowDarkMode::generateQRCode(const QString &pdfFilePath)
-{
-    // Generate QR code text (e.g., the PDF file path)
-    QString qrText = pdfFilePath;
-
-    // Create QR code
-    QRcode *qr = QRcode_encodeString(qrText.toUtf8().constData(), 1, QR_ECLEVEL_L, QR_MODE_8, 1);
-
-    // Convert QR code to image
-    QImage qrImage(qr->width, qr->width, QImage::Format_RGB888);
-    unsigned char *p = qr->data;
-    for (int y = 0; y < qr->width; y++) {
-        for (int x = 0; x < qr->width; x++) {
-            qrImage.setPixel(x, y, ((*p & 1) ? qRgb(0, 0, 0) : qRgb(255, 255, 255)));
-            p++;
-        }
-    }
-
-    // Save QR code image to file (optional)
-    QString qrImagePath = pdfFilePath + "_QRCode.png";
-    qrImage.save(qrImagePath);
-
-    // Display QR code image (optional)
-    QLabel *qrLabel = new QLabel(this);
-    qrLabel->setPixmap(QPixmap::fromImage(qrImage));
-    qrLabel->show();
-
-    // Remember to free QR code memory
-    QRcode_free(qr);
-}
-
-*/
-
-
-void MainWindowDarkMode::on_generateQRButton_clicked()
-{
-    QSqlQuery query("SELECT * FROM emissions");
-    QString qrText;
-
-    // Loop through each row in the emissions table
-    while (query.next()) {
-        QString id = query.value(0).toString();
-        QString nom = query.value(1).toString();
-        QString host = query.value(2).toString();
-        QString nbviewers = query.value(3).toString();
-        QString genre = query.value(4).toString();
-        QString type = query.value(5).toString();
-        QString date = query.value(6).toString();
-        QString duree = query.value(7).toString();
-
-        // Append emission details to the QR code text
-        qrText += "ID: " + id + "\n"
-                  + "Name: " + nom + "\n"
-                  + "Host: " + host + "\n"
-                  + "Viewers: " + nbviewers + "\n"
-                  + "Genre: " + genre + "\n"
-                  + "Type: " + type + "\n"
-                  + "Date: " + date + "\n"
-                  + "Duration: " + duree + "\n\n";
-    }
-
-    // Encode the text into a QR code
-    QrCode qr = QrCode::encodeText(qrText.toUtf8().constData(), QrCode::Ecc::HIGH);
-
-    // Create an image to display the QR code
-    QImage qrImage(qr.getSize(), qr.getSize(), QImage::Format_RGB888);
-
-    // Convert the QR code to a black and white image
-    for (int y = 0; y < qr.getSize(); y++) {
-        for (int x = 0; x < qr.getSize(); x++) {
-            int color = qr.getModule(x, y);  // 0 for white, 1 for black
-            if (color == 0)
-                qrImage.setPixel(x, y, qRgb(255, 255, 255)); // White
-            else
-                qrImage.setPixel(x, y, qRgb(0, 0, 0)); // Black
-        }
-    }
-
-    // Scale the image to fit in the QLabel
-    qrImage = qrImage.scaled(200, 200);
-
-    // Display the QR code image in the QLabel
-    ui->qrcode->setPixmap(QPixmap::fromImage(qrImage));
-}
-
 
 
 void MainWindowDarkMode::on_Sort_clicked()
@@ -504,5 +423,19 @@ void MainWindowDarkMode::on_Sort_clicked()
     }
 }
 
+void MainWindowDarkMode::on_generateQRButton_clicked()
+{
+    // PDF download link
+    QString downloadLink = "https://heyzine.com/flip-book/846a16e811.html";
+
+    // Create a QrCodeGenerator instance
+    QrCodeGenerator qrGenerator;
+
+    // Generate QR code image from the PDF download link
+    QImage qrCodeImage = qrGenerator.generateQr(downloadLink);
+
+    // Display the QR code image in the QLabel named qrcode
+    ui->qrcode->setPixmap(QPixmap::fromImage(qrCodeImage));
+}
 
 

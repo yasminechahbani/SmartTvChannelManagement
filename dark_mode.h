@@ -40,7 +40,6 @@ private slots:
     void on_printEmissions_clicked();
     void on_excel_clicked() ;
     QStringList readEmissionForExcel(const QSqlQueryModel* model, int row) ;
-   // void generateQRCode(const QString &pdfFilePath);
     void on_generateQRButton_clicked();
     void on_dark_mode_clicked(); // Slot for dark mode button clicked
     void on_Sort_clicked();

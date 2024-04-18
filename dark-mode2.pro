@@ -25,20 +25,19 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp\
     emission.cpp\
-    connexion.cpp\
-    qrcode.cpp
+    connexion.cpp
 
 HEADERS += \
     dark_mode.h \
     mainwindow.h\
     emission.h\
-    connexion.h\
-    qrcode.h
+    connexion.h
 
 FORMS += \
     mainwindow.ui \
     mainwindow_dark_mode.ui
 
+include(C:\Users\USER\Downloads\Qt-QrCodeGenerator-main\Qt-QrCodeGenerator-main\Qt-QrCodeGenerator.pri)
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
