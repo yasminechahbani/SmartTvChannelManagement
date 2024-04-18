@@ -1,6 +1,5 @@
-#include "mainwindow.h"
 #include "dark_mode.h"
-#include "ui_mainwindow.h"
+#include "ui_mainwindow_dark_mode.h"
 #include "emission.h" // Include the emission header file
 #include <QMessageBox>
 #include <QSqlError>
@@ -30,36 +29,33 @@
 
 using namespace qrcodegen;
 
-#include "ui_mainwindow_dark_mode.h"
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindowDarkMode::MainWindowDarkMode(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::MainWindowDarkMode)
 {
     ui->setupUi(this);
 
 
     // Connect dark mode button signal to slot
-    connect(ui->sortComboBox, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, &MainWindow::on_Sort_clicked);
+    connect(ui->sortComboBox, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, &MainWindowDarkMode::on_Sort_clicked);
+
 
 }
 
-MainWindow::~MainWindow()
+MainWindowDarkMode::~MainWindowDarkMode()
 {
     delete ui;
 }
 
 // Slot for dark mode button clicked
-void MainWindow::on_dark_mode_clicked()
+void MainWindowDarkMode::on_dark_mode_clicked()
 {
-    this->close();
-
-    MainWindowDarkMode *chooseWindow = new MainWindowDarkMode(this);
-
-        chooseWindow->show();
-
 
 }
+
+
+// Function to load dark mode UI
 
 
 
@@ -71,7 +67,7 @@ void MainWindow::on_dark_mode_clicked()
 
 // Validate form function remains the same if form fields are common
 
-void MainWindow::on_ajouter_clicked()
+void MainWindowDarkMode::on_ajouter_clicked()
 {
     QString emission_id = ui->id_lineEdit->text();
     QString emission_nom = ui->name_lineEdit->text();
@@ -93,7 +89,7 @@ void MainWindow::on_ajouter_clicked()
     QMessageBox::information(nullptr, "Success", "Emission added successfully.");
 }
 
-void MainWindow::on_delete_button_clicked()
+void MainWindowDarkMode::on_delete_button_clicked()
 {
     QString emission_id = ui->id_lineEdit_delete->text();
     if (!Emission.deleteEmission(emission_id)) {
@@ -106,13 +102,13 @@ void MainWindow::on_delete_button_clicked()
 }
 
 
-//void MainWindow::on_list_all_button_clicked()
+//void MainWindowDarkMode::on_list_all_button_clicked()
 //{
 //    ui->tabb->setModel(Emission.ReadEmission());
 //}
 
 
-void MainWindow::on_list_all_button_clicked()
+void MainWindowDarkMode::on_list_all_button_clicked()
 {
     QString searchName = ui->search_name_lineEdit->text();
 
@@ -122,7 +118,7 @@ void MainWindow::on_list_all_button_clicked()
 
 
 
-void MainWindow::on_clear_all_in_table_clicked()
+void MainWindowDarkMode::on_clear_all_in_table_clicked()
 {
     int reply = QMessageBox::question(this, "Confirmation", "Are you sure you want to clear all lines in the table?", QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
@@ -140,7 +136,7 @@ void MainWindow::on_clear_all_in_table_clicked()
 
 
 
-void MainWindow::on_update_clicked()
+void MainWindowDarkMode::on_update_clicked()
 {
     QString emission_id = ui->id_lineEdit_2->text();
     QString emission_nom = ui->name_lineEdit_2->text();
@@ -170,7 +166,7 @@ void MainWindow::on_update_clicked()
 //chartssssssssssss
 
 
-void MainWindow::on_stat_clicked()
+void MainWindowDarkMode::on_stat_clicked()
 {
     EMISSION emission;
          QSqlQuery query = emission.getStatBynbviews();
@@ -196,7 +192,7 @@ void MainWindow::on_stat_clicked()
 }
 
 //pdf//////////////////
-void MainWindow::on_Generate_PDF_clicked()
+void MainWindowDarkMode::on_Generate_PDF_clicked()
 {
     QPdfWriter pdf("C:/Users/USER/Desktop/official_projectCPP_folder/print - 2/EMISSION.pdf");
     QPainter painter(&pdf);
@@ -272,7 +268,7 @@ void MainWindow::on_Generate_PDF_clicked()
 //printtttttttttttttttttt////////
 
 /*
-void MainWindow::on_printEmissions_clicked()
+void MainWindowDarkMode::on_printEmissions_clicked()
 {
     // Create a QPrinter object for high-resolution printing
     QPrinter printer(QPrinter::HighResolution);
@@ -311,7 +307,7 @@ void MainWindow::on_printEmissions_clicked()
 }
 
 */
-void MainWindow::on_printEmissions_clicked()
+void MainWindowDarkMode::on_printEmissions_clicked()
 {
 #ifdef Q_OS_WIN
     // Load the existing PDF file
@@ -341,7 +337,7 @@ void MainWindow::on_printEmissions_clicked()
 
 
 //excel///////////:::
-void MainWindow::on_excel_clicked() {
+void MainWindowDarkMode::on_excel_clicked() {
     QString fileName = QFileDialog::getSaveFileName(this, tr("Export Excel"), QString(), "*.csv");
     if (fileName.isEmpty()) {
         return; // User canceled save
@@ -385,7 +381,7 @@ void MainWindow::on_excel_clicked() {
 }
 
 
-QStringList MainWindow::readEmissionForExcel(const QSqlQueryModel* model, int row) {
+QStringList MainWindowDarkMode::readEmissionForExcel(const QSqlQueryModel* model, int row) {
     QStringList rowData;
     const int columnCount = model->columnCount();
 
@@ -408,7 +404,7 @@ QStringList MainWindow::readEmissionForExcel(const QSqlQueryModel* model, int ro
 
 /*
 
-void MainWindow::generateQRCode(const QString &pdfFilePath)
+void MainWindowDarkMode::generateQRCode(const QString &pdfFilePath)
 {
     // Generate QR code text (e.g., the PDF file path)
     QString qrText = pdfFilePath;
@@ -442,7 +438,7 @@ void MainWindow::generateQRCode(const QString &pdfFilePath)
 */
 
 
-void MainWindow::on_generateQRButton_clicked()
+void MainWindowDarkMode::on_generateQRButton_clicked()
 {
     QSqlQuery query("SELECT * FROM emissions");
     QString qrText;
@@ -495,7 +491,7 @@ void MainWindow::on_generateQRButton_clicked()
 
 
 
-void MainWindow::on_Sort_clicked()
+void MainWindowDarkMode::on_Sort_clicked()
 {
     int i = ui->sortComboBox->currentIndex();
 

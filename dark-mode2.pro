@@ -2,6 +2,8 @@ QT       += core gui
 QT += sql
 QT += charts
 QT += printsupport
+QT += uitools
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -19,6 +21,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    dark_mode.cpp \
     main.cpp \
     mainwindow.cpp\
     emission.cpp\
@@ -26,13 +29,15 @@ SOURCES += \
     qrcode.cpp
 
 HEADERS += \
+    dark_mode.h \
     mainwindow.h\
     emission.h\
     connexion.h\
     qrcode.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    mainwindow_dark_mode.ui
 
 
 # Default rules for deployment.

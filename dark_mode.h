@@ -1,6 +1,5 @@
-
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef DARK_MODE_H
+#define DARK_MODE_H
 
 #include "emission.h"
 #include "ui_mainwindow_dark_mode.h"
@@ -14,7 +13,7 @@
 #include <QFile>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui { class MainWindowDarkMode; }
 QT_END_NAMESPACE
 
 
@@ -22,13 +21,13 @@ QT_END_NAMESPACE
 
 
 
-class MainWindow : public QMainWindow
+class MainWindowDarkMode : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    MainWindowDarkMode(QWidget *parent = nullptr);
+    ~MainWindowDarkMode();
 
 private slots:
     void on_ajouter_clicked();
@@ -47,7 +46,7 @@ private slots:
     void on_Sort_clicked();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindowDarkMode *ui;
 
     EMISSION Emission;
 
@@ -57,5 +56,5 @@ private:
 
 
 
-#endif // MAINWINDOW_H
+#endif // DARK_MODE_H
 

@@ -86,6 +86,17 @@ QSqlQuery EMISSION::getStatBynbviews()
     return query;
 }
 
+QSqlQueryModel* EMISSION::getAllEmissionsSorted()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+    QString sqlQuery = "SELECT * FROM emissions ORDER BY emission_nom ASC";
+    model->setQuery(sqlQuery);
+    return model;
+
+
+
+}
+
 
 
 
