@@ -1,0 +1,10 @@
+jahdafj2024-04-04 10:55:54 - Equipment ID WWW is now in use.
+2024-04-04 11:23:36 - Equipment ID 3 is now in use.
+2024-04-04 11:25:00 - Equipment ID 3 is now in use.
+2024-04-04 11:25:12 - Equipment ID WWW is now in use.
+2024-04-04 11:25:16 - Equipment ID 1 is now in use.
+2024-04-04 12:30:35 - Equipment ID 3 has been returned.
+2024-04-04 12:55:51 - Equipment ID WWW has been returned.
+2024-04-04 12:55:55 - Equipment ID WWW is now in use.
+2024-04-04 13:01:52 - Equipment ID 3 is now in use.
+2024-04-04 13:02:44 - Equipment ID 3 has been returned.
