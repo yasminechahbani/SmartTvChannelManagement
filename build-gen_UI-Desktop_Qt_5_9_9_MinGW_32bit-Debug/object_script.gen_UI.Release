@@ -1,0 +1,16 @@
+INPUT(
+./release\QSortFilterProxyModel.o
+./release\connexion.o
+./release\main.o
+./release\smtp.o
+./release\sponsor.o
+./release\sponsormainwindow.o
+./release\sponsormainwindow_fr.o
+./release\qrc_font.o
+./release\qrc_icons_ui_dark.o
+./release\qrc_logo.o
+./release\moc_smtp.o
+./release\moc_sponsor.o
+./release\moc_sponsormainwindow.o
+./release\moc_sponsormainwindow_fr.o
+);

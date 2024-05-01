@@ -315,22 +315,40 @@ void MainWindowDarkMode::on_printEmissions_clicked()
 */
 void MainWindowDarkMode::on_printEmissions_clicked()
 {
-#ifdef Q_OS_WIN
-    // Load the existing PDF file
-    QString pdfFilePath = "C:/Users/USER/Desktop/official_projectCPP_folder/print - 2/EMISSION.pdf";
+    // Path to the image file
+    QString imagePath = "C:/Users/USER/Desktop/official_projectCPP_folder/dark-mode2/EMISSION.png";
 
-    // Create a QProcess to invoke the default PDF viewer and print the file
-    QProcess process;
-    process.start("cmd", QStringList() << "/c" << "start" << "/min" << "AcroRd32.exe" << "/t" << pdfFilePath);
-    process.waitForFinished(-1);
+    // Load the image from file
+    QImage image(imagePath);
 
-    if (process.exitCode() != 0) {
-        QMessageBox::critical(this, "Error", "Failed to print PDF file.");
-        qDebug() << "Failed to print PDF file:" << pdfFilePath;
+    // Check if the image is valid
+    if (image.isNull()) {
+        qDebug() << "Failed to load image:" << imagePath;
+        return;
     }
-#else
-    QMessageBox::critical(this, "Error", "Printing PDF files directly is not supported on this platform.");
-#endif
+
+    // Create a QPrinter for printing
+    QPrinter printer(QPrinter::HighResolution);
+    printer.setPageSize(QPrinter::A4);
+    printer.setOutputFormat(QPrinter::NativeFormat);
+    printer.setOutputFileName("PrintedImage.pdf");
+
+    // Create a QPainter for the printer
+    QPainter painter(&printer);
+
+    // Calculate the scaling factor to fit the image on the page
+    double scaleX = printer.pageRect().width() / double(image.width());
+    double scaleY = printer.pageRect().height() / double(image.height());
+    double scale = qMin(scaleX, scaleY);
+
+    // Scale the image to fit the page
+    QImage scaledImage = image.scaled(image.width() * scale, image.height() * scale, Qt::KeepAspectRatio);
+
+    // Draw the scaled image onto the painter
+    painter.drawImage(QPointF(0, 0), scaledImage);
+
+    // End painting
+    painter.end();
 }
 
 

@@ -42,7 +42,7 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="shows">
      <property name="geometry">
       <rect>
        <x>50</x>
@@ -82,8 +82,8 @@ QPushButton:hover {
     <widget class="QLabel" name="label_10">
      <property name="geometry">
       <rect>
-       <x>40</x>
-       <y>384</y>
+       <x>20</x>
+       <y>390</y>
        <width>300</width>
        <height>60</height>
       </rect>
@@ -288,7 +288,10 @@ QPushButton:hover {
       </palette>
      </property>
      <property name="cursor">
-      <cursorShape>ForbiddenCursor</cursorShape>
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
      </property>
      <property name="styleSheet">
       <string notr="true">color:white;
@@ -2898,7 +2901,29 @@ background:transparent;
       <string>Employees</string>
      </property>
     </widget>
-    <zorder>pushButton</zorder>
+    <widget class="QPushButton" name="Sponsors">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>380</y>
+       <width>281</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{color: transparent;
+background : transparent;
+
+}</string>
+     </property>
+     <property name="text">
+      <string>     Add a show</string>
+     </property>
+    </widget>
+    <zorder>shows</zorder>
     <zorder>label_10</zorder>
     <zorder>label_12</zorder>
     <zorder>label_11</zorder>
@@ -2912,6 +2937,7 @@ background:transparent;
     <zorder>label_17</zorder>
     <zorder>pushButton_7</zorder>
     <zorder>label_13</zorder>
+    <zorder>Sponsors</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -2954,7 +2980,7 @@ background:transparent;
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <tabstops>
-  <tabstop>pushButton</tabstop>
+  <tabstop>shows</tabstop>
  </tabstops>
  <resources/>
  <connections>

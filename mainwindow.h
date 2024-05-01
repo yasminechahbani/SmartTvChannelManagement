@@ -13,6 +13,9 @@
 #include <QVBoxLayout>
 #include <QFile>
 
+#include <QtSerialPort>
+#include <QSerialPortInfo>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -45,8 +48,19 @@ private slots:
     void on_dark_mode_clicked(); // Slot for dark mode button clicked
     void on_Sort_clicked();
 
+    void on_Sponsors_clicked();
+
+
+    void readData();
+
+
 private:
     Ui::MainWindow *ui;
+QSerialPort *arduino;
+static const quint16 arduino_uno_vendor_id = 9025;
+static const quint16 arduino_uno_product_id = 67;
+QString arduino_port_name;
+bool arduino_is_available;
 
     EMISSION Emission;
 

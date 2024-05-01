@@ -1,4 +1,3 @@
-
 #include "mainwindow.h"
 #include <QMessageBox>
 #include <QApplication>
@@ -8,7 +7,10 @@
 //#include <QVBoxLayout>
 //added
 //#include<QFile>
-//#include<QDebug>
+#include<QDebug>
+#include <QtSerialPort>
+#include <QSerialPortInfo>
+
 #include "connexion.h"
 int main(int argc, char *argv[])
 {

@@ -1,3 +1,8 @@
+#include "sponsormainwindow_fr.h"
+#include "sponsormainwindow.h"
+#include "ui_sponsormainwindow_fr.h"
+#include "ui_sponsormainwindow.h"
+
 #include "mainwindow.h"
 #include "dark_mode.h"
 #include "ui_mainwindow.h"
@@ -26,6 +31,8 @@
 #include <QUiLoader>
 #include <QFile>
 #include "QrCodeGenerator.h"
+#include <QtSerialPort>
+#include <QSerialPortInfo>
 
 
 
@@ -38,19 +45,128 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    arduino_is_available = false;
+    arduino_port_name = "";
+arduino = new QSerialPort;
+qDebug() << "Available ports:";
+    foreach(const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()){
+        qDebug() << "Port Name: " << serialPortInfo.portName();
+    }
 
+    foreach(const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()){
+        if(serialPortInfo.hasVendorIdentifier() && serialPortInfo.hasProductIdentifier()){
+            if(serialPortInfo.vendorIdentifier() == arduino_uno_vendor_id){
+                if(serialPortInfo.productIdentifier() == arduino_uno_product_id){
+                    arduino_port_name = serialPortInfo.portName();
+                    arduino_is_available = true;
+                }
+            }
+        }
+    }
 
+    if(arduino_is_available){
+        // Open and configure the serial port
+        arduino->setPortName(arduino_port_name);
+        if (arduino->open(QSerialPort::ReadOnly)) {
+            qDebug() << "Serial port opened successfully.";
+        } else {
+            qDebug() << "Error opening serial port:" << arduino->errorString();
+            QMessageBox::warning(this, "Port error", "Error opening serial port: " + arduino->errorString());
+        }
+
+        arduino->setBaudRate(QSerialPort::Baud9600);
+        arduino->setDataBits(QSerialPort::Data8);
+        arduino->setParity(QSerialPort::NoParity);
+        arduino->setStopBits(QSerialPort::OneStop);
+        arduino->setFlowControl(QSerialPort::NoFlowControl);
+        QObject::connect(arduino, SIGNAL(readyRead()), this, SLOT(readData()));
+
+    } else {
+        // Give error message if Arduino not available
+        QMessageBox::warning(this, "Port error", "Couldn't find the Arduino!");
+    }
     // Connect dark mode button signal to slot
     connect(ui->sortComboBox, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, &MainWindow::on_Sort_clicked);
-
 }
+
+
+
+
 
 MainWindow::~MainWindow()
 {
+    if(arduino->isOpen()){
+        arduino->close();
+    }
     delete ui;
 }
 
+
+void MainWindow::readData()
+{
+    static QString receivedData; // Static variable to store previously received data
+    static bool flameDetected = false; // Flag to track if flame is detected
+
+    // Read all available data from the serial port
+    QByteArray newData = arduino->readAll();
+
+    // Convert the QByteArray to QString and concatenate it with previously received data
+    receivedData += QString::fromUtf8(newData);
+
+    // Split the received data into lines
+    QStringList lines = receivedData.split("\r\n", QString::SkipEmptyParts);
+
+    // Process each line separately
+    for (const QString& line : lines) {
+        // Check if the line contains the "Flame Detected" message and the message box hasn't been shown yet
+        if (!flameDetected && line.contains("flame detected")) {
+            // Set the flag to true to indicate that the message has been shown
+            flameDetected = true;
+            // Show alert in Qt application
+            QMessageBox::warning(this, "Flame Alert", "Flame Detected!");
+        }
+    }
+
+    // Keep the remaining incomplete line for further processing
+    if (!newData.endsWith("\r\n")) {
+        receivedData = lines.last();
+    } else {
+        receivedData.clear(); // Clear the stored data if all lines are complete
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Slot for dark mode button clicked
+
+void MainWindow::on_Sponsors_clicked(){
+
+    this->close();
+
+    SponsorMainWindow *chooseWindow = new SponsorMainWindow(this);
+
+        chooseWindow->show();
+
+
+}
+
+
+
+
 void MainWindow::on_dark_mode_clicked()
 {
     this->close();
@@ -194,6 +310,7 @@ void MainWindow::on_stat_clicked()
          chartView->setParent(ui->tableView);
          chartView->resize(ui->tableView->size());
          chartView->show();
+
 }
 
 //pdf//////////////////
@@ -314,22 +431,40 @@ void MainWindow::on_printEmissions_clicked()
 */
 void MainWindow::on_printEmissions_clicked()
 {
-#ifdef Q_OS_WIN
-    // Load the existing PDF file
-    QString pdfFilePath = "C:/Users/USER/Desktop/official_projectCPP_folder/print - 2/EMISSION.pdf";
+    // Path to the image file
+    QString imagePath = "C:/Users/USER/Desktop/official_projectCPP_folder/dark-mode2/EMISSION.png";
 
-    // Create a QProcess to invoke the default PDF viewer and print the file
-    QProcess process;
-    process.start("cmd", QStringList() << "/c" << "start" << "/min" << "AcroRd32.exe" << "/t" << pdfFilePath);
-    process.waitForFinished(-1);
+    // Load the image from file
+    QImage image(imagePath);
 
-    if (process.exitCode() != 0) {
-        QMessageBox::critical(this, "Error", "Failed to print PDF file.");
-        qDebug() << "Failed to print PDF file:" << pdfFilePath;
+    // Check if the image is valid
+    if (image.isNull()) {
+        qDebug() << "Failed to load image:" << imagePath;
+        return;
     }
-#else
-    QMessageBox::critical(this, "Error", "Printing PDF files directly is not supported on this platform.");
-#endif
+
+    // Create a QPrinter for printing
+    QPrinter printer(QPrinter::HighResolution);
+    printer.setPageSize(QPrinter::A4);
+    printer.setOutputFormat(QPrinter::NativeFormat);
+    printer.setOutputFileName("PrintedImage.pdf");
+
+    // Create a QPainter for the printer
+    QPainter painter(&printer);
+
+    // Calculate the scaling factor to fit the image on the page
+    double scaleX = printer.pageRect().width() / double(image.width());
+    double scaleY = printer.pageRect().height() / double(image.height());
+    double scale = qMin(scaleX, scaleY);
+
+    // Scale the image to fit the page
+    QImage scaledImage = image.scaled(image.width() * scale, image.height() * scale, Qt::KeepAspectRatio);
+
+    // Draw the scaled image onto the painter
+    painter.drawImage(QPointF(0, 0), scaledImage);
+
+    // End painting
+    painter.end();
 }
 
 
@@ -437,3 +572,7 @@ void MainWindow::on_generateQRButton_clicked()
     // Display the QR code image in the QLabel named qrcode
     ui->qrcode->setPixmap(QPixmap::fromImage(qrCodeImage));
 }
+
+
+
+
