@@ -585,44 +585,29 @@ void MainWindow::onSMSRequestFinished(QNetworkReply* reply)
 
 void MainWindow::readData()
 {
-    static QString receivedData; // Static variable to store previously received data
-int distance ;
     // Read all available data from the serial port
     QByteArray newData = arduino->readAll();
+    bool alertShown =false  ;
 
     // Convert the QByteArray to QString and concatenate it with previously received data
-    receivedData += QString::fromUtf8(newData);
 
-    // Split the received data into lines
-    QStringList lines = receivedData.split("\r\n", QString::SkipEmptyParts);
-qDebug() << "data : " <<lines;
-    // Process each line separately
-    for (const QString& line : lines) {
-
-        // Check if the line contains the "Flame Detected" message and the message box hasn't been shown yet
-        if ( line.contains("100")) {
+    if (newData.contains("on")) {
+        if (!alertShown) { // Check if the alert has not been shown yet
             // Set the flag to true to indicate that the message has been shown
+            alertShown = true;
 
             // Show alert in Qt application
             QMessageBox msgBox;
-            msgBox.setWindowTitle("movement Alert");
-            msgBox.setText("mouvement Detected!");
-
+            msgBox.setWindowTitle("Movement Alert");
+            msgBox.setText("Movement Detected!");
             msgBox.exec();
 
-
             // Check if the OK button was clicked
-
-
-
-
         }
-    }
-
-    // Keep the remaining incomplete line for further processing
-    if (!newData.endsWith("\r\n")) {
-        receivedData = lines.last();
     } else {
-        receivedData.clear(); // Clear the stored data if all lines are complete
+        alertShown = false; // Reset the flag if the condition is not met
     }
 }
+
+
+
