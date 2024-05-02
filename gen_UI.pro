@@ -6,6 +6,7 @@ CONFIG += c++11
 QT += charts
 QT += network
 CONFIG += linkstaticlib
+QT += serialport
 
 
 

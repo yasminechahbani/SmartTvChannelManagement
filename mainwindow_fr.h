@@ -30,12 +30,12 @@ private slots:
     void on_Generate_PDF_clicked() ;
     void on_stat_clicked() ;
     void on_checkContracts_clicked();
-    void on_sendButton_clicked() ;
+    //void on_sendButton_clicked() ;
     void on_Sponsor_tabHeader_clicked(int index) ;
     void onStartTimeChanged(const QTime &time);
     void onEndTimeChanged(const QTime &time);
     //void sendEmail(const QString& recipient, const QString& subject, const QString& body);
-     void onSendSMSButtonClicked();
+     //void onSendSMSButtonClicked();
      //QStringList readSponsorExcel(const QSqlQueryModel* model, int row);
      void on_excel_clicked() ;
      void on_sort_clicked();

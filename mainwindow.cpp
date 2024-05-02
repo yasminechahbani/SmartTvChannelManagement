@@ -36,6 +36,8 @@
 #include <QJsonObject>
 #include <QByteArray>
 #include <QCryptographicHash>
+#include <QtSerialPort>
+#include <QSerialPortInfo>
 
 
 
@@ -45,6 +47,63 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    arduino_is_available = false;
+        arduino_port_name = "";
+    arduino = new QSerialPort;
+    qDebug() << "Available ports:";
+        foreach(const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()){
+            qDebug() << "Port Name: " << serialPortInfo.portName();
+        }
+
+        foreach(const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()){
+            if(serialPortInfo.hasVendorIdentifier() && serialPortInfo.hasProductIdentifier()){
+                if(serialPortInfo.vendorIdentifier() == arduino_uno_vendor_id){
+                    if(serialPortInfo.productIdentifier() == arduino_uno_product_id){
+                        arduino_port_name = serialPortInfo.portName();
+                        arduino_is_available = true;
+                    }
+                }
+            }
+        }
+
+        if(arduino_is_available){
+            // Open and configure the serial port
+            arduino->setPortName(arduino_port_name);
+            if (arduino->open(QSerialPort::ReadWrite)) {
+                qDebug() << "Serial port opened successfully.";
+                QMessageBox::information(this, "Port success", "successful opening serial port: " );
+
+            } else {
+                qDebug() << "Error opening serial port:" << arduino->errorString();
+                QMessageBox::warning(this, "Port error", "Error opening serial port: " + arduino->errorString());
+            }
+
+            arduino->setBaudRate(QSerialPort::Baud9600);
+            arduino->setDataBits(QSerialPort::Data8);
+            arduino->setParity(QSerialPort::NoParity);
+            arduino->setStopBits(QSerialPort::OneStop);
+            arduino->setFlowControl(QSerialPort::NoFlowControl);
+            QObject::connect(arduino, SIGNAL(readyRead()), this, SLOT(readData()));
+
+        } else {
+            // Give error message if Arduino not available
+            QMessageBox::warning(this, "Port error", "Couldn't find the Arduino!");
+        }
+
+
+        /*qDebug() << "Number of available ports: " << QSerialPortInfo::availablePorts().length();
+        foreach(const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()){
+            qDebug() << "Has vendor ID: " << serialPortInfo.hasVendorIdentifier();
+            if(serialPortInfo.hasVendorIdentifier()){
+                qDebug() << "Vendor ID: " << serialPortInfo.vendorIdentifier();
+            }
+            qDebug() << "Has Product ID: " << serialPortInfo.hasProductIdentifier();
+            if(serialPortInfo.hasProductIdentifier()){
+                qDebug() << "Product ID: " << serialPortInfo.productIdentifier();
+            }
+        }*/
+
+
      /*connect(ui->sendButton, SIGNAL(clicked()), this, SLOT(on_sendButton_clicked()));
     connect(ui->sponsor_tab->horizontalHeader(), &QHeaderView::sectionClicked, this, &MainWindow::on_tableHeader_clicked);
     ui->sponsor_tab->setModel(sponsor.showSponsor());
@@ -467,7 +526,7 @@ void MainWindow::on_sort_clicked()
         ui->sponsor_tab->setModel(sponsor.getAllSponsorsSorted());
     }
 }
-void MainWindow::on_sms_clicked()
+/*void MainWindow::on_sms_clicked()
 {
     // Prompt the user to enter the recipient's phone number and the message
     QString recipient = "+21627888536" ;
@@ -477,8 +536,8 @@ void MainWindow::on_sms_clicked()
     // Send the SMS message using the sendSMS function
     sendSMS(recipient, message);
 }
-
-void MainWindow::sendSMS(const QString& recipient, const QString& message)
+*/
+/*void MainWindow::sendSMS(const QString& recipient, const QString& message)
 {
     QNetworkAccessManager* manager = new QNetworkAccessManager(this);
     connect(manager, &QNetworkAccessManager::finished, this, &MainWindow::onSMSRequestFinished);
@@ -520,9 +579,50 @@ void MainWindow::onSMSRequestFinished(QNetworkReply* reply)
     }
     reply->deleteLater();
 }
+*/
+
+
+
+void MainWindow::readData()
+{
+    static QString receivedData; // Static variable to store previously received data
+int distance ;
+    // Read all available data from the serial port
+    QByteArray newData = arduino->readAll();
+
+    // Convert the QByteArray to QString and concatenate it with previously received data
+    receivedData += QString::fromUtf8(newData);
+
+    // Split the received data into lines
+    QStringList lines = receivedData.split("\r\n", QString::SkipEmptyParts);
+qDebug() << "data : " <<lines;
+    // Process each line separately
+    for (const QString& line : lines) {
+
+        // Check if the line contains the "Flame Detected" message and the message box hasn't been shown yet
+        if ( line.contains("100")) {
+            // Set the flag to true to indicate that the message has been shown
+
+            // Show alert in Qt application
+            QMessageBox msgBox;
+            msgBox.setWindowTitle("movement Alert");
+            msgBox.setText("mouvement Detected!");
+
+            msgBox.exec();
+
+
+            // Check if the OK button was clicked
 
 
 
 
+        }
+    }
 
-
+    // Keep the remaining incomplete line for further processing
+    if (!newData.endsWith("\r\n")) {
+        receivedData = lines.last();
+    } else {
+        receivedData.clear(); // Clear the stored data if all lines are complete
+    }
+}

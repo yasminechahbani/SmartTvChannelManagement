@@ -5,6 +5,9 @@
 #include <QMainWindow>
 #include <QObject>
 #include <QTime>
+#include <QtSerialPort>
+#include <QSerialPortInfo>
+
 
 
 QT_BEGIN_NAMESPACE
@@ -20,6 +23,8 @@ public:
     ~MainWindow();
 
 private slots:
+
+    void readData() ;
     void on_tableHeader_clicked(int index) ;
     void on_ajouter_clicked();
     void on_delete_button_clicked();
@@ -30,7 +35,7 @@ private slots:
     void on_Generate_PDF_clicked() ;
     void on_stat_clicked() ;
     void on_checkContracts_clicked();
-    void on_sendButton_clicked() ;
+    //void on_sendButton_clicked() ;
     void on_Sponsor_tabHeader_clicked(int index) ;
     void onStartTimeChanged(const QTime &time);
     void onEndTimeChanged(const QTime &time);
@@ -42,9 +47,9 @@ private slots:
      void on_search_clicked();
 
     void on_use_return_clicked();
-    void sendSMS(const QString& recipient, const QString& message) ;
-    void onSMSRequestFinished(QNetworkReply* reply) ;
-    void on_sms_clicked();
+    //void sendSMS(const QString& recipient, const QString& message) ;
+    //void onSMSRequestFinished(QNetworkReply* reply) ;
+    //void on_sms_clicked();
     void on_fr_clicked();
 
 
@@ -56,7 +61,12 @@ private:
     QTime startTime;
     QTime endTime;
     Ui::MainWindow *ui;
-    Sponsor sponsor; // Instantiate the Sponsor class
+    Sponsor sponsor;
+    QSerialPort *arduino;
+   static const quint16 arduino_uno_vendor_id = 9025;
+   static const quint16 arduino_uno_product_id = 67;
+    QString arduino_port_name;
+    bool arduino_is_available;// Instantiate the Sponsor class
 };
 
 
