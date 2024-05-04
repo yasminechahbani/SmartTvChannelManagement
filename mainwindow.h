@@ -22,9 +22,6 @@ QT_END_NAMESPACE
 
 
 
-
-
-
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -47,12 +44,9 @@ private slots:
     void on_generateQRButton_clicked();
     void on_dark_mode_clicked(); // Slot for dark mode button clicked
     void on_Sort_clicked();
-
     void on_Sponsors_clicked();
-
-
     void readData();
-
+    void writeData(const char *data);
 
 private:
     Ui::MainWindow *ui;

@@ -8,6 +8,7 @@
 #include "ui_mainwindow.h"
 #include "emission.h" // Include the emission header file
 #include <QMessageBox>
+#include <QPushButton>
 #include <QSqlError>
 #include<QDebug>
 #include <QPdfWriter>
@@ -67,8 +68,10 @@ qDebug() << "Available ports:";
     if(arduino_is_available){
         // Open and configure the serial port
         arduino->setPortName(arduino_port_name);
-        if (arduino->open(QSerialPort::ReadOnly)) {
+        if (arduino->open(QSerialPort::ReadWrite)) {
             qDebug() << "Serial port opened successfully.";
+            QMessageBox::information(this, "Port success", "successful opening serial port: " );
+
         } else {
             qDebug() << "Error opening serial port:" << arduino->errorString();
             QMessageBox::warning(this, "Port error", "Error opening serial port: " + arduino->errorString());
@@ -90,6 +93,21 @@ qDebug() << "Available ports:";
 }
 
 
+
+
+void MainWindow::writeData(const char *data)
+{
+    if (arduino->isOpen()) {
+        //arduino->write(data);
+        if(arduino->isWritable()){
+            arduino->write(data);
+        }else{
+            qDebug() << "Couldn't write to serial!";
+        }
+    } else {
+        QMessageBox::warning(this, "Port error", "Serial port is not open!");
+    }
+}
 
 
 
@@ -123,7 +141,20 @@ void MainWindow::readData()
             // Set the flag to true to indicate that the message has been shown
             flameDetected = true;
             // Show alert in Qt application
-            QMessageBox::warning(this, "Flame Alert", "Flame Detected!");
+            QMessageBox msgBox;
+            msgBox.setWindowTitle("Flame Alert");
+            msgBox.setText("Flame Detected!");
+            QPushButton *okButton = msgBox.addButton(tr("OK"), QMessageBox::ActionRole);
+            msgBox.exec();
+
+            // Check if the OK button was clicked
+            if (msgBox.clickedButton() == okButton) {
+                // Stop the buzzer here
+                // Add your code to stop the buzzer
+                writeData("s");
+
+
+            }
         }
     }
 
@@ -134,7 +165,6 @@ void MainWindow::readData()
         receivedData.clear(); // Clear the stored data if all lines are complete
     }
 }
-
 
 
 
