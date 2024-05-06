@@ -75,7 +75,7 @@ void chat::prepareTableViewNotification()
 QVector<QString> chat::getNotificationFromFile()
 {
     //QString fileName = "notification.txt";
-     QString fileName = "C:/Users/USER/Desktop/official_projectCPP_folder/integration finale/emna final/notification.txt";
+     QString fileName = "C:/Users/USER/Desktop/official_projectCPP_folder/integration finale/integration - Copie/notification.txt";
     QFile file(fileName);
     QVector<QString> notificationVector;
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {

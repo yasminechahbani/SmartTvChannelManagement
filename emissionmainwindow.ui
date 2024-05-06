@@ -2967,6 +2967,28 @@ background : transparent;
       <string>     Add a show</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="equipement">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>460</y>
+       <width>281</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{color: transparent;
+background : transparent;
+
+}</string>
+     </property>
+     <property name="text">
+      <string>     Add a show</string>
+     </property>
+    </widget>
     <zorder>shows</zorder>
     <zorder>label_10</zorder>
     <zorder>label_12</zorder>
@@ -2984,6 +3006,7 @@ background : transparent;
     <zorder>Sponsors</zorder>
     <zorder>employees</zorder>
     <zorder>guests</zorder>
+    <zorder>equipement</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

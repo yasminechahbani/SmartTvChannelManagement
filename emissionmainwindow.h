@@ -3,8 +3,8 @@
 #define EMISSIONMAINWINDOW_H
 
 #include "emission.h"
-#include "ui_mainwindow_dark_mode.h"
-#include "ui_mainwindow.h"
+#include "ui_emissionmainwindowdarkmode.h"
+#include "ui_emissionmainwindow.h"
 
 #include <QMainWindow>
 #include <QObject>
@@ -47,6 +47,8 @@ private slots:
     void on_Sponsors_clicked();
     void on_employees_clicked();
     void on_guests_clicked();
+    void on_equipement_clicked();
+
     void readData();
     void writeData(const char *data);
 

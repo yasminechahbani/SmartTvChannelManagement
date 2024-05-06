@@ -1,3 +1,4 @@
+
 QT       += core gui
 QT += sql
 QT += charts
@@ -15,6 +16,13 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 
 TEMPLATE = app
+
+
+
+
+#INCLUDEPATH += "C:\Program Files (x86)\OpenSSL-Win32\include"
+
+################LIBS += -LC:\Program Files (x86)\OpenSSL-Win32\lib\MinGW\x86 -lssl -lcrypto
 
 
 # The following define makes your compiler emit warnings if you use
@@ -42,6 +50,26 @@ SOURCES += \
     sponsormainwindow_fr.cpp\
     Employeemainwindow.cpp \
     employee.cpp \
+#yasmine
+    chatequip.cpp \
+    chooseequipforqr.cpp \
+    emailaddress.cpp \
+    equip_mainwindow.cpp \
+    equipement.cpp \
+    mimeattachment.cpp \
+    mimecontentformatter.cpp \
+    mimefile.cpp \
+    mimehtml.cpp \
+    mimeinlinefile.cpp \
+    mimemessage.cpp \
+    mimemultipart.cpp \
+    mimepart.cpp \
+    mimetext.cpp \
+    qrgeneratewindow.cpp \
+    quotedprintable.cpp \
+    returnequipmentwindow.cpp \
+    smtpclient.cpp \
+    useequipmentwindow.cpp\
 #emna
     arduino.cpp \
     calendrier.cpp \
@@ -52,6 +80,7 @@ SOURCES += \
     invites.cpp \
     invitesmainwindow.cpp \
     supp.cpp
+
 HEADERS += \
     emission.h\
     connexion.h\
@@ -71,7 +100,29 @@ HEADERS += \
     form.h \
     invites.h \
     invitesmainwindow.h \
-    supp.h
+    supp.h\
+    SmtpMime \
+    availabilitydelegate.h \
+    chatequip.h \
+    chooseequipforqr.h \
+    emailaddress.h \
+    equip_mainwindow.h \
+    equipement.h \
+    mimeattachment.h \
+    mimecontentformatter.h \
+    mimefile.h \
+    mimehtml.h \
+    mimeinlinefile.h \
+    mimemessage.h \
+    mimemultipart.h \
+    mimepart.h \
+    mimetext.h \
+    qrgeneratewindow.h \
+    quotedprintable.h \
+    returnequipmentwindow.h \
+    smtpclient.h \
+    smtpexports.h \
+    useequipmentwindow.h
 
 FORMS += \
     emissionmainwindow.ui \
@@ -85,7 +136,19 @@ FORMS += \
     form.ui \
     invitesmainwindow.ui \
     modif.ui \
-    supp.ui
+    supp.ui\
+    chatequip.ui \
+    chooseequipforqr.ui \
+    equip_mainwindow.ui \
+    qrgeneratewindow.ui \
+    returnequipmentwindow.ui \
+    useequipmentwindow.ui
+
+
+DISTFILES +=\
+fonts/Kabel Book BT_0.ttf \
+    lineEdit.qss \
+    smtp/CMakeLists.txt
 
 
 include(C:\Users\USER\Downloads\Qt-QrCodeGenerator-main\Qt-QrCodeGenerator-main\Qt-QrCodeGenerator.pri)
@@ -101,5 +164,34 @@ RESOURCES += \
     icons_ui_dark.qrc \
     logo.qrc
 
-DISTFILES +=\
-fonts/Kabel Book BT_0.ttf
+SUBDIRS += \
+    smtp/SMTPEmail.pro
+
+
+
+
+#win32:CONFIG(release, debug|release): LIBS += -L$$PWD/'../../../../../Program Files (x86)/OpenSSL-Win32/lib/VC/x86/MT/' -llibcrypto
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/'../../../../../Program Files (x86)/OpenSSL-Win32/lib/VC/x86/MT/' -llibcryptod
+#else:unix: LIBS += -L$$PWD/'../../../../../Program Files (x86)/OpenSSL-Win32/lib/VC/x86/MT/' -llibcrypto
+
+#INCLUDEPATH += $$PWD/'../../../../../Program Files (x86)/OpenSSL-Win32/lib/VC/x86/MT'
+#DEPENDPATH += $$PWD/'../../../../../Program Files (x86)/OpenSSL-Win32/lib/VC/x86/MT'
+
+#win32:CONFIG(release, debug|release): LIBS += -L$$PWD/'../../../../../Program Files (x86)/OpenSSL-Win32/lib/VC/x86/MT/' -llibssl
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/'../../../../../Program Files (x86)/OpenSSL-Win32/lib/VC/x86/MT/' -llibssld
+#else:unix: LIBS += -L$$PWD/'../../../../../Program Files (x86)/OpenSSL-Win32/lib/VC/x86/MT/' -llibssl
+
+#INCLUDEPATH += $$PWD/'../../../../../Program Files (x86)/OpenSSL-Win32/lib/VC/x86/MT'
+#DEPENDPATH += $$PWD/'../../../../../Program Files (x86)/OpenSSL-Win32/lib/VC/x86/MT'
+
+
+
+
+
+#include (C:\Users\user\OneDrive\Documents\simple-mail-master\src\SimpleMail)
+#include (C:\Users\user\OneDrive\Documents\simple-mail-master\src\simplemail-qtX.pc.in)
+#include(C:\Users\user\OneDrive\Documents\SmtpClient-for-Qt-2.0\src\SMTPEmail.pro)
+
+
+
+

@@ -23,6 +23,16 @@
 #include "invites.h"
 
 //yasmine
+#include "equip_mainwindow.h"
+//#include "ui_mainwindow.h"
+#include "ui_equip_mainwindow.h"
+#include "equipement.h"
+#include "qrgeneratewindow.h"
+#include "returnequipmentwindow.h"
+#include "chooseequipforqr.h"
+#include "QrCodeGenerator.h"
+#include "chatequip.h"
+#include "useequipmentwindow.h"
 
 //end include////////////////////////////////////////////////////////////////
 #include <QMessageBox>
@@ -210,6 +220,19 @@ void EmissionMainWindow::on_Sponsors_clicked(){
 
 
 }
+
+void EmissionMainWindow::on_equipement_clicked(){
+
+    this->close();
+
+    MainWindow *chooseWindow = new MainWindow(this);
+
+        chooseWindow->show();
+
+
+}
+
+
 
 
 void EmissionMainWindow::on_employees_clicked(){

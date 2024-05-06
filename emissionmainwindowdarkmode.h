@@ -2,8 +2,8 @@
 #define EMISSIONMAINWINDOWDARK_MODE_H
 
 #include "emission.h"
-#include "ui_mainwindow_dark_mode.h"
-#include "ui_mainwindow.h"
+#include "ui_emissionmainwindowdarkmode.h"
+#include "ui_emissionmainwindow.h"
 
 #include <QMainWindow>
 #include <QObject>
