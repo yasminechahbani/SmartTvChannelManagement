@@ -1,21 +1,16 @@
-#include "sponsormainwindow_fr.h"
-#include "sponsormainwindow.h"
-#include "ui_sponsormainwindow_fr.h"
-#include "ui_sponsormainwindow.h"
-
-#include "mainwindow.h"
-#include "dark_mode.h"
-#include "ui_mainwindow.h"
+#include "emissionmainwindowdarkmode.h"
+#include "ui_emissionmainwindowdarkmode.h"
+#include "emissionmainwindow.h"
+#include "ui_emissionmainwindow.h"
 #include "emission.h" // Include the emission header file
 #include <QMessageBox>
-#include <QPushButton>
 #include <QSqlError>
-#include<QDebug>
+#include <QDebug>
 #include <QPdfWriter>
-#include<QPainter>
-#include<QDate>
-#include<QDesktopServices>
-#include<QUrl>
+#include <QPainter>
+#include <QDate>
+#include <QDesktopServices>
+#include <QUrl>
 #include <QtCharts>
 #include <QPrinter>
 #include <QPrintDialog>
@@ -32,181 +27,41 @@
 #include <QUiLoader>
 #include <QFile>
 #include "QrCodeGenerator.h"
-#include <QtSerialPort>
-#include <QSerialPortInfo>
 
 
 
-using namespace qrcodegen;
 
-#include "ui_mainwindow_dark_mode.h"
-
-MainWindow::MainWindow(QWidget *parent)
+EmissionMainWindowDarkMode::EmissionMainWindowDarkMode(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::EmissionMainWindowDarkMode)
 {
     ui->setupUi(this);
-    arduino_is_available = false;
-    arduino_port_name = "";
-arduino = new QSerialPort;
-qDebug() << "Available ports:";
-    foreach(const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()){
-        qDebug() << "Port Name: " << serialPortInfo.portName();
-    }
 
-    foreach(const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()){
-        if(serialPortInfo.hasVendorIdentifier() && serialPortInfo.hasProductIdentifier()){
-            if(serialPortInfo.vendorIdentifier() == arduino_uno_vendor_id){
-                if(serialPortInfo.productIdentifier() == arduino_uno_product_id){
-                    arduino_port_name = serialPortInfo.portName();
-                    arduino_is_available = true;
-                }
-            }
-        }
-    }
 
-    if(arduino_is_available){
-        // Open and configure the serial port
-        arduino->setPortName(arduino_port_name);
-        if (arduino->open(QSerialPort::ReadWrite)) {
-            qDebug() << "Serial port opened successfully.";
-            QMessageBox::information(this, "Port success", "successful opening serial port: " );
-
-        } else {
-            qDebug() << "Error opening serial port:" << arduino->errorString();
-            QMessageBox::warning(this, "Port error", "Error opening serial port: " + arduino->errorString());
-        }
-
-        arduino->setBaudRate(QSerialPort::Baud9600);
-        arduino->setDataBits(QSerialPort::Data8);
-        arduino->setParity(QSerialPort::NoParity);
-        arduino->setStopBits(QSerialPort::OneStop);
-        arduino->setFlowControl(QSerialPort::NoFlowControl);
-        QObject::connect(arduino, SIGNAL(readyRead()), this, SLOT(readData()));
-
-    } else {
-        // Give error message if Arduino not available
-        QMessageBox::warning(this, "Port error", "Couldn't find the Arduino!");
-    }
     // Connect dark mode button signal to slot
-    connect(ui->sortComboBox, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, &MainWindow::on_Sort_clicked);
+    connect(ui->sortComboBox, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, &EmissionMainWindowDarkMode::on_Sort_clicked);
+
+
 }
 
-
-
-
-void MainWindow::writeData(const char *data)
+EmissionMainWindowDarkMode::~EmissionMainWindowDarkMode()
 {
-    if (arduino->isOpen()) {
-        //arduino->write(data);
-        if(arduino->isWritable()){
-            arduino->write(data);
-        }else{
-            qDebug() << "Couldn't write to serial!";
-        }
-    } else {
-        QMessageBox::warning(this, "Port error", "Serial port is not open!");
-    }
-}
-
-
-
-MainWindow::~MainWindow()
-{
-    if(arduino->isOpen()){
-        arduino->close();
-    }
     delete ui;
 }
 
-
-void MainWindow::readData()
-{
-    static QString receivedData; // Static variable to store previously received data
-    static bool flameDetected = false; // Flag to track if flame is detected
-
-    // Read all available data from the serial port
-    QByteArray newData = arduino->readAll();
-
-    // Convert the QByteArray to QString and concatenate it with previously received data
-    receivedData += QString::fromUtf8(newData);
-
-    // Split the received data into lines
-    QStringList lines = receivedData.split("\r\n", QString::SkipEmptyParts);
-
-    // Process each line separately
-    for (const QString& line : lines) {
-        // Check if the line contains the "Flame Detected" message and the message box hasn't been shown yet
-        if (!flameDetected && line.contains("flame detected")) {
-            // Set the flag to true to indicate that the message has been shown
-            flameDetected = true;
-            // Show alert in Qt application
-            QMessageBox msgBox;
-            msgBox.setWindowTitle("Flame Alert");
-            msgBox.setText("Flame Detected!");
-            QPushButton *okButton = msgBox.addButton(tr("OK"), QMessageBox::ActionRole);
-            msgBox.exec();
-
-            // Check if the OK button was clicked
-            if (msgBox.clickedButton() == okButton) {
-                // Stop the buzzer here
-                // Add your code to stop the buzzer
-                writeData("s");
-
-
-            }
-        }
-    }
-
-    // Keep the remaining incomplete line for further processing
-    if (!newData.endsWith("\r\n")) {
-        receivedData = lines.last();
-    } else {
-        receivedData.clear(); // Clear the stored data if all lines are complete
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Slot for dark mode button clicked
-
-void MainWindow::on_Sponsors_clicked(){
-
-    this->close();
-
-    SponsorMainWindow *chooseWindow = new SponsorMainWindow(this);
-
-        chooseWindow->show();
-
-
-}
-
-
-
-
-void MainWindow::on_dark_mode_clicked()
+void EmissionMainWindowDarkMode::on_dark_mode_clicked()
 {
+
     this->close();
 
-    MainWindowDarkMode *chooseWindow = new MainWindowDarkMode(this);
+    EmissionMainWindow *chooseWindow = new EmissionMainWindow(this);
 
         chooseWindow->show();
-
-
 }
+
+
+// Function to load dark mode UI
 
 
 
@@ -218,7 +73,7 @@ void MainWindow::on_dark_mode_clicked()
 
 // Validate form function remains the same if form fields are common
 
-void MainWindow::on_ajouter_clicked()
+void EmissionMainWindowDarkMode::on_ajouter_clicked()
 {
     QString emission_id = ui->id_lineEdit->text();
     QString emission_nom = ui->name_lineEdit->text();
@@ -240,7 +95,7 @@ void MainWindow::on_ajouter_clicked()
     QMessageBox::information(nullptr, "Success", "Emission added successfully.");
 }
 
-void MainWindow::on_delete_button_clicked()
+void EmissionMainWindowDarkMode::on_delete_button_clicked()
 {
     QString emission_id = ui->id_lineEdit_delete->text();
     if (!Emission.deleteEmission(emission_id)) {
@@ -253,13 +108,13 @@ void MainWindow::on_delete_button_clicked()
 }
 
 
-//void MainWindow::on_list_all_button_clicked()
+//void EmissionMainWindowDarkMode::on_list_all_button_clicked()
 //{
 //    ui->tabb->setModel(Emission.ReadEmission());
 //}
 
 
-void MainWindow::on_list_all_button_clicked()
+void EmissionMainWindowDarkMode::on_list_all_button_clicked()
 {
     QString searchName = ui->search_name_lineEdit->text();
 
@@ -269,7 +124,7 @@ void MainWindow::on_list_all_button_clicked()
 
 
 
-void MainWindow::on_clear_all_in_table_clicked()
+void EmissionMainWindowDarkMode::on_clear_all_in_table_clicked()
 {
     int reply = QMessageBox::question(this, "Confirmation", "Are you sure you want to clear all lines in the table?", QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
@@ -287,7 +142,7 @@ void MainWindow::on_clear_all_in_table_clicked()
 
 
 
-void MainWindow::on_update_clicked()
+void EmissionMainWindowDarkMode::on_update_clicked()
 {
     QString emission_id = ui->id_lineEdit_2->text();
     QString emission_nom = ui->name_lineEdit_2->text();
@@ -317,7 +172,7 @@ void MainWindow::on_update_clicked()
 //chartssssssssssss
 
 
-void MainWindow::on_stat_clicked()
+void EmissionMainWindowDarkMode::on_stat_clicked()
 {
     EMISSION emission;
          QSqlQuery query = emission.getStatBynbviews();
@@ -340,11 +195,10 @@ void MainWindow::on_stat_clicked()
          chartView->setParent(ui->tableView);
          chartView->resize(ui->tableView->size());
          chartView->show();
-
 }
 
 //pdf//////////////////
-void MainWindow::on_Generate_PDF_clicked()
+void EmissionMainWindowDarkMode::on_Generate_PDF_clicked()
 {
     QPdfWriter pdf("C:/Users/USER/Desktop/official_projectCPP_folder/print - 2/EMISSION.pdf");
     QPainter painter(&pdf);
@@ -420,7 +274,7 @@ void MainWindow::on_Generate_PDF_clicked()
 //printtttttttttttttttttt////////
 
 /*
-void MainWindow::on_printEmissions_clicked()
+void EmissionMainWindowDarkMode::on_printEmissions_clicked()
 {
     // Create a QPrinter object for high-resolution printing
     QPrinter printer(QPrinter::HighResolution);
@@ -459,7 +313,7 @@ void MainWindow::on_printEmissions_clicked()
 }
 
 */
-void MainWindow::on_printEmissions_clicked()
+void EmissionMainWindowDarkMode::on_printEmissions_clicked()
 {
     // Path to the image file
     QString imagePath = "C:/Users/USER/Desktop/official_projectCPP_folder/dark-mode2/EMISSION.png";
@@ -507,7 +361,7 @@ void MainWindow::on_printEmissions_clicked()
 
 
 //excel///////////:::
-void MainWindow::on_excel_clicked() {
+void EmissionMainWindowDarkMode::on_excel_clicked() {
     QString fileName = QFileDialog::getSaveFileName(this, tr("Export Excel"), QString(), "*.csv");
     if (fileName.isEmpty()) {
         return; // User canceled save
@@ -551,7 +405,7 @@ void MainWindow::on_excel_clicked() {
 }
 
 
-QStringList MainWindow::readEmissionForExcel(const QSqlQueryModel* model, int row) {
+QStringList EmissionMainWindowDarkMode::readEmissionForExcel(const QSqlQueryModel* model, int row) {
     QStringList rowData;
     const int columnCount = model->columnCount();
 
@@ -574,7 +428,7 @@ QStringList MainWindow::readEmissionForExcel(const QSqlQueryModel* model, int ro
 
 
 
-void MainWindow::on_Sort_clicked()
+void EmissionMainWindowDarkMode::on_Sort_clicked()
 {
     int i = ui->sortComboBox->currentIndex();
 
@@ -587,8 +441,7 @@ void MainWindow::on_Sort_clicked()
     }
 }
 
-
-void MainWindow::on_generateQRButton_clicked()
+void EmissionMainWindowDarkMode::on_generateQRButton_clicked()
 {
     // PDF download link
     QString downloadLink = "https://heyzine.com/flip-book/846a16e811.html";
@@ -602,7 +455,5 @@ void MainWindow::on_generateQRButton_clicked()
     // Display the QR code image in the QLabel named qrcode
     ui->qrcode->setPixmap(QPixmap::fromImage(qrCodeImage));
 }
-
-
 
 

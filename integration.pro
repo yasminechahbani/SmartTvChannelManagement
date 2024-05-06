@@ -14,6 +14,9 @@ CONFIG += linkstaticlib
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 
+TEMPLATE = app
+
+
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -27,32 +30,63 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     QSortFilterProxyModel.cpp \
-    dark_mode.cpp \
+    emissionmainwindow.cpp \
+    emissionmainwindowdarkmode.cpp \
     main.cpp \
-    mainwindow.cpp\
     emission.cpp\
     connexion.cpp\
     smtp.cpp \
     sponsor.cpp \
     sponsormain.cpp \
     sponsormainwindow.cpp \
-    sponsormainwindow_fr.cpp
-
+    sponsormainwindow_fr.cpp\
+    Employeemainwindow.cpp \
+    employee.cpp \
+#emna
+    arduino.cpp \
+    calendrier.cpp \
+    chat.cpp \
+    chatserver.cpp \
+    dialog.cpp \
+    form.cpp \
+    invites.cpp \
+    invitesmainwindow.cpp \
+    supp.cpp
 HEADERS += \
-    dark_mode.h \
-    mainwindow.h\
     emission.h\
     connexion.h\
+    emissionmainwindow.h \
+    emissionmainwindowdarkmode.h \
     smtp.h \
     sponsor.h \
     sponsormainwindow.h \
-    sponsormainwindow_fr.h
+    sponsormainwindow_fr.h\
+    Employeemainwindow.h \
+    employee.h\
+    arduino.h \
+    calendrier.h \
+    chat.h \
+    chatserver.h \
+    dialog.h \
+    form.h \
+    invites.h \
+    invitesmainwindow.h \
+    supp.h
 
 FORMS += \
-    mainwindow.ui \
-    mainwindow_dark_mode.ui\
+    emissionmainwindow.ui \
+    emissionmainwindowdarkmode.ui \
     sponsormainwindow.ui \
-    sponsormainwindow_fr.ui
+    sponsormainwindow_fr.ui\
+    Employeemainwindow.ui\
+    calendrier.ui \
+    chat.ui \
+    dialog.ui \
+    form.ui \
+    invitesmainwindow.ui \
+    modif.ui \
+    supp.ui
+
 
 include(C:\Users\USER\Downloads\Qt-QrCodeGenerator-main\Qt-QrCodeGenerator-main\Qt-QrCodeGenerator.pri)
 
@@ -66,3 +100,6 @@ RESOURCES += \
     font.qrc \
     icons_ui_dark.qrc \
     logo.qrc
+
+DISTFILES +=\
+fonts/Kabel Book BT_0.ttf

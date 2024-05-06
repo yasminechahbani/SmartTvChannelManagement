@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "emissionmainwindow.h"
 #include <QMessageBox>
 #include <QApplication>
 //#include <QFrame>
@@ -15,7 +15,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+    EmissionMainWindow w;
     Connection c;
    bool test=c.createconnect();
    if (test)

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>EmissionMainWindow</class>
+ <widget class="QMainWindow" name="EmissionMainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1753</width>
-    <height>969</height>
+    <width>1422</width>
+    <height>939</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>10</x>
       <y>10</y>
       <width>1401</width>
       <height>871</height>
@@ -1188,7 +1188,7 @@ QTabBar::tab:selected {
 </string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -2923,6 +2923,50 @@ background : transparent;
       <string>     Add a show</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="employees">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>140</y>
+       <width>281</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{color: transparent;
+background : transparent;
+
+}</string>
+     </property>
+     <property name="text">
+      <string>     Add a show</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="guests">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>310</y>
+       <width>281</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{color: transparent;
+background : transparent;
+
+}</string>
+     </property>
+     <property name="text">
+      <string>     Add a show</string>
+     </property>
+    </widget>
     <zorder>shows</zorder>
     <zorder>label_10</zorder>
     <zorder>label_12</zorder>
@@ -2938,6 +2982,8 @@ background : transparent;
     <zorder>pushButton_7</zorder>
     <zorder>label_13</zorder>
     <zorder>Sponsors</zorder>
+    <zorder>employees</zorder>
+    <zorder>guests</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -2945,37 +2991,10 @@ background : transparent;
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1753</width>
+     <width>1422</width>
      <height>26</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuCreate">
-    <property name="title">
-     <string>Create </string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuRead">
-    <property name="title">
-     <string>Read</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuupdate">
-    <property name="title">
-     <string>Update</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menudelete">
-    <property name="title">
-     <string>Delete </string>
-    </property>
-    <addaction name="separator"/>
-    <addaction name="separator"/>
-    <addaction name="separator"/>
-   </widget>
-   <addaction name="menuCreate"/>
-   <addaction name="menuRead"/>
-   <addaction name="menuupdate"/>
-   <addaction name="menudelete"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

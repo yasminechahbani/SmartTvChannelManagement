@@ -1,6 +1,6 @@
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef EMISSIONMAINWINDOW_H
+#define EMISSIONMAINWINDOW_H
 
 #include "emission.h"
 #include "ui_mainwindow_dark_mode.h"
@@ -17,18 +17,18 @@
 #include <QSerialPortInfo>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui { class EmissionMainWindow; }
 QT_END_NAMESPACE
 
 
 
-class MainWindow : public QMainWindow
+class EmissionMainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    EmissionMainWindow(QWidget *parent = nullptr);
+    ~EmissionMainWindow();
 
 private slots:
     void on_ajouter_clicked();
@@ -45,11 +45,13 @@ private slots:
     void on_dark_mode_clicked(); // Slot for dark mode button clicked
     void on_Sort_clicked();
     void on_Sponsors_clicked();
+    void on_employees_clicked();
+    void on_guests_clicked();
     void readData();
     void writeData(const char *data);
 
 private:
-    Ui::MainWindow *ui;
+    Ui::EmissionMainWindow *ui;
 QSerialPort *arduino;
 static const quint16 arduino_uno_vendor_id = 9025;
 static const quint16 arduino_uno_product_id = 67;
@@ -64,5 +66,5 @@ bool arduino_is_available;
 
 
 
-#endif // MAINWINDOW_H
+#endif // EMISSIONMAINWINDOW_H
 
