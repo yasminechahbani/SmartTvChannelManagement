@@ -3,13 +3,14 @@ import time
 import os
 import HandTrackingModule as htm
 
+
 wCam, hCam = 640, 480
 
 cap = cv2.VideoCapture(0)
 cap.set(3, wCam)
 cap.set(4, hCam)
 
-folderPath = "C:/Users/USER/Desktop/official_projectCPP_folder/Hand-Tracker-main/Track/another-method/FingerImages"
+folderPath = "C:/Users/USER/Desktop/official_projectCPP_folder/integration finale/integration - Copie/FingerImages"
 myList = os.listdir(folderPath)
 print(myList)
 overlayList = []
