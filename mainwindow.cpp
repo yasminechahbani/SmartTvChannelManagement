@@ -375,26 +375,7 @@ this->close();
 }
 
 
-void MainWindow::onStartTimeChanged(const QTime &time)
-{
-    startTime = time;
-    if (endTime <= startTime)
-    {
-        endTime = startTime.addSecs(60); // Add one minute
-        ui->EndTimeEdit->setTime(endTime); // Update the end time edit widget
-    }
-}
 
-
-void MainWindow::onEndTimeChanged(const QTime &time)
-{
-    endTime = time;
-    if (endTime <= startTime)
-    {
-        startTime = endTime.addSecs(-60); // Subtract one minute from end time
-        ui->StartTimeEdit->setTime(startTime); // Update the start time edit widget
-    }
-}
 /*void MainWindow::sendEmail(const QString& recipient, const QString& subject, const QString& body)
 {
     // Set up Infobip API details
@@ -459,19 +440,7 @@ void MainWindow::on_use_return_clicked()
 
 
 }
-/*void MainWindow::onSendSMSButtonClicked()
-{
-    Sponsor sponsor;
-    QString fromNumber = "+21627888536"; // Replace with your sender number
-    QString toNumber = "+21627888536";   // Replace with recipient number
-    QString messageText = "This is a test SMS from Qt Creator app.";
 
-    if (sponsor.sendSMS(fromNumber, toNumber, messageText)) {
-        qDebug() << "SMS sending request initiated.";
-    } else {
-        qDebug() << "Error initiating SMS sending request.";
-    }
-}*/
 void MainWindow::on_excel_clicked() {
     QString fileName = QFileDialog::getSaveFileName(this, tr("Export Excel"), QString(), "*.csv");
     if (fileName.isEmpty()) {
@@ -526,60 +495,7 @@ void MainWindow::on_sort_clicked()
         ui->sponsor_tab->setModel(sponsor.getAllSponsorsSorted());
     }
 }
-/*void MainWindow::on_sms_clicked()
-{
-    // Prompt the user to enter the recipient's phone number and the message
-    QString recipient = "+21627888536" ;
 
-    QString message = "testing" ;
-
-    // Send the SMS message using the sendSMS function
-    sendSMS(recipient, message);
-}
-*/
-/*void MainWindow::sendSMS(const QString& recipient, const QString& message)
-{
-    QNetworkAccessManager* manager = new QNetworkAccessManager(this);
-    connect(manager, &QNetworkAccessManager::finished, this, &MainWindow::onSMSRequestFinished);
-
-    // Twilio API credentials
-
-     QString accountSid = "AC98a9bda5a40a5accd184c2628d913ac3";
-     QString authToken = "a103756817429aec180c9ff61ad142b8";
-
-    QUrl url("https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json");
-    QNetworkRequest request(url);
-    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-
-    // Construct request parameters
-    QUrlQuery params;
-    params.addQueryItem("To", recipient);
-    //params.addQueryItem("From", "+165622693779");
-    params.addQueryItem("From", "+ +16562269377");
-
-
-    params.addQueryItem("Body", message);
-    QByteArray postData = params.toString(QUrl::FullyEncoded).toUtf8();
-
-    // Set Twilio API authentication header
-    QString auth = accountSid + ":" + authToken;
-    QByteArray authData = auth.toUtf8().toBase64();
-    request.setRawHeader("Authorization", "Basic " + authData);
-
-    // Send HTTP POST request to Twilio API
-    manager->post(request, postData);
-}
-
-void MainWindow::onSMSRequestFinished(QNetworkReply* reply)
-{
-    if (reply->error() == QNetworkReply::NoError) {
-        QMessageBox::information(this, "SMS Sent", "The SMS message has been sent successfully.");
-    } else {
-        QMessageBox::critical(this, "Error", "Failed to send SMS message: " + reply->errorString());
-    }
-    reply->deleteLater();
-}
-*/
 
 
 

@@ -17,7 +17,7 @@ Sponsor::Sponsor(QString id, QString nom, QString montant, QString tempsaffichag
 bool Sponsor::addSponsor()
 {
     QSqlQuery query;
-    query.prepare("INSERT INTO sponsor (spons   or_id, sponsor_nom, sponsor_montant, sponsor_tempsaffichage, sponsor_nb_totalaffichage, sponsor_etatcontrat) "
+    query.prepare("INSERT INTO sponsor (sponsor_id, sponsor_nom, sponsor_montant, sponsor_tempsaffichage, sponsor_nb_totalaffichage, sponsor_etatcontrat) "
                   "VALUES (:sponsor_id, :sponsor_nom, :sponsor_montant, :sponsor_tempsaffichage, :sponsor_nb_totalaffichage, :sponsor_etatcontrat)");
     query.bindValue(":sponsor_id", sponsor_id);
     query.bindValue(":sponsor_nom", sponsor_nom);

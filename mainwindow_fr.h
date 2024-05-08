@@ -5,6 +5,8 @@
 #include <QMainWindow>
 #include <QObject>
 #include <QTime>
+#include <QtSerialPort>
+#include <QSerialPortInfo>
 
 
 QT_BEGIN_NAMESPACE
@@ -32,8 +34,7 @@ private slots:
     void on_checkContracts_clicked();
     //void on_sendButton_clicked() ;
     void on_Sponsor_tabHeader_clicked(int index) ;
-    void onStartTimeChanged(const QTime &time);
-    void onEndTimeChanged(const QTime &time);
+
     //void sendEmail(const QString& recipient, const QString& subject, const QString& body);
      //void onSendSMSButtonClicked();
      //QStringList readSponsorExcel(const QSqlQueryModel* model, int row);
@@ -42,9 +43,7 @@ private slots:
      void on_search_clicked();
 
     void on_use_return_clicked();
-    void sendSMS(const QString& recipient, const QString& message) ;
-    void onSMSRequestFinished(QNetworkReply* reply) ;
-    void on_sms_clicked();
+
     void on_eng_clicked();
 
 
@@ -56,7 +55,12 @@ private:
     QTime startTime;
     QTime endTime;
     Ui::MainWindowFr *ui;
-    Sponsor sponsor; // Instantiate the Sponsor class
+    Sponsor sponsor;
+    QSerialPort *arduino;
+   static const quint16 arduino_uno_vendor_id = 9025;
+   static const quint16 arduino_uno_product_id = 67;
+    QString arduino_port_name;
+    bool arduino_is_available;// Instantiate the Sponsor class// Instantiate the Sponsor class
 };
 
 

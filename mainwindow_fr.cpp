@@ -34,6 +34,8 @@
 #include <QJsonObject>
 #include <QByteArray>
 #include <QCryptographicHash>
+#include <QtSerialPort>
+#include <QSerialPortInfo>
 
 
 
@@ -43,6 +45,48 @@ MainWindowFr::MainWindowFr(QWidget *parent)
     , ui(new Ui::MainWindowFr)
 {
     ui->setupUi(this);
+    arduino_is_available = false;
+        arduino_port_name = "";
+    arduino = new QSerialPort;
+    qDebug() << "Available ports:";
+        foreach(const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()){
+            qDebug() << "Port Name: " << serialPortInfo.portName();
+        }
+
+        foreach(const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()){
+            if(serialPortInfo.hasVendorIdentifier() && serialPortInfo.hasProductIdentifier()){
+                if(serialPortInfo.vendorIdentifier() == arduino_uno_vendor_id){
+                    if(serialPortInfo.productIdentifier() == arduino_uno_product_id){
+                        arduino_port_name = serialPortInfo.portName();
+                        arduino_is_available = true;
+                    }
+                }
+            }
+        }
+
+        if(arduino_is_available){
+            // Open and configure the serial port
+            arduino->setPortName(arduino_port_name);
+            if (arduino->open(QSerialPort::ReadWrite)) {
+                qDebug() << "Serial port opened successfully.";
+                QMessageBox::information(this, "Port success", "successful opening serial port: " );
+
+            } else {
+                qDebug() << "Error opening serial port:" << arduino->errorString();
+                QMessageBox::warning(this, "Port error", "Error opening serial port: " + arduino->errorString());
+            }
+
+            arduino->setBaudRate(QSerialPort::Baud9600);
+            arduino->setDataBits(QSerialPort::Data8);
+            arduino->setParity(QSerialPort::NoParity);
+            arduino->setStopBits(QSerialPort::OneStop);
+            arduino->setFlowControl(QSerialPort::NoFlowControl);
+            QObject::connect(arduino, SIGNAL(readyRead()), this, SLOT(readData()));
+
+        } else {
+            // Give error message if Arduino not available
+            QMessageBox::warning(this, "Port error", "Couldn't find the Arduino!");
+        }
      /*connect(ui->sendButton, SIGNAL(clicked()), this, SLOT(on_sendButton_clicked()));
     connect(ui->sponsor_tab->horizontalHeader(), &QHeaderView::sectionClicked, this, &MainWindowFr::on_tableHeader_clicked);
     ui->sponsor_tab->setModel(sponsor.showSponsor());
@@ -312,26 +356,7 @@ void MainWindowFr::on_Sponsor_tabHeader_clicked(int index)
     ui->sponsor_tab->sortByColumn(index, Qt::AscendingOrder);
 }
 
-void MainWindowFr::onStartTimeChanged(const QTime &time)
-{
-    startTime = time;
-    if (endTime <= startTime)
-    {
-        endTime = startTime.addSecs(60); // Add one minute
-        ui->EndTimeEdit->setTime(endTime); // Update the end time edit widget
-    }
-}
 
-
-void MainWindowFr::onEndTimeChanged(const QTime &time)
-{
-    endTime = time;
-    if (endTime <= startTime)
-    {
-        startTime = endTime.addSecs(-60); // Subtract one minute from end time
-        ui->StartTimeEdit->setTime(startTime); // Update the start time edit widget
-    }
-}
 /*void MainWindowFr::sendEmail(const QString& recipient, const QString& subject, const QString& body)
 {
     // Set up Infobip API details
@@ -463,59 +488,8 @@ void MainWindowFr::on_sort_clicked()
         ui->sponsor_tab->setModel(sponsor.getAllSponsorsSorted());
     }
 }
-void MainWindowFr::on_sms_clicked()
-{
-    // Prompt the user to enter the recipient's phone number and the message
-    QString recipient = "+21627888536" ;
-
-    QString message = "testing" ;
-
-    // Send the SMS message using the sendSMS function
-    sendSMS(recipient, message);
-}
-
-void MainWindowFr::sendSMS(const QString& recipient, const QString& message)
-{
-    QNetworkAccessManager* manager = new QNetworkAccessManager(this);
-    connect(manager, &QNetworkAccessManager::finished, this, &MainWindowFr::onSMSRequestFinished);
-
-    // Twilio API credentials
-
-     QString accountSid = "AC98a9bda5a40a5accd184c2628d913ac3";
-     QString authToken = "a103756817429aec180c9ff61ad142b8";
-
-    QUrl url("https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json");
-    QNetworkRequest request(url);
-    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-
-    // Construct request parameters
-    QUrlQuery params;
-    params.addQueryItem("To", recipient);
-    //params.addQueryItem("From", "+165622693779");
-    params.addQueryItem("From", "+ +16562269377");
 
 
-    params.addQueryItem("Body", message);
-    QByteArray postData = params.toString(QUrl::FullyEncoded).toUtf8();
-
-    // Set Twilio API authentication header
-    QString auth = accountSid + ":" + authToken;
-    QByteArray authData = auth.toUtf8().toBase64();
-    request.setRawHeader("Authorization", "Basic " + authData);
-
-    // Send HTTP POST request to Twilio API
-    manager->post(request, postData);
-}
-
-void MainWindowFr::onSMSRequestFinished(QNetworkReply* reply)
-{
-    if (reply->error() == QNetworkReply::NoError) {
-        QMessageBox::information(this, "SMS Sent", "The SMS message has been sent successfully.");
-    } else {
-        QMessageBox::critical(this, "Error", "Failed to send SMS message: " + reply->errorString());
-    }
-    reply->deleteLater();
-}
 
 
 
