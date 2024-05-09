@@ -13,7 +13,7 @@ LoginMainWindow::LoginMainWindow(QWidget *parent)
     ui->setupUi(this);
 
     // Connect the login button to the appropriate slot
-    connect(ui->loginButton, &QPushButton::clicked, this, &LoginMainWindow::on_loginButton_clicked);
+    //connect(ui->loginButton, &QPushButton::clicked, this, &LoginMainWindow::on_loginButton_clicked);
 }
 
 LoginMainWindow::~LoginMainWindow()

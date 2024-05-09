@@ -48,6 +48,8 @@ private slots:
     void on_employees_clicked();
     void on_guests_clicked();
     void on_equipement_clicked();
+void on_showLogButton_clicked();
+void on_finger_clicked();
 
     void readData();
     void writeData(const char *data);

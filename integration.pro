@@ -71,7 +71,8 @@ SOURCES += \
     invites.cpp \
     invitesmainwindow.cpp \
     supp.cpp\
-    mainwindow.cpp
+    mainwindow.cpp\
+    fire.cpp
 
 HEADERS += \
     emission.h\
@@ -106,10 +107,12 @@ HEADERS += \
     smtpclient.h \
     smtpexports.h \
     useequipmentwindow.h\
-    mainwindow.h
+    mainwindow.h\
+    fire.h
 
 
 FORMS += \
+    fire.ui \
     emissionmainwindow.ui \
     emissionmainwindowdarkmode.ui \
     sponsormainwindow.ui \

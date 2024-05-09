@@ -129,6 +129,9 @@ public:
     QPushButton *employees;
     QPushButton *guests;
     QPushButton *equipement;
+    QPushButton *showLogButton;
+    QPushButton *finger;
+    QLabel *nbfinger;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -1229,6 +1232,22 @@ public:
 "background : transparent;\n"
 "\n"
 "}"));
+        showLogButton = new QPushButton(frame);
+        showLogButton->setObjectName(QStringLiteral("showLogButton"));
+        showLogButton->setGeometry(QRect(110, 600, 93, 28));
+        finger = new QPushButton(frame);
+        finger->setObjectName(QStringLiteral("finger"));
+        finger->setGeometry(QRect(200, 600, 93, 28));
+        nbfinger = new QLabel(frame);
+        nbfinger->setObjectName(QStringLiteral("nbfinger"));
+        nbfinger->setGeometry(QRect(60, 560, 211, 31));
+        nbfinger->setStyleSheet(QLatin1String("QLabel {\n"
+"    background-color: rgb(217, 237, 255); /* Set the background color */\n"
+"    border-radius: 3px; /* Adjust the radius as needed */\n"
+"    padding: 3px; /* Adjust padding as needed */\n"
+"color:rgb(3, 43, 67);\n"
+"}\n"
+""));
         shows->raise();
         label_10->raise();
         label_12->raise();
@@ -1247,6 +1266,9 @@ public:
         employees->raise();
         guests->raise();
         equipement->raise();
+        showLogButton->raise();
+        finger->raise();
+        nbfinger->raise();
         EmissionMainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(EmissionMainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
@@ -1380,6 +1402,9 @@ public:
         employees->setText(QApplication::translate("EmissionMainWindow", "     Add a show", Q_NULLPTR));
         guests->setText(QApplication::translate("EmissionMainWindow", "     Add a show", Q_NULLPTR));
         equipement->setText(QApplication::translate("EmissionMainWindow", "     Add a show", Q_NULLPTR));
+        showLogButton->setText(QApplication::translate("EmissionMainWindow", "Fire log", Q_NULLPTR));
+        finger->setText(QApplication::translate("EmissionMainWindow", "fingerrrr", Q_NULLPTR));
+        nbfinger->setText(QString());
     } // retranslateUi
 
 };

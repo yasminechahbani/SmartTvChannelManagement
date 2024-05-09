@@ -34,7 +34,7 @@ EmployeeMainWindow::EmployeeMainWindow(QWidget *parent)
 
 EmployeeMainWindow::~EmployeeMainWindow()
 {
-    delete ui;
+    delete this;
 }
 
 void EmployeeMainWindow::on_ajouter_clicked()

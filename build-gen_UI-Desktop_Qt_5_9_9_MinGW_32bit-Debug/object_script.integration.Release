@@ -31,6 +31,7 @@ INPUT(
 ./release\invites.o
 ./release\invitesmainwindow.o
 ./release\supp.o
+./release\fire.o
 ./release\QrCodeGenerator.o
 ./release\qrcodegen.o
 ./release\qrc_font.o
@@ -63,4 +64,5 @@ INPUT(
 ./release\moc_smtpclient.o
 ./release\moc_useequipmentwindow.o
 ./release\moc_mainwindow.o
+./release\moc_fire.o
 );

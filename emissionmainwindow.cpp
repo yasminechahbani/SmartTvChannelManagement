@@ -62,8 +62,8 @@
 #include "QrCodeGenerator.h"
 #include <QtSerialPort>
 #include <QSerialPortInfo>
-
-
+#include "fire.h"
+#include <QProcess>
 
 using namespace qrcodegen;
 
@@ -97,11 +97,11 @@ qDebug() << "Available ports:";
         arduino->setPortName(arduino_port_name);
         if (arduino->open(QSerialPort::ReadWrite)) {
             qDebug() << "Serial port opened successfully.";
-            QMessageBox::information(this, "Port success" , "successful opening serial port: " );
+            //QMessageBox::information(this, "Port success" , "successful opening serial port: " );
 
         } else {
             qDebug() << "Error opening serial port:" << arduino->errorString();
-            QMessageBox::warning(this, "Port error", "Error opening serial port: " + arduino->errorString());
+            //QMessageBox::warning(this, "Port error", "Error opening serial port: " + arduino->errorString());
         }
 
         arduino->setBaudRate(QSerialPort::Baud9600);
@@ -120,6 +120,78 @@ qDebug() << "Available ports:";
 }
 
 
+void EmissionMainWindow::on_finger_clicked()
+{
+
+    // Specify the path to your Python interpreter
+        QString pythonInterpreter = "C:/Users/USER/Desktop/official_projectCPP_folder/Hand-Tracker-main/.venv/Scripts/python.exe";
+
+        // Specify the path to your Python script
+        QString pythonScriptPath = "C:/Users/USER/Desktop/official_projectCPP_folder/Hand-Tracker-main/Track/another-method/FingerCounter.py";
+
+
+        // Create a QProcess object to start the Python script
+        QProcess pythonProcess;
+
+        // Start the Python script using the specified interpreter
+        pythonProcess.start(pythonInterpreter, QStringList() << pythonScriptPath);
+
+        // Check if the Python script was started successfully
+        if (!pythonProcess.waitForStarted()) {
+            qDebug() << "Failed to start Python script!";
+        }
+
+        // Wait for the Python script to finish
+        if (!pythonProcess.waitForFinished()) {
+            qDebug() << "Failed to finish Python script!";
+
+        }
+
+        // Retrieve and print the output of the Python script
+        QByteArray output = pythonProcess.readAllStandardOutput();
+        qDebug() << "Python Script Output:" << output;
+        // Convert the byte array to an integer
+           int fingerCount = output.toInt();
+
+           // Convert the integer to a string
+           QString fingerCountString = QString::number(fingerCount);
+
+           // Update your UI with the finger count
+           ui->nbfinger->setText("Finger Count: " + fingerCountString);
+
+}
+
+
+
+
+void EmissionMainWindow::on_showLogButton_clicked()
+{
+    // Open the flame detection log file for reading
+    QString fileName = "C:/Users/USER/Desktop/official_projectCPP_folder/integration finale/bien//integration - Copie/aziz.txt";
+    QFile file(fileName);
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream in(&file);
+        QString logContents = in.readAll(); // Read all contents of the file
+        file.close();
+
+        // Create a dialog to display the log contents
+        QDialog dialog(this);
+        QVBoxLayout layout(&dialog);
+
+        QTextEdit textEdit;
+        textEdit.setReadOnly(true); // Set read-only mode
+        textEdit.setPlainText(logContents); // Set text content
+
+        layout.addWidget(&textEdit);
+        dialog.setLayout(&layout);
+
+        // Set dialog title and show it
+        dialog.setWindowTitle("Flame Detection Log");
+        dialog.exec();
+    } else {
+        qDebug() << "Error opening flame detection log file for reading: " << file.errorString();
+    }
+}
 
 
 void EmissionMainWindow::writeData(const char *data)
@@ -145,7 +217,6 @@ EmissionMainWindow::~EmissionMainWindow()
     }
     delete ui;
 }
-
 
 void EmissionMainWindow::readData()
 {
@@ -180,7 +251,19 @@ void EmissionMainWindow::readData()
                 // Add your code to stop the buzzer
                 writeData("s");
 
-
+                // Write the moment of flame detection to the text file
+                QString fileName = "C:/Users/USER/Desktop/official_projectCPP_folder/integration finale/bien//integration - Copie/aziz.txt";
+                QFile file(fileName);
+                if (file.open(QIODevice::Append | QIODevice::Text)) {
+                    QTextStream out(&file);
+                    QDateTime currentDateTime = QDateTime::currentDateTime();
+                    QString dateTimeString = currentDateTime.toString("yyyy-MM-dd hh:mm:ss");
+                    out << "Flame detected at: " << dateTimeString << "\n";
+                    file.close();
+                    qDebug() << "Flame detection time written to file: " << dateTimeString;
+                } else {
+                    qDebug() << "Error opening flame detection log file: " << file.errorString();
+                }
             }
         }
     }
@@ -192,7 +275,6 @@ void EmissionMainWindow::readData()
         receivedData.clear(); // Clear the stored data if all lines are complete
     }
 }
-
 
 
 

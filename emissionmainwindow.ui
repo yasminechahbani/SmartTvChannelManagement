@@ -2989,6 +2989,54 @@ background : transparent;
       <string>     Add a show</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="showLogButton">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>600</y>
+       <width>93</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Fire log</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="finger">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>600</y>
+       <width>93</width>
+       <height>28</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>fingerrrr</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="nbfinger">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>560</y>
+       <width>211</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QLabel {
+    background-color: rgb(217, 237, 255); /* Set the background color */
+    border-radius: 3px; /* Adjust the radius as needed */
+    padding: 3px; /* Adjust padding as needed */
+color:rgb(3, 43, 67);
+}
+</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
     <zorder>shows</zorder>
     <zorder>label_10</zorder>
     <zorder>label_12</zorder>
@@ -3007,6 +3055,9 @@ background : transparent;
     <zorder>employees</zorder>
     <zorder>guests</zorder>
     <zorder>equipement</zorder>
+    <zorder>showLogButton</zorder>
+    <zorder>finger</zorder>
+    <zorder>nbfinger</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
