@@ -113,10 +113,14 @@ qDebug() << "Available ports:";
 
     } else {
         // Give error message if Arduino not available
-        QMessageBox::warning(this, "Port error", "Couldn't find the Arduino!");
+        qDebug() << "Couldn't find the Arduino!";
+
+        //QMessageBox::warning(this, "Port error", "Couldn't find the Arduino!");
     }
     // Connect dark mode button signal to slot
     connect(ui->sortComboBox, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, &EmissionMainWindow::on_Sort_clicked);
+
+
 }
 
 
@@ -192,7 +196,7 @@ void EmissionMainWindow::on_finger_clicked()
             on_Sponsors_clicked();
             break;
        case 5:
-               on_equipement_clicked();
+            on_equipement_clicked();
             break;
             // Add more cases as needed
             default:
@@ -412,28 +416,34 @@ void EmissionMainWindow::on_ajouter_clicked()
     QString emission_type = ui->type_lineEdit->text();
     QString emission_date = ui->date_lineEdit->text();
     QString emission_duree = ui->duree_lineEdit->text();
-
     EMISSION Emission(emission_id, emission_nom, emission_host, emission_nbviewers, emission_genre, emission_type, emission_date, emission_duree);
 
+    Emission.CreateEmission();
+
+    /*
     if (!Emission.CreateEmission()) {
         QMessageBox::critical(nullptr, "Error", "Failed to add emission.");
         return;
-    }
+    }*/
 
     ui->tabb->setModel(Emission.ReadEmission());
-    QMessageBox::information(nullptr, "Success", "Emission added successfully.");
+    //QMessageBox::information(nullptr, "Success", "Emission added successfully.");
 }
 
 void EmissionMainWindow::on_delete_button_clicked()
 {
     QString emission_id = ui->id_lineEdit_delete->text();
+
+
+    /*
     if (!Emission.deleteEmission(emission_id)) {
         QMessageBox::critical(nullptr, "Error", "Failed to delete emission.");
         return;
     }
-
+*/
     ui->tabb->setModel(Emission.ReadEmission());
-    QMessageBox::information(nullptr, "Success", "Emission deleted successfully.");
+    Emission.deleteEmission(emission_id);
+    //QMessageBox::information(nullptr, "Success", "Emission deleted successfully.");
 }
 
 
@@ -484,16 +494,17 @@ void EmissionMainWindow::on_update_clicked()
 
     EMISSION Emission(emission_id, emission_nom, emission_host, emission_nbviewers, emission_genre, emission_type, emission_date, emission_duree);
 
-    if (!Emission.updateEmission(emission_id)) {
+    /*if (!Emission.updateEmission(emission_id)) {
         QMessageBox::critical(nullptr, "Error", "Failed to update emission.");
         return;
     }
-    else
+    else{
         QMessageBox::information(nullptr, "Success", "Emission edited successfully.");
-
+}
+*/
+    Emission.updateEmission(emission_id);
 
     ui->tabb->setModel(Emission.ReadEmission());
-    QMessageBox::information(nullptr, "Success", "Emission updated successfully.");
 }
 
 

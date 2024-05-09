@@ -23,6 +23,15 @@
 #include <QTextDocument>
 #include <QTextStream>
 #include <QStringListModel>
+//arduino
+#include <QNetworkRequest>
+#include <QProcess>
+#include <QDebug>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QtSerialPort>
+#include <QSerialPortInfo>
+#include "arduino.h"
 
 EmployeeMainWindow::EmployeeMainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -30,6 +39,67 @@ EmployeeMainWindow::EmployeeMainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->tabb->setModel(Employee.ReadEmployee());
+
+
+
+    //******************************arduinoo
+    arduino_is_available = false;
+        arduino_port_name = "";
+    arduino = new QSerialPort;
+    qDebug() << "Available ports:";
+        foreach(const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()){
+            qDebug() << "Port Name: " << serialPortInfo.portName();
+        }
+        foreach(const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()){
+            if(serialPortInfo.hasVendorIdentifier() && serialPortInfo.hasProductIdentifier()){
+                if(serialPortInfo.vendorIdentifier() == arduino_uno_vendor_id){
+                    if(serialPortInfo.productIdentifier() == arduino_uno_product_id){
+                        arduino_port_name = serialPortInfo.portName();
+                        arduino_is_available = true;
+                    }
+                }
+            }
+        }
+        if(arduino_is_available){
+            // Open and configure the serial port
+            arduino->setPortName(arduino_port_name);
+            if (arduino->open(QSerialPort::ReadOnly)) {
+                qDebug() << "Serial port opened successfully.";
+                //QMessageBox::information(this, "Port success", "successful opening serial port: " );
+
+            } else {
+                qDebug() << "Error opening serial port:" << arduino->errorString();
+                //QMessageBox::warning(this, "Port error", "Error opening serial port: " + arduino->errorString());
+            }
+
+            arduino->setBaudRate(QSerialPort::Baud9600);
+            arduino->setDataBits(QSerialPort::Data8);
+            arduino->setParity(QSerialPort::NoParity);
+            arduino->setStopBits(QSerialPort::OneStop);
+            arduino->setFlowControl(QSerialPort::NoFlowControl);
+           // QObject::connect(arduino, SIGNAL(readyRead()), this, SLOT(readData()));
+            QObject::connect(arduino, SIGNAL(readyRead()), this, SLOT(readFromSerial()));
+
+               data=arduino->readAll();
+
+//QMessageBox::information(this, "arduino data:", "data received \n " +data );
+
+        } else {
+            // Give error message if Arduino not available
+            //QMessageBox::warning(this, "Port error", "Couldn't find the Arduino!");
+        }
+
+
+
+
+
+
+
+   //*********************************arduino
+
+
+
+
 }
 
 EmployeeMainWindow::~EmployeeMainWindow()
