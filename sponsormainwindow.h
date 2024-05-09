@@ -5,7 +5,9 @@
 #include <QMainWindow>
 #include <QObject>
 #include <QTime>
+#include "invitesmainwindow.h"
 
+#include <QStackedWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class SponsorMainWindow; }
@@ -29,23 +31,27 @@ private slots:
     void on_update_clicked();
     void on_Generate_PDF_clicked() ;
     void on_stat_clicked() ;
-    void on_checkContracts_clicked();
-    void on_sendButton_clicked() ;
+
+
     void on_Sponsor_tabHeader_clicked(int index) ;
-    void onStartTimeChanged(const QTime &time);
-    void onEndTimeChanged(const QTime &time);
+
     //void sendEmail(const QString& recipient, const QString& subject, const QString& body);
-     void onSendSMSButtonClicked();
      //QStringList readSponsorExcel(const QSqlQueryModel* model, int row);
      void on_excel_clicked() ;
      void on_sort_clicked();
      void on_search_clicked();
 
     void on_use_return_clicked();
-    void sendSMS(const QString& recipient, const QString& message) ;
-    void onSMSRequestFinished(QNetworkReply* reply) ;
-    void on_sms_clicked();
+
+
     void on_fr_clicked();
+    //void on_Sponsors_clicked();
+    void on_employees_clicked();
+    void on_guests_clicked();
+    void on_equipement_clicked();
+    void on_shows_clicked();
+
+
 
 
 
@@ -57,7 +63,11 @@ private:
     QTime endTime;
     Ui::SponsorMainWindow *ui;
     Sponsor sponsor; // Instantiate the Sponsor class
+    QStackedWidget *stackedWidget;
+    invitesMainWindow *invitesWindow;
+
 };
+
 
 
 

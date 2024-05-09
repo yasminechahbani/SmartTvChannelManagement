@@ -15,8 +15,6 @@
 
 #include <QtSerialPort>
 #include <QSerialPortInfo>
-#include <QProcess>
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class EmissionMainWindow; }
@@ -54,10 +52,6 @@ private slots:
     void readData();
     void writeData(const char *data);
 
-
-    void on_finger_clicked();
-
-
 private:
     Ui::EmissionMainWindow *ui;
 QSerialPort *arduino;
@@ -67,8 +61,6 @@ QString arduino_port_name;
 bool arduino_is_available;
 
     EMISSION Emission;
-    QProcess *pythonProcess;
-
 
 };
 

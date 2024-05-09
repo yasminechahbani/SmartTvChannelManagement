@@ -95,6 +95,10 @@ public:
     QLabel *label;
     QLabel *label_22;
     QLabel *label_4;
+    QPushButton *guests;
+    QPushButton *shows;
+    QPushButton *Sponsors;
+    QPushButton *employees;
     QMenuBar *menubar;
     QMenu *menuCreate;
     QMenu *menuRead;
@@ -106,7 +110,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1753, 969);
+        MainWindow->resize(1422, 939);
         MainWindow->setStyleSheet(QLatin1String("QMainWindow {\n"
 "    background: white;\n"
 "}"));
@@ -114,7 +118,7 @@ public:
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         frame = new QFrame(centralwidget);
         frame->setObjectName(QStringLiteral("frame"));
-        frame->setGeometry(QRect(320, 80, 1321, 821));
+        frame->setGeometry(QRect(10, 10, 1401, 871));
         frame->setStyleSheet(QLatin1String("\n"
 "   background: #032B43;\n"
 "  border: 1px solid #032B43;\n"
@@ -261,7 +265,7 @@ public:
 "}"));
         frame_3 = new QFrame(frame);
         frame_3->setObjectName(QStringLiteral("frame_3"));
-        frame_3->setGeometry(QRect(290, 10, 1001, 781));
+        frame_3->setGeometry(QRect(290, 10, 1091, 841));
         frame_3->setStyleSheet(QLatin1String("\n"
 " /*  background: #032B43;*/\n"
 "  border: 0px ;\n"
@@ -280,7 +284,7 @@ public:
 "border:0px;"));
         search_button = new QToolButton(frame_3);
         search_button->setObjectName(QStringLiteral("search_button"));
-        search_button->setGeometry(QRect(930, 110, 51, 41));
+        search_button->setGeometry(QRect(990, 110, 51, 41));
         search_button->setStyleSheet(QLatin1String("\n"
 "    QToolButton {\n"
 "        background-color: #3F88C5;\n"
@@ -299,14 +303,14 @@ public:
 ""));
         search_lineEdit = new QLineEdit(frame_3);
         search_lineEdit->setObjectName(QStringLiteral("search_lineEdit"));
-        search_lineEdit->setGeometry(QRect(720, 110, 251, 41));
+        search_lineEdit->setGeometry(QRect(780, 110, 251, 41));
         search_lineEdit->setStyleSheet(QLatin1String("border-radius:20px;\n"
 "background:rgb(229, 229, 229);\n"
 "color:#999999;\n"
 "font: 8pt \"8514oem\";"));
         label_15 = new QLabel(frame_3);
         label_15->setObjectName(QStringLiteral("label_15"));
-        label_15->setGeometry(QRect(130, 600, 91, 41));
+        label_15->setGeometry(QRect(130, 630, 91, 41));
         label_15->setStyleSheet(QLatin1String("QLabel{\n"
 "image:url(:/Dark_ones /pdf.png);\n"
 "background:transparent;\n"
@@ -329,7 +333,7 @@ public:
 "}"));
         Generate_PDF = new QPushButton(frame_3);
         Generate_PDF->setObjectName(QStringLiteral("Generate_PDF"));
-        Generate_PDF->setGeometry(QRect(140, 590, 231, 61));
+        Generate_PDF->setGeometry(QRect(140, 620, 231, 61));
         Generate_PDF->setCursor(QCursor(Qt::PointingHandCursor));
         Generate_PDF->setStyleSheet(QLatin1String("QPushButton{color:#D00000;\n"
 "border-radius:20px;\n"
@@ -345,7 +349,7 @@ public:
 ""));
         stats_button = new QPushButton(frame_3);
         stats_button->setObjectName(QStringLiteral("stats_button"));
-        stats_button->setGeometry(QRect(590, 700, 281, 71));
+        stats_button->setGeometry(QRect(640, 730, 281, 71));
         stats_button->setCursor(QCursor(Qt::PointingHandCursor));
         stats_button->setStyleSheet(QLatin1String("QPushButton{color: rgb(107, 189, 171);\n"
 "border-radius:20px;\n"
@@ -360,7 +364,7 @@ public:
 "}"));
         label_16 = new QLabel(frame_3);
         label_16->setObjectName(QStringLiteral("label_16"));
-        label_16->setGeometry(QRect(640, 720, 61, 31));
+        label_16->setGeometry(QRect(690, 750, 61, 31));
         label_16->setStyleSheet(QLatin1String("image:url(:/Dark_ones /stat.png);\n"
 "background:transparent;"));
         label_8 = new QLabel(frame_3);
@@ -370,13 +374,13 @@ public:
 "background:transparent;"));
         label_18 = new QLabel(frame_3);
         label_18->setObjectName(QStringLiteral("label_18"));
-        label_18->setGeometry(QRect(870, 10, 131, 61));
+        label_18->setGeometry(QRect(970, 20, 131, 61));
         label_18->setStyleSheet(QLatin1String("image:url(:/Dark_ones /profile_dark.png);\n"
 "background:transparent;"));
         tabWidget = new QTabWidget(frame_3);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         tabWidget->setEnabled(true);
-        tabWidget->setGeometry(QRect(20, 110, 431, 371));
+        tabWidget->setGeometry(QRect(20, 110, 451, 421));
         tabWidget->setStyleSheet(QLatin1String("QTabWidget::pane {\n"
 "    border-radius: 10px; /* Adjust the radius as needed */\n"
 "    background-color: rgb(173, 216, 230); /* Set the background color to light blue */\n"
@@ -654,7 +658,7 @@ public:
         tabWidget->addTab(tab_3, QString());
         sms = new QPushButton(frame_3);
         sms->setObjectName(QStringLiteral("sms"));
-        sms->setGeometry(QRect(270, 660, 181, 61));
+        sms->setGeometry(QRect(270, 690, 181, 61));
         sms->setStyleSheet(QLatin1String("QPushButton{color: rgb(107, 189, 171);\n"
 "border-radius:20px;\n"
 "border: 1px solid rgb(107, 189, 171);\n"
@@ -697,7 +701,7 @@ public:
 "}"));
         notif = new QPushButton(frame_3);
         notif->setObjectName(QStringLiteral("notif"));
-        notif->setGeometry(QRect(80, 660, 171, 61));
+        notif->setGeometry(QRect(70, 690, 181, 61));
         notif->setStyleSheet(QLatin1String("QPushButton{color: rgb(107, 189, 171);\n"
 "border-radius:20px;\n"
 "border: 1px solid rgb(107, 189, 171);\n"
@@ -766,14 +770,14 @@ public:
 ""));
         equip_tab = new QTableView(frame_3);
         equip_tab->setObjectName(QStringLiteral("equip_tab"));
-        equip_tab->setGeometry(QRect(480, 170, 501, 271));
+        equip_tab->setGeometry(QRect(480, 170, 581, 271));
         equip_tab->setStyleSheet(QLatin1String("color:black;\n"
 " background-color: rgb(131, 179, 216);\n"
 "\n"
 ""));
         list_all_button = new QPushButton(frame_3);
         list_all_button->setObjectName(QStringLiteral("list_all_button"));
-        list_all_button->setGeometry(QRect(530, 430, 201, 71));
+        list_all_button->setGeometry(QRect(530, 400, 201, 71));
         list_all_button->setStyleSheet(QLatin1String("QPushButton{color: rgb(107, 189, 171);\n"
 "border-radius:20px;\n"
 "border: 1px solid rgb(107, 189, 171);\n"
@@ -787,7 +791,7 @@ public:
 "}"));
         clear_all_in_table = new QPushButton(frame_3);
         clear_all_in_table->setObjectName(QStringLiteral("clear_all_in_table"));
-        clear_all_in_table->setGeometry(QRect(740, 430, 201, 71));
+        clear_all_in_table->setGeometry(QRect(790, 400, 201, 71));
         clear_all_in_table->setStyleSheet(QLatin1String("QPushButton{color: rgb(107, 189, 171);\n"
 "border-radius:20px;\n"
 "border:1px solid rgb(107, 189, 171);\n"
@@ -802,19 +806,19 @@ public:
         stat_tab = new QTableView(frame_3);
         stat_tab->setObjectName(QStringLiteral("stat_tab"));
         stat_tab->setEnabled(true);
-        stat_tab->setGeometry(QRect(480, 470, 501, 271));
+        stat_tab->setGeometry(QRect(480, 500, 581, 271));
         stat_tab->setStyleSheet(QLatin1String("color:black;\n"
 " background-color: rgb(131, 179, 216);\n"
 "\n"
 ""));
         label_14 = new QLabel(frame_3);
         label_14->setObjectName(QStringLiteral("label_14"));
-        label_14->setGeometry(QRect(520, 441, 111, 51));
+        label_14->setGeometry(QRect(520, 410, 111, 51));
         label_14->setStyleSheet(QLatin1String("image:url(:/Dark_ones /eye.png);\n"
 "background:transparent;"));
         label_9 = new QLabel(frame_3);
         label_9->setObjectName(QStringLiteral("label_9"));
-        label_9->setGeometry(QRect(750, 450, 61, 31));
+        label_9->setGeometry(QRect(790, 420, 61, 31));
         label_9->setStyleSheet(QLatin1String("image:url(:/Dark_ones /poubelle.png);\n"
 "background:transparent;"));
         equip_tab->raise();
@@ -973,6 +977,38 @@ public:
 "background: transparent;\n"
 "border:0px;\n"
 ""));
+        guests = new QPushButton(frame);
+        guests->setObjectName(QStringLiteral("guests"));
+        guests->setGeometry(QRect(0, 300, 281, 71));
+        guests->setCursor(QCursor(Qt::PointingHandCursor));
+        guests->setStyleSheet(QLatin1String("QPushButton{color: transparent;\n"
+"background : transparent;\n"
+"\n"
+"}"));
+        shows = new QPushButton(frame);
+        shows->setObjectName(QStringLiteral("shows"));
+        shows->setGeometry(QRect(0, 210, 281, 71));
+        shows->setCursor(QCursor(Qt::PointingHandCursor));
+        shows->setStyleSheet(QLatin1String("QPushButton{color: transparent;\n"
+"background : transparent;\n"
+"\n"
+"}"));
+        Sponsors = new QPushButton(frame);
+        Sponsors->setObjectName(QStringLiteral("Sponsors"));
+        Sponsors->setGeometry(QRect(0, 380, 281, 71));
+        Sponsors->setCursor(QCursor(Qt::PointingHandCursor));
+        Sponsors->setStyleSheet(QLatin1String("QPushButton{color: transparent;\n"
+"background : transparent;\n"
+"\n"
+"}"));
+        employees = new QPushButton(frame);
+        employees->setObjectName(QStringLiteral("employees"));
+        employees->setGeometry(QRect(0, 130, 281, 71));
+        employees->setCursor(QCursor(Qt::PointingHandCursor));
+        employees->setStyleSheet(QLatin1String("QPushButton{color: transparent;\n"
+"background : transparent;\n"
+"\n"
+"}"));
         pushButton->raise();
         label_10->raise();
         label_11->raise();
@@ -987,10 +1023,14 @@ public:
         label->raise();
         label_22->raise();
         label_4->raise();
+        guests->raise();
+        shows->raise();
+        Sponsors->raise();
+        employees->raise();
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 1753, 26));
+        menubar->setGeometry(QRect(0, 0, 1422, 26));
         menuCreate = new QMenu(menubar);
         menuCreate->setObjectName(QStringLiteral("menuCreate"));
         menuRead = new QMenu(menubar);
@@ -1087,6 +1127,10 @@ public:
         label->setText(QString());
         label_22->setText(QApplication::translate("MainWindow", "Guests", Q_NULLPTR));
         label_4->setText(QString());
+        guests->setText(QApplication::translate("MainWindow", "     Add a show", Q_NULLPTR));
+        shows->setText(QApplication::translate("MainWindow", "     Add a show", Q_NULLPTR));
+        Sponsors->setText(QApplication::translate("MainWindow", "     Add a show", Q_NULLPTR));
+        employees->setText(QApplication::translate("MainWindow", "     Add a show", Q_NULLPTR));
         menuCreate->setTitle(QApplication::translate("MainWindow", "Create ", Q_NULLPTR));
         menuRead->setTitle(QApplication::translate("MainWindow", "Read", Q_NULLPTR));
         menuupdate->setTitle(QApplication::translate("MainWindow", "Update", Q_NULLPTR));

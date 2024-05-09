@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_invitesMainWindow_t {
-    QByteArrayData data[28];
-    char stringdata0[490];
+    QByteArrayData data[32];
+    char stringdata0[570];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -45,20 +45,24 @@ QT_MOC_LITERAL(10, 149, 24), // "on_pushButton_up_clicked"
 QT_MOC_LITERAL(11, 174, 12), // "refreshTable"
 QT_MOC_LITERAL(12, 187, 22), // "on_tableView_activated"
 QT_MOC_LITERAL(13, 210, 23), // "on_Generate_PDF_clicked"
-QT_MOC_LITERAL(14, 234, 23), // "on_toolButton_2_clicked"
-QT_MOC_LITERAL(15, 258, 23), // "on_pushButton_6_clicked"
-QT_MOC_LITERAL(16, 282, 24), // "on_pushButton_11_clicked"
-QT_MOC_LITERAL(17, 307, 26), // "on_pushButton_list_clicked"
-QT_MOC_LITERAL(18, 334, 24), // "on_pushButton_12_clicked"
-QT_MOC_LITERAL(19, 359, 23), // "on_pushButton_3_clicked"
-QT_MOC_LITERAL(20, 383, 7), // "sendSMS"
-QT_MOC_LITERAL(21, 391, 9), // "recipient"
-QT_MOC_LITERAL(22, 401, 7), // "message"
-QT_MOC_LITERAL(23, 409, 20), // "onSMSRequestFinished"
-QT_MOC_LITERAL(24, 430, 14), // "QNetworkReply*"
-QT_MOC_LITERAL(25, 445, 5), // "reply"
-QT_MOC_LITERAL(26, 451, 23), // "on_pushButton_5_clicked"
-QT_MOC_LITERAL(27, 475, 14) // "readFromSerial"
+QT_MOC_LITERAL(14, 234, 19), // "on_Sponsors_clicked"
+QT_MOC_LITERAL(15, 254, 20), // "on_employees_clicked"
+QT_MOC_LITERAL(16, 275, 21), // "on_equipement_clicked"
+QT_MOC_LITERAL(17, 297, 16), // "on_shows_clicked"
+QT_MOC_LITERAL(18, 314, 23), // "on_toolButton_2_clicked"
+QT_MOC_LITERAL(19, 338, 23), // "on_pushButton_6_clicked"
+QT_MOC_LITERAL(20, 362, 24), // "on_pushButton_11_clicked"
+QT_MOC_LITERAL(21, 387, 26), // "on_pushButton_list_clicked"
+QT_MOC_LITERAL(22, 414, 24), // "on_pushButton_12_clicked"
+QT_MOC_LITERAL(23, 439, 23), // "on_pushButton_3_clicked"
+QT_MOC_LITERAL(24, 463, 7), // "sendSMS"
+QT_MOC_LITERAL(25, 471, 9), // "recipient"
+QT_MOC_LITERAL(26, 481, 7), // "message"
+QT_MOC_LITERAL(27, 489, 20), // "onSMSRequestFinished"
+QT_MOC_LITERAL(28, 510, 14), // "QNetworkReply*"
+QT_MOC_LITERAL(29, 525, 5), // "reply"
+QT_MOC_LITERAL(30, 531, 23), // "on_pushButton_5_clicked"
+QT_MOC_LITERAL(31, 555, 14) // "readFromSerial"
 
     },
     "invitesMainWindow\0validateFormData\0\0"
@@ -67,7 +71,9 @@ QT_MOC_LITERAL(27, 475, 14) // "readFromSerial"
     "openForm\0opensupp\0openUpdate\0"
     "on_toolButton_clicked\0on_pushButton_up_clicked\0"
     "refreshTable\0on_tableView_activated\0"
-    "on_Generate_PDF_clicked\0on_toolButton_2_clicked\0"
+    "on_Generate_PDF_clicked\0on_Sponsors_clicked\0"
+    "on_employees_clicked\0on_equipement_clicked\0"
+    "on_shows_clicked\0on_toolButton_2_clicked\0"
     "on_pushButton_6_clicked\0"
     "on_pushButton_11_clicked\0"
     "on_pushButton_list_clicked\0"
@@ -85,7 +91,7 @@ static const uint qt_meta_data_invitesMainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      22,   14, // methods
+      26,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -93,28 +99,32 @@ static const uint qt_meta_data_invitesMainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  124,    2, 0x08 /* Private */,
-       3,    0,  125,    2, 0x08 /* Private */,
-       4,    0,  126,    2, 0x08 /* Private */,
-       5,    0,  127,    2, 0x08 /* Private */,
-       6,    0,  128,    2, 0x08 /* Private */,
-       7,    0,  129,    2, 0x08 /* Private */,
-       8,    0,  130,    2, 0x08 /* Private */,
-       9,    0,  131,    2, 0x08 /* Private */,
-      10,    0,  132,    2, 0x08 /* Private */,
-      11,    0,  133,    2, 0x08 /* Private */,
-      12,    1,  134,    2, 0x08 /* Private */,
-      13,    0,  137,    2, 0x08 /* Private */,
-      14,    0,  138,    2, 0x08 /* Private */,
-      15,    0,  139,    2, 0x08 /* Private */,
-      16,    0,  140,    2, 0x08 /* Private */,
-      17,    0,  141,    2, 0x08 /* Private */,
-      18,    0,  142,    2, 0x08 /* Private */,
-      19,    0,  143,    2, 0x08 /* Private */,
-      20,    2,  144,    2, 0x08 /* Private */,
-      23,    1,  149,    2, 0x08 /* Private */,
-      26,    0,  152,    2, 0x08 /* Private */,
-      27,    0,  153,    2, 0x08 /* Private */,
+       1,    0,  144,    2, 0x08 /* Private */,
+       3,    0,  145,    2, 0x08 /* Private */,
+       4,    0,  146,    2, 0x08 /* Private */,
+       5,    0,  147,    2, 0x08 /* Private */,
+       6,    0,  148,    2, 0x08 /* Private */,
+       7,    0,  149,    2, 0x08 /* Private */,
+       8,    0,  150,    2, 0x08 /* Private */,
+       9,    0,  151,    2, 0x08 /* Private */,
+      10,    0,  152,    2, 0x08 /* Private */,
+      11,    0,  153,    2, 0x08 /* Private */,
+      12,    1,  154,    2, 0x08 /* Private */,
+      13,    0,  157,    2, 0x08 /* Private */,
+      14,    0,  158,    2, 0x08 /* Private */,
+      15,    0,  159,    2, 0x08 /* Private */,
+      16,    0,  160,    2, 0x08 /* Private */,
+      17,    0,  161,    2, 0x08 /* Private */,
+      18,    0,  162,    2, 0x08 /* Private */,
+      19,    0,  163,    2, 0x08 /* Private */,
+      20,    0,  164,    2, 0x08 /* Private */,
+      21,    0,  165,    2, 0x08 /* Private */,
+      22,    0,  166,    2, 0x08 /* Private */,
+      23,    0,  167,    2, 0x08 /* Private */,
+      24,    2,  168,    2, 0x08 /* Private */,
+      27,    1,  173,    2, 0x08 /* Private */,
+      30,    0,  176,    2, 0x08 /* Private */,
+      31,    0,  177,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Bool,
@@ -135,8 +145,12 @@ static const uint qt_meta_data_invitesMainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,   21,   22,
-    QMetaType::Void, 0x80000000 | 24,   25,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   25,   26,
+    QMetaType::Void, 0x80000000 | 28,   29,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -162,22 +176,26 @@ void invitesMainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         case 9: _t->refreshTable(); break;
         case 10: _t->on_tableView_activated((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
         case 11: _t->on_Generate_PDF_clicked(); break;
-        case 12: _t->on_toolButton_2_clicked(); break;
-        case 13: _t->on_pushButton_6_clicked(); break;
-        case 14: _t->on_pushButton_11_clicked(); break;
-        case 15: _t->on_pushButton_list_clicked(); break;
-        case 16: _t->on_pushButton_12_clicked(); break;
-        case 17: _t->on_pushButton_3_clicked(); break;
-        case 18: _t->sendSMS((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
-        case 19: _t->onSMSRequestFinished((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
-        case 20: _t->on_pushButton_5_clicked(); break;
-        case 21: _t->readFromSerial(); break;
+        case 12: _t->on_Sponsors_clicked(); break;
+        case 13: _t->on_employees_clicked(); break;
+        case 14: _t->on_equipement_clicked(); break;
+        case 15: _t->on_shows_clicked(); break;
+        case 16: _t->on_toolButton_2_clicked(); break;
+        case 17: _t->on_pushButton_6_clicked(); break;
+        case 18: _t->on_pushButton_11_clicked(); break;
+        case 19: _t->on_pushButton_list_clicked(); break;
+        case 20: _t->on_pushButton_12_clicked(); break;
+        case 21: _t->on_pushButton_3_clicked(); break;
+        case 22: _t->sendSMS((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
+        case 23: _t->onSMSRequestFinished((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
+        case 24: _t->on_pushButton_5_clicked(); break;
+        case 25: _t->readFromSerial(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-        case 19:
+        case 23:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -213,13 +231,13 @@ int invitesMainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 22)
+        if (_id < 26)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 22;
+        _id -= 26;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 22)
+        if (_id < 26)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 22;
+        _id -= 26;
     }
     return _id;
 }

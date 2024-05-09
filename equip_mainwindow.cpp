@@ -37,7 +37,10 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include "useequipmentwindow.h"
-
+#include "Employeemainwindow.h"
+#include "sponsormainwindow.h"
+#include "emissionmainwindow.h"
+#include "invitesmainwindow.h"
 
 
 
@@ -678,3 +681,66 @@ void MainWindow::on_Sort_clicked()
         ui->equip_tab->setModel(Equipmp.getAllEQUIPSorted());
     }
 }
+
+
+
+//other buttonns
+
+
+
+
+
+void MainWindow::on_Sponsors_clicked(){
+
+    this->close();
+
+    SponsorMainWindow *chooseWindow = new SponsorMainWindow(this);
+
+        chooseWindow->show();
+
+
+}
+/*
+void invitesMainWindow::on_equipement_clicked(){
+
+    this->close();
+
+    MainWindow *chooseWindow = new MainWindow(this);
+
+        chooseWindow->show();
+
+
+}*/
+
+
+
+void MainWindow::on_employees_clicked(){
+
+    this->close();
+
+    EmployeeMainWindow *chooseWindow = new EmployeeMainWindow(this);
+
+        chooseWindow->show();
+
+
+}
+
+void MainWindow::on_guests_clicked(){
+
+    this->close();
+
+    invitesMainWindow *chooseWindow = new invitesMainWindow(this);
+
+        chooseWindow->show();
+
+}
+void MainWindow::on_shows_clicked()
+{
+    this->close();
+
+
+    EmissionMainWindow * chooseWindow = new EmissionMainWindow(this);
+    chooseWindow->show();
+}
+
+

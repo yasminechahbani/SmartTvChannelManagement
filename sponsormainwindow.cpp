@@ -34,7 +34,12 @@
 #include <QJsonObject>
 #include <QByteArray>
 #include <QCryptographicHash>
+#include "Employeemainwindow.h"
+#include "equip_mainwindow.h"
+#include "emissionmainwindow.h"
+#include "invitesmainwindow.h"
 
+#include <QPropertyAnimation>
 
 
 
@@ -54,26 +59,12 @@ SponsorMainWindow::SponsorMainWindow(QWidget *parent)
 
 */
 
+    //added rn
 
 
-}
- void SponsorMainWindow::on_sendButton_clicked()
-{
-   /* Smtp* smtp = new Smtp(ui->emailLineEdit->text(),
-                           ui->passwordLineEdit->text(),
-                           "smtp.gmail.com",
-                           465);
 
-    smtp->sendMail(ui->emailLineEdit->text(),
-                    ui->recipientLineEdit->text(),
-                    ui->subjectLineEdit->text(),
-                    ui->contentTextEdit->text());
 
-    // Assuming smtp->sendMail() emits a signal when the sending is finished
-    connect(smtp, &Smtp::status, [=](const QString &status) {
-        QMessageBox::information(this, "Email Status", status);
-    });
-    */
+
 }
 
 void SponsorMainWindow::on_tableHeader_clicked(int index)
@@ -106,10 +97,11 @@ void SponsorMainWindow::on_ajouter_clicked()
         QMessageBox::critical(nullptr, "Error", "Failed to add sponsor.");
         return;
     }
-
+else
     ui->sponsor_tab->setModel(sponsor.showSponsor());
-    QMessageBox::information(nullptr, "Success", "Sponsor added successfully.");
+
 }
+
 
  void SponsorMainWindow::on_delete_button_clicked()
 {
@@ -277,27 +269,6 @@ void SponsorMainWindow::on_ajouter_clicked()
     chartView->resize(ui->tableView->size());
     chartView->show();
 }
- void SponsorMainWindow::on_checkContracts_clicked()
-{
-    Sponsor sponsor;
-    QSqlQuery query = sponsor.getSponsorsWithNonValideContract();
-
-    QString message;
-    while (query.next())
-    {
-        QString sponsor_nom = query.value(1).toString();
-        message += "Sponsor '" + sponsor_nom + "' has a non valide contract.\n";
-    }
-
-    if (!message.isEmpty())
-    {
-        QMessageBox::information(this, "Non Valide Contracts", message);
-    }
-    else
-    {
-        QMessageBox::information(this, "Non Valide Contracts", "No sponsors with non valide contracts found.");
-    }
-}
  void SponsorMainWindow::on_Sponsor_tabHeader_clicked(int index)
 {
     // Sort the table based on the clicked column
@@ -315,81 +286,8 @@ this->close();
 }
 
 
- void SponsorMainWindow::onStartTimeChanged(const QTime &time)
-{
-    startTime = time;
-    if (endTime <= startTime)
-    {
-        endTime = startTime.addSecs(60); // Add one minute
-        ui->EndTimeEdit->setTime(endTime); // Update the end time edit widget
-    }
-}
 
 
- void SponsorMainWindow::onEndTimeChanged(const QTime &time)
-{
-    endTime = time;
-    if (endTime <= startTime)
-    {
-        startTime = endTime.addSecs(-60); // Subtract one minute from end time
-        ui->StartTimeEdit->setTime(startTime); // Update the start time edit widget
-    }
-}
-/* void SponsorMainWindow::sendEmail(const QString& recipient, const QString& subject, const QString& body)
-{
-    // Set up Infobip API details
-    QString authToken = "e59d4b3da931706551a9ff5c675eb6a2-69a50cd4-cc59-45cd-b0e7-9fc8dd4e7a8f";
-    QString url = "k2l38x.api.infobip.com";
-
-    // Set up email content
-    QString from = "Aziz Khayati <khayati.mohamedaziz@esprit.tn>";
-
-    // Create form data
-    QHttpMultiPart *multiPart = new QHttpMultiPart(QHttpMultiPart::FormDataType);
-
-    // Add form fields
-    QHttpPart fromPart;
-    fromPart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"from\""));
-    fromPart.setBody(from.toUtf8());
-
-    QHttpPart toPart;
-    toPart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"to\""));
-    toPart.setBody(recipient.toUtf8());
-
-    QHttpPart subjectPart;
-    subjectPart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"subject\""));
-    subjectPart.setBody(subject.toUtf8());
-
-    QHttpPart bodyPart;
-    bodyPart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant("form-data; name=\"text\""));
-    bodyPart.setBody(body.toUtf8());
-
-    // Add parts to the multiPart
-    multiPart->append(fromPart);
-    multiPart->append(toPart);
-    multiPart->append(subjectPart);
-    multiPart->append(bodyPart);
-
-    // Create network access manager
-    QNetworkAccessManager* manager = new QNetworkAccessManager(this);
-
-    // Connect signals and slots for request handling
-    connect(manager, &QNetworkAccessManager::finished, this, [=](QNetworkReply *reply){
-        if (reply->error() == QNetworkReply::NoError) {
-            qDebug() << "Email sent successfully";
-        } else {
-            qDebug() << "Error sending email:" << reply->errorString();
-        }
-        reply->deleteLater();
-    });
-
-    // Create network request
-    QNetworkRequest request(url);
-    request.setRawHeader("Authorization", "App " + authToken.toUtf8());
-
-    // Send POST request
-    manager->post(request, multiPart);
-}*/
 
 
  void SponsorMainWindow::on_use_return_clicked()
@@ -398,21 +296,6 @@ this->close();
     //sendEmail("khayati.mohamedaziz@esprit.com", "yo yo ", "khedmet");
 
 
-}
- void SponsorMainWindow::onSendSMSButtonClicked()
-{
-  /*  Sponsor sponsor;
-    QString fromNumber = "+21627888536"; // Replace with your sender number
-    QString toNumber = "+21627888536";   // Replace with recipient number
-    QString messageText = "This is a test SMS from Qt Creator app.";
-
-    if (sponsor.sendSMS(fromNumber, toNumber, messageText)) {
-        qDebug() << "SMS sending request initiated.";
-    } else {
-        qDebug() << "Error initiating SMS sending request.";
-    }
-
-*/
 }
  void SponsorMainWindow::on_excel_clicked() {
     QString fileName = QFileDialog::getSaveFileName(this, tr("Export Excel"), QString(), "*.csv");
@@ -468,62 +351,70 @@ this->close();
         ui->sponsor_tab->setModel(sponsor.getAllSponsorsSorted());
     }
 }
- void SponsorMainWindow::on_sms_clicked()
-{
-    // Prompt the user to enter the recipient's phone number and the message
-    QString recipient = "+21627888536" ;
-
-    QString message = "testing" ;
-
-    // Send the SMS message using the sendSMS function
-    sendSMS(recipient, message);
-}
-
- void SponsorMainWindow::sendSMS(const QString& recipient, const QString& message)
-{
-    QNetworkAccessManager* manager = new QNetworkAccessManager(this);
-    connect(manager, &QNetworkAccessManager::finished, this, &SponsorMainWindow::onSMSRequestFinished);
-
-    // Twilio API credentials
-
-     QString accountSid = "AC98a9bda5a40a5accd184c2628d913ac3";
-     QString authToken = "a103756817429aec180c9ff61ad142b8";
-
-    QUrl url("https://api.twilio.com/2010-04-01/Accounts/" + accountSid + "/Messages.json");
-    QNetworkRequest request(url);
-    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-
-    // Construct request parameters
-    QUrlQuery params;
-    params.addQueryItem("To", recipient);
-    //params.addQueryItem("From", "+165622693779");
-    params.addQueryItem("From", "+ +16562269377");
-
-
-    params.addQueryItem("Body", message);
-    QByteArray postData = params.toString(QUrl::FullyEncoded).toUtf8();
-
-    // Set Twilio API authentication header
-    QString auth = accountSid + ":" + authToken;
-    QByteArray authData = auth.toUtf8().toBase64();
-    request.setRawHeader("Authorization", "Basic " + authData);
-
-    // Send HTTP POST request to Twilio API
-    manager->post(request, postData);
-}
-
- void SponsorMainWindow::onSMSRequestFinished(QNetworkReply* reply)
-{
-    if (reply->error() == QNetworkReply::NoError) {
-        QMessageBox::information(this, "SMS Sent", "The SMS message has been sent successfully.");
-    } else {
-        QMessageBox::critical(this, "Error", "Failed to send SMS message: " + reply->errorString());
-    }
-    reply->deleteLater();
-}
 
 
 
 
+
+
+ //OTHER BUTTONS
+
+
+ /*
+ void SponsorMainWindow::on_Sponsors_clicked(){
+
+     this->close();
+
+     SponsorMainWindow *chooseWindow = new SponsorMainWindow(this);
+
+         chooseWindow->show();
+
+
+ }*/
+
+ void SponsorMainWindow::on_equipement_clicked(){
+
+     this->close();
+
+     MainWindow *chooseWindow = new MainWindow(this);
+
+         chooseWindow->show();
+
+
+ }
+
+
+
+ void SponsorMainWindow::on_employees_clicked(){
+
+     this->close();
+
+     EmployeeMainWindow *chooseWindow = new EmployeeMainWindow(this);
+
+         chooseWindow->show();
+
+
+ }
+
+
+ void SponsorMainWindow::on_guests_clicked(){
+
+     this->close();
+
+     invitesMainWindow *chooseWindow = new invitesMainWindow(this);
+
+         chooseWindow->show();
+
+
+
+
+ }
+ void SponsorMainWindow::on_shows_clicked()
+ {
+     this->close();
+
+     EmissionMainWindow * chooseWindow = new EmissionMainWindow(this);
+     chooseWindow->show();
+ }
 
 

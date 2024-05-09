@@ -27,6 +27,10 @@
 #include <QNetworkReply>
 #include <QtSerialPort>
 #include <QSerialPortInfo>
+#include "Employeemainwindow.h"
+#include "sponsormainwindow.h"
+#include "equip_mainwindow.h"
+#include "emissionmainwindow.h"
 
 
 //#include <QWidget>
@@ -99,9 +103,9 @@ QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label()));
 
 
     // Connecter le clic sur le bouton "Ajouter" à notre slot
-        connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(openForm()));
+        //connect(ui->pushButton_2, SIGNAL(clicked()), this, SLOT(openForm()));
        //connect(ui->pushButton_6, SIGNAL(clicked()), this, SLOT(opensupp()));
-       connect(ui->pushButton_up, SIGNAL(clicked()), this, SLOT(openUpdate()));
+       //connect(ui->pushButton_up, SIGNAL(clicked()), this, SLOT(openUpdate()));
        connect(ui->pushButton_4, &QPushButton::clicked, this, &invitesMainWindow::refreshTable);
        //connect(ui->toolButton_3, SIGNAL(clicked()), this, SLOT(openStat()));
 
@@ -897,3 +901,67 @@ qDebug() << "Data from Arduino: " << lines;
         receivedData.clear(); // Clear the stored data if all lines are complete
     }
 }
+
+
+
+
+
+//OTHER BUTTONS
+
+
+
+void invitesMainWindow::on_Sponsors_clicked(){
+
+    this->close();
+
+    SponsorMainWindow *chooseWindow = new SponsorMainWindow(this);
+
+        chooseWindow->show();
+
+
+}
+
+void invitesMainWindow::on_equipement_clicked(){
+
+    this->close();
+
+    MainWindow *chooseWindow = new MainWindow(this);
+
+        chooseWindow->show();
+
+
+}
+
+
+
+void invitesMainWindow::on_employees_clicked(){
+
+    this->close();
+
+    EmployeeMainWindow *chooseWindow = new EmployeeMainWindow(this);
+
+        chooseWindow->show();
+
+
+}
+
+/*
+void invitesMainWindow::on_guests_clicked(){
+
+    this->close();
+
+    invitesMainWindow *chooseWindow = new invitesMainWindow(this);
+
+        chooseWindow->show();
+
+
+}*/
+void invitesMainWindow::on_shows_clicked()
+{
+    this->close();
+
+
+    EmissionMainWindow * chooseWindow = new EmissionMainWindow(this);
+    chooseWindow->show();
+}
+

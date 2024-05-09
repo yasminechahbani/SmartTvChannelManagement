@@ -117,8 +117,6 @@ public:
     QLabel *label_24;
     QLabel *label_25;
     QLabel *label_26;
-    QLabel *fingerCountLabel;
-    QPushButton *finger;
     QLabel *label;
     QLabel *label_2;
     QLabel *label_4;
@@ -157,7 +155,7 @@ public:
         frame->setFrameShadow(QFrame::Raised);
         shows = new QPushButton(frame);
         shows->setObjectName(QStringLiteral("shows"));
-        shows->setGeometry(QRect(50, 220, 361, 61));
+        shows->setGeometry(QRect(50, 230, 361, 61));
         shows->setCursor(QCursor(Qt::PointingHandCursor));
         shows->setStyleSheet(QLatin1String("\n"
 "QPushButton {\n"
@@ -180,7 +178,7 @@ public:
 ""));
         label_10 = new QLabel(frame);
         label_10->setObjectName(QStringLiteral("label_10"));
-        label_10->setGeometry(QRect(20, 390, 300, 60));
+        label_10->setGeometry(QRect(20, 400, 300, 60));
         QPalette palette;
         QBrush brush(QColor(255, 255, 255, 255));
         brush.setStyle(Qt::SolidPattern);
@@ -230,7 +228,7 @@ public:
         label_10->setFrameShape(QFrame::Panel);
         label_12 = new QLabel(frame);
         label_12->setObjectName(QStringLiteral("label_12"));
-        label_12->setGeometry(QRect(60, 469, 300, 60));
+        label_12->setGeometry(QRect(60, 479, 300, 60));
         QPalette palette1;
         palette1.setBrush(QPalette::Active, QPalette::WindowText, brush);
         palette1.setBrush(QPalette::Active, QPalette::Button, brush1);
@@ -275,7 +273,7 @@ public:
         label_12->setFrameShape(QFrame::Panel);
         label_11 = new QLabel(frame);
         label_11->setObjectName(QStringLiteral("label_11"));
-        label_11->setGeometry(QRect(70, 310, 300, 60));
+        label_11->setGeometry(QRect(70, 320, 300, 60));
         QPalette palette2;
         palette2.setBrush(QPalette::Active, QPalette::WindowText, brush);
         palette2.setBrush(QPalette::Active, QPalette::Button, brush1);
@@ -321,7 +319,7 @@ public:
         label_11->setFrameShape(QFrame::Panel);
         frame_4 = new QFrame(frame);
         frame_4->setObjectName(QStringLiteral("frame_4"));
-        frame_4->setGeometry(QRect(20, 10, 401, 111));
+        frame_4->setGeometry(QRect(20, 20, 401, 111));
         frame_4->setStyleSheet(QLatin1String("QFrame{\n"
 "background:white;\n"
 "border-radius:50px ;\n"
@@ -339,7 +337,7 @@ public:
 "}"));
         frame_3 = new QFrame(frame);
         frame_3->setObjectName(QStringLiteral("frame_3"));
-        frame_3->setGeometry(QRect(299, 10, 1081, 841));
+        frame_3->setGeometry(QRect(299, 20, 1081, 841));
         frame_3->setStyleSheet(QLatin1String("\n"
 " /*  background: #032B43;*/\n"
 "  border: 0px ;\n"
@@ -1076,31 +1074,6 @@ public:
         label_26->setGeometry(QRect(40, 750, 71, 51));
         label_26->setStyleSheet(QLatin1String("image:url(:/Dark_ones /night-mode.png);\n"
 "background:transparent;"));
-        fingerCountLabel = new QLabel(frame_3);
-        fingerCountLabel->setObjectName(QStringLiteral("fingerCountLabel"));
-        fingerCountLabel->setGeometry(QRect(240, 100, 201, 41));
-        fingerCountLabel->setStyleSheet(QLatin1String("QLabel {\n"
-"    background-color: rgb(217, 237, 255); /* Set the background color */\n"
-"    border-radius: 3px; /* Adjust the radius as needed */\n"
-"    padding: 3px; /* Adjust padding as needed */\n"
-"color:rgb(3, 43, 67);\n"
-"}\n"
-""));
-        finger = new QPushButton(frame_3);
-        finger->setObjectName(QStringLiteral("finger"));
-        finger->setGeometry(QRect(20, 480, 281, 71));
-        finger->setCursor(QCursor(Qt::PointingHandCursor));
-        finger->setStyleSheet(QLatin1String("QPushButton{color: rgb(107, 189, 171);\n"
-"border-radius:20px;\n"
-"border: 1px solid rgb(107, 189, 171);\n"
-"font: 75 12pt \"8514oem\";\n"
-"\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background:rgb(107, 189, 171);\n"
-"        color:white;\n"
-"\n"
-"}"));
         generateQRButton0->raise();
         ajouter->raise();
         search_name_lineEdit->raise();
@@ -1135,46 +1108,44 @@ public:
         label_24->raise();
         label_25->raise();
         label_26->raise();
-        fingerCountLabel->raise();
-        finger->raise();
         label = new QLabel(frame);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(60, 320, 61, 41));
+        label->setGeometry(QRect(60, 330, 61, 41));
         label->setStyleSheet(QLatin1String("image:url(:/Light_ones/guest-star.png);\n"
 "background:transparent;\n"
 "border:0px;"));
         label_2 = new QLabel(frame);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(0, 368, 171, 91));
+        label_2->setGeometry(QRect(0, 378, 171, 91));
         label_2->setStyleSheet(QLatin1String("image:url(:/Light_ones/un-salaire.png);\n"
 "background:transparent;\n"
 "border:0px;"));
         label_4 = new QLabel(frame);
         label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(68, 475, 31, 41));
+        label_4->setGeometry(QRect(68, 485, 31, 41));
         label_4->setStyleSheet(QLatin1String("\n"
 "image:url(:/Light_ones/icons8-microphone-2-50.png);\n"
 "background:transparent;\n"
 "border:0px;"));
         label_6 = new QLabel(frame);
         label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setGeometry(QRect(110, 228, 31, 41));
+        label_6->setGeometry(QRect(110, 238, 31, 41));
         label_6->setStyleSheet(QLatin1String("image:url(:/Dark_ones /tv_dark.png);\n"
 "background:transparent;\n"
 "border:0px;"));
         label_7 = new QLabel(frame);
         label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setGeometry(QRect(68, 143, 41, 51));
+        label_7->setGeometry(QRect(68, 153, 41, 51));
         label_7->setStyleSheet(QLatin1String("image:url(:/Light_ones/utli_light.png);\n"
 "background:transparent;\n"
 "border:0px;"));
         label_17 = new QLabel(frame);
         label_17->setObjectName(QStringLiteral("label_17"));
-        label_17->setGeometry(QRect(60, 720, 51, 31));
+        label_17->setGeometry(QRect(60, 730, 51, 31));
         label_17->setStyleSheet(QStringLiteral("image:url(:/Light_ones/logout.png)"));
         pushButton_7 = new QPushButton(frame);
         pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
-        pushButton_7->setGeometry(QRect(124, 720, 93, 28));
+        pushButton_7->setGeometry(QRect(124, 730, 93, 28));
         pushButton_7->setStyleSheet(QLatin1String("color:white;\n"
 "border: 0px solid white;\n"
 "background:transparent;\n"
@@ -1182,7 +1153,7 @@ public:
 "font: 75 12pt \"8514oem\";"));
         label_13 = new QLabel(frame);
         label_13->setObjectName(QStringLiteral("label_13"));
-        label_13->setGeometry(QRect(150, 140, 141, 60));
+        label_13->setGeometry(QRect(150, 150, 141, 60));
         QPalette palette3;
         palette3.setBrush(QPalette::Active, QPalette::WindowText, brush);
         palette3.setBrush(QPalette::Active, QPalette::Button, brush1);
@@ -1228,7 +1199,7 @@ public:
         label_13->setFrameShape(QFrame::Panel);
         Sponsors = new QPushButton(frame);
         Sponsors->setObjectName(QStringLiteral("Sponsors"));
-        Sponsors->setGeometry(QRect(10, 380, 281, 71));
+        Sponsors->setGeometry(QRect(10, 390, 281, 71));
         Sponsors->setCursor(QCursor(Qt::PointingHandCursor));
         Sponsors->setStyleSheet(QLatin1String("QPushButton{color: transparent;\n"
 "background : transparent;\n"
@@ -1236,7 +1207,7 @@ public:
 "}"));
         employees = new QPushButton(frame);
         employees->setObjectName(QStringLiteral("employees"));
-        employees->setGeometry(QRect(10, 140, 281, 71));
+        employees->setGeometry(QRect(10, 150, 281, 71));
         employees->setCursor(QCursor(Qt::PointingHandCursor));
         employees->setStyleSheet(QLatin1String("QPushButton{color: transparent;\n"
 "background : transparent;\n"
@@ -1244,7 +1215,7 @@ public:
 "}"));
         guests = new QPushButton(frame);
         guests->setObjectName(QStringLiteral("guests"));
-        guests->setGeometry(QRect(10, 310, 281, 71));
+        guests->setGeometry(QRect(10, 320, 281, 71));
         guests->setCursor(QCursor(Qt::PointingHandCursor));
         guests->setStyleSheet(QLatin1String("QPushButton{color: transparent;\n"
 "background : transparent;\n"
@@ -1252,7 +1223,7 @@ public:
 "}"));
         equipement = new QPushButton(frame);
         equipement->setObjectName(QStringLiteral("equipement"));
-        equipement->setGeometry(QRect(10, 460, 281, 71));
+        equipement->setGeometry(QRect(10, 470, 281, 71));
         equipement->setCursor(QCursor(Qt::PointingHandCursor));
         equipement->setStyleSheet(QLatin1String("QPushButton{color: transparent;\n"
 "background : transparent;\n"
@@ -1288,7 +1259,7 @@ public:
         retranslateUi(EmissionMainWindow);
         QObject::connect(search_button, SIGNAL(pressed()), search_button, SLOT(showMenu()));
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(EmissionMainWindow);
@@ -1397,8 +1368,6 @@ public:
         label_24->setText(QString());
         label_25->setText(QString());
         label_26->setText(QString());
-        fingerCountLabel->setText(QApplication::translate("EmissionMainWindow", "TextLabel", Q_NULLPTR));
-        finger->setText(QApplication::translate("EmissionMainWindow", "   finger counter", Q_NULLPTR));
         label->setText(QString());
         label_2->setText(QString());
         label_4->setText(QString());

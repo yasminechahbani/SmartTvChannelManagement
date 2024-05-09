@@ -1,4 +1,8 @@
 #include "Employeemainwindow.h"
+#include "sponsormainwindow.h"
+#include "emissionmainwindow.h"
+#include "invitesmainwindow.h"
+#include "equip_mainwindow.h"
 #include "ui_Employeemainwindow.h"
 #include "employee.h"
 #include <QMessageBox>
@@ -54,6 +58,7 @@ void EmployeeMainWindow::on_ajouter_clicked()
 
     ui->tabb->setModel(Employee.ReadEmployee());
     QMessageBox::information(nullptr, "Success", "Employee added successfully.");
+
 }
 
 void EmployeeMainWindow::on_delete_button_clicked()
@@ -67,6 +72,8 @@ void EmployeeMainWindow::on_delete_button_clicked()
     ui->tabb->setModel(Employee.ReadEmployee());
     QMessageBox::information(nullptr, "Success", "Employee deleted successfully.");
 }
+// In the constructor of EmployeeMainWindow
+
 
 void EmployeeMainWindow::on_list_all_button_clicked()
 {
@@ -76,7 +83,7 @@ void EmployeeMainWindow::on_list_all_button_clicked()
     ui->tabb->setModel(Employee.searchEmployeebyName(searchName));
 }
 
-void EmployeeMainWindow::on_clear_all_in_table_clicked()
+void EmployeeMainWindow::on_clear_all_button_clicked()
 {
     int reply = QMessageBox::question(this, "Confirmation", "Are you sure you want to clear all lines in the table?", QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
@@ -183,7 +190,69 @@ void EmployeeMainWindow::on_stat_clicked()
 
     QtCharts::QChartView *chartView = new QtCharts::QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
-    chartView->setParent(ui->tableView);
-    chartView->resize(ui->tableView->size());
+    chartView->setParent(ui->tableView_3);
+    chartView->resize(ui->tableView_3->size());
     chartView->show();
+}
+
+
+
+
+//OTHER BUTTONS
+
+
+
+void EmployeeMainWindow::on_Sponsors_clicked(){
+
+    this->close();
+
+    SponsorMainWindow *chooseWindow = new SponsorMainWindow(this);
+
+        chooseWindow->show();
+
+
+}
+
+void EmployeeMainWindow::on_equipement_clicked(){
+
+    this->close();
+
+    MainWindow *chooseWindow = new MainWindow(this);
+
+        chooseWindow->show();
+
+
+}
+
+
+/*
+
+void EmployeeMainWindow::on_employees_clicked(){
+
+    this->close();
+
+    EmployeeMainWindow *chooseWindow = new EmployeeMainWindow(this);
+
+        chooseWindow->show();
+
+
+}*/
+
+
+void EmployeeMainWindow::on_guests_clicked(){
+
+    this->close();
+
+    invitesMainWindow *chooseWindow = new invitesMainWindow(this);
+
+        chooseWindow->show();
+
+
+}
+void EmployeeMainWindow::on_shows_clicked()
+{
+    this->close();
+
+    EmissionMainWindow * chooseWindow = new EmissionMainWindow(this);
+    chooseWindow->show();
 }

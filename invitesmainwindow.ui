@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1753</width>
-    <height>969</height>
+    <width>1422</width>
+    <height>939</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,10 +22,10 @@
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>20</y>
-      <width>1321</width>
-      <height>821</height>
+      <x>10</x>
+      <y>10</y>
+      <width>1401</width>
+      <height>871</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -1088,35 +1088,6 @@ background:transparent;
        <string/>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="geometry">
-       <rect>
-        <x>930</x>
-        <y>80</y>
-        <width>41</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QPushButton{color: rgb(107, 189, 171);
-border-radius:20px;
-border: 0px solid #ffba08;
-font: 75 12pt &quot;8514oem&quot;;
-
-}
-QPushButton:hover {
-    background:rgb(107, 189, 171);
-	color:white;
-	
-}</string>
-      </property>
-      <property name="text">
-       <string>sms</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="Generate_PDF">
       <property name="geometry">
        <rect>
@@ -1257,33 +1228,36 @@ background:transparent;</string>
        <string/>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_up">
-      <property name="geometry">
-       <rect>
-        <x>250</x>
-        <y>740</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>c</string>
-      </property>
-     </widget>
      <widget class="QTabWidget" name="tabWidget">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>40</x>
         <y>120</y>
         <width>531</width>
-        <height>401</height>
+        <height>411</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">QTabWidget::pane {
+    border-radius: 10px; /* Adjust the radius as needed */
+    background-color: rgb(173, 216, 230); /* Set the background color to light blue */
+}
+
+QTabBar::tab {
+    background-color: rgb(90, 171, 227); /* Set the tab background color */
+    color: white; /* Set the text color to white */
+    border-top-left-radius: 5px; /* Adjust the radius as needed */
+    border-top-right-radius: 5px; /* Adjust the radius as needed */
+    padding: 5px 10px; /* Adjust padding as needed */
+}
+
+QTabBar::tab:selected {
+    background-color: rgb(30, 144, 255); /* Set the selected tab background color */
+}
+</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -1361,10 +1335,10 @@ font: 8pt &quot;8514oem&quot;;</string>
        <widget class="QLabel" name="label_27">
         <property name="geometry">
          <rect>
-          <x>70</x>
+          <x>10</x>
           <y>30</y>
-          <width>56</width>
-          <height>16</height>
+          <width>51</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1376,16 +1350,16 @@ color:rgb(3, 43, 67);
 }</string>
         </property>
         <property name="text">
-         <string>id</string>
+         <string>Id</string>
         </property>
        </widget>
        <widget class="QLineEdit" name="id_lineEdit">
         <property name="geometry">
          <rect>
-          <x>130</x>
-          <y>21</y>
-          <width>251</width>
-          <height>41</height>
+          <x>80</x>
+          <y>30</y>
+          <width>161</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1402,10 +1376,10 @@ color:rgb(3, 43, 67);
        <widget class="QLabel" name="label_30">
         <property name="geometry">
          <rect>
-          <x>70</x>
-          <y>80</y>
-          <width>56</width>
-          <height>16</height>
+          <x>280</x>
+          <y>30</y>
+          <width>51</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1423,10 +1397,10 @@ color:rgb(3, 43, 67);
        <widget class="QLineEdit" name="nom_lineEdit_2">
         <property name="geometry">
          <rect>
-          <x>130</x>
-          <y>70</y>
-          <width>251</width>
-          <height>41</height>
+          <x>350</x>
+          <y>30</y>
+          <width>161</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1443,10 +1417,10 @@ color:rgb(3, 43, 67);
        <widget class="QLabel" name="label_31">
         <property name="geometry">
          <rect>
-          <x>70</x>
-          <y>130</y>
+          <x>10</x>
+          <y>100</y>
           <width>56</width>
-          <height>16</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1464,10 +1438,10 @@ color:rgb(3, 43, 67);
        <widget class="QLineEdit" name="prenom_lineEdit_3">
         <property name="geometry">
          <rect>
-          <x>130</x>
-          <y>120</y>
-          <width>251</width>
-          <height>41</height>
+          <x>80</x>
+          <y>100</y>
+          <width>161</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1484,10 +1458,10 @@ color:rgb(3, 43, 67);
        <widget class="QLabel" name="label_32">
         <property name="geometry">
          <rect>
-          <x>70</x>
-          <y>180</y>
-          <width>56</width>
-          <height>16</height>
+          <x>280</x>
+          <y>100</y>
+          <width>51</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1505,10 +1479,10 @@ color:rgb(3, 43, 67);
        <widget class="QLineEdit" name="sexe_lineEdit_4">
         <property name="geometry">
          <rect>
-          <x>130</x>
-          <y>170</y>
-          <width>251</width>
-          <height>41</height>
+          <x>350</x>
+          <y>100</y>
+          <width>161</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1525,10 +1499,10 @@ color:rgb(3, 43, 67);
        <widget class="QLabel" name="label_33">
         <property name="geometry">
          <rect>
-          <x>70</x>
-          <y>230</y>
+          <x>10</x>
+          <y>180</y>
           <width>56</width>
-          <height>16</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1546,10 +1520,10 @@ color:rgb(3, 43, 67);
        <widget class="QLineEdit" name="metier_lineEdit_5">
         <property name="geometry">
          <rect>
-          <x>130</x>
-          <y>220</y>
-          <width>251</width>
-          <height>41</height>
+          <x>80</x>
+          <y>180</y>
+          <width>161</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1566,10 +1540,10 @@ color:rgb(3, 43, 67);
        <widget class="QLabel" name="label_34">
         <property name="geometry">
          <rect>
-          <x>70</x>
-          <y>280</y>
+          <x>280</x>
+          <y>180</y>
           <width>56</width>
-          <height>16</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1587,10 +1561,10 @@ color:rgb(3, 43, 67);
        <widget class="QLabel" name="label_35">
         <property name="geometry">
          <rect>
-          <x>60</x>
-          <y>330</y>
+          <x>120</x>
+          <y>270</y>
           <width>56</width>
-          <height>16</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1608,10 +1582,10 @@ color:rgb(3, 43, 67);
        <widget class="QLineEdit" name="date_lineEdit_6">
         <property name="geometry">
          <rect>
-          <x>130</x>
-          <y>270</y>
-          <width>251</width>
-          <height>41</height>
+          <x>350</x>
+          <y>180</y>
+          <width>161</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1628,10 +1602,10 @@ color:rgb(3, 43, 67);
        <widget class="QLineEdit" name="num_lineEdit_7">
         <property name="geometry">
          <rect>
-          <x>130</x>
-          <y>320</y>
-          <width>251</width>
-          <height>41</height>
+          <x>200</x>
+          <y>270</y>
+          <width>161</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1668,10 +1642,10 @@ color:rgb(3, 43, 67);
        <widget class="QPushButton" name="pushButton_12">
         <property name="geometry">
          <rect>
-          <x>430</x>
-          <y>180</y>
-          <width>71</width>
-          <height>31</height>
+          <x>210</x>
+          <y>320</y>
+          <width>121</width>
+          <height>51</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -1703,61 +1677,45 @@ QPushButton::menu-indicator {
        <attribute name="title">
         <string>suppression</string>
        </attribute>
-       <widget class="QLabel" name="label_36">
+       <widget class="QLineEdit" name="supp_lineEdit">
         <property name="geometry">
          <rect>
-          <x>40</x>
-          <y>30</y>
-          <width>241</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">font: 75 26pt &quot;MS Shell Dlg 2&quot;;</string>
-        </property>
-        <property name="text">
-         <string>supprimer</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_37">
-        <property name="geometry">
-         <rect>
-          <x>80</x>
-          <y>130</y>
-          <width>21</width>
+          <x>170</x>
+          <y>140</y>
+          <width>221</width>
           <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 9pt &quot;MS Shell Dlg 2&quot;;
+         <string notr="true">QLineEdit {
+    background-color: #f0f0f0; /* Set a very light background color */
+    border-radius: 5px; /* Adjust the radius as needed */
+    padding: 5px; /* Adjust padding as needed */
+    border: 1px solid #ccc; /* Add a border */
+    color: #333333; /* Set the color of the text to dark */
+}
 </string>
         </property>
-        <property name="text">
-         <string>id</string>
-        </property>
        </widget>
-       <widget class="QLineEdit" name="supp_lineEdit">
+       <widget class="QLabel" name="label_28">
         <property name="geometry">
          <rect>
-          <x>120</x>
-          <y>110</y>
-          <width>221</width>
-          <height>71</height>
+          <x>90</x>
+          <y>140</y>
+          <width>51</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="styleSheet">
-         <string notr="true">QLineEdit {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    color: black;
-}
-
-QLineEdit:focus {
-    border-color: #007bff;
-    border-width: 2px;
+         <string notr="true">QLabel {
+    background-color: rgb(217, 237, 255); /* Set the background color */
+    border-radius: 3px; /* Adjust the radius as needed */
+    padding: 3px; /* Adjust padding as needed */
+color:rgb(3, 43, 67);
 }</string>
+        </property>
+        <property name="text">
+         <string>Id</string>
         </property>
        </widget>
       </widget>
@@ -1816,19 +1774,6 @@ QPushButton:hover {
        <string>SMS</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_5">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>750</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>PushButton</string>
-      </property>
-     </widget>
      <widget class="QTableView" name="tableView_2">
       <property name="geometry">
        <rect>
@@ -1852,10 +1797,10 @@ QPushButton:hover {
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">   background-color: rgb(217, 237, 255);</string>
       </property>
       <property name="verticalScrollBarPolicy">
-       <enum>Qt::ScrollBarAlwaysOn</enum>
+       <enum>Qt::ScrollBarAsNeeded</enum>
       </property>
       <property name="sizeAdjustPolicy">
        <enum>QAbstractScrollArea::AdjustToContents</enum>
@@ -1943,18 +1888,15 @@ QPushButton:hover {
      <zorder>tableView_2</zorder>
      <zorder>pushButton_6</zorder>
      <zorder>pushButton_list</zorder>
-     <zorder>pushButton_2</zorder>
      <zorder>label_3</zorder>
      <zorder>Generate_PDF</zorder>
      <zorder>label_15</zorder>
      <zorder>label_14</zorder>
      <zorder>label_16</zorder>
      <zorder>label_18</zorder>
-     <zorder>pushButton_up</zorder>
      <zorder>tabWidget</zorder>
      <zorder>pushButton_11</zorder>
      <zorder>pushButton_3</zorder>
-     <zorder>pushButton_5</zorder>
      <zorder>pushButton_9</zorder>
      <zorder>pushButton_10</zorder>
      <zorder>pushButton_4</zorder>
@@ -2086,6 +2028,94 @@ font: 75 12pt &quot;8514oem&quot;;</string>
       <string>Log Out</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="employees">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>130</y>
+       <width>281</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{color: transparent;
+background : transparent;
+
+}</string>
+     </property>
+     <property name="text">
+      <string>     Add a show</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="shows">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>220</y>
+       <width>281</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{color: transparent;
+background : transparent;
+
+}</string>
+     </property>
+     <property name="text">
+      <string>     Add a show</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Sponsors">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>410</y>
+       <width>281</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{color: transparent;
+background : transparent;
+
+}</string>
+     </property>
+     <property name="text">
+      <string>     Add a show</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="equipement">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>470</y>
+       <width>281</width>
+       <height>71</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton{color: transparent;
+background : transparent;
+
+}</string>
+     </property>
+     <property name="text">
+      <string>     Add a show</string>
+     </property>
+    </widget>
     <zorder>pushButton</zorder>
     <zorder>label_10</zorder>
     <zorder>label_12</zorder>
@@ -2100,6 +2130,10 @@ font: 75 12pt &quot;8514oem&quot;;</string>
     <zorder>frame_3</zorder>
     <zorder>label_17</zorder>
     <zorder>pushButton_7</zorder>
+    <zorder>employees</zorder>
+    <zorder>shows</zorder>
+    <zorder>Sponsors</zorder>
+    <zorder>equipement</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -2107,7 +2141,7 @@ font: 75 12pt &quot;8514oem&quot;;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1753</width>
+     <width>1422</width>
      <height>26</height>
     </rect>
    </property>

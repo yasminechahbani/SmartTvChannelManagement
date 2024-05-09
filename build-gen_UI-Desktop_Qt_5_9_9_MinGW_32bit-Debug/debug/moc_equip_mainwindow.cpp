@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[29];
-    char stringdata0[511];
+    QByteArrayData data[33];
+    char stringdata0[587];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -59,7 +59,11 @@ QT_MOC_LITERAL(24, 430, 7), // "subject"
 QT_MOC_LITERAL(25, 438, 4), // "body"
 QT_MOC_LITERAL(26, 443, 23), // "on_useEquipment_clicked"
 QT_MOC_LITERAL(27, 467, 26), // "on_returnEquipment_clicked"
-QT_MOC_LITERAL(28, 494, 16) // "on_notif_clicked"
+QT_MOC_LITERAL(28, 494, 16), // "on_notif_clicked"
+QT_MOC_LITERAL(29, 511, 19), // "on_Sponsors_clicked"
+QT_MOC_LITERAL(30, 531, 20), // "on_employees_clicked"
+QT_MOC_LITERAL(31, 552, 17), // "on_guests_clicked"
+QT_MOC_LITERAL(32, 570, 16) // "on_shows_clicked"
 
     },
     "MainWindow\0on_ajouter_clicked\0\0"
@@ -76,7 +80,9 @@ QT_MOC_LITERAL(28, 494, 16) // "on_notif_clicked"
     "onSMSRequestFinished\0QNetworkReply*\0"
     "reply\0sendEmail\0subject\0body\0"
     "on_useEquipment_clicked\0"
-    "on_returnEquipment_clicked\0on_notif_clicked"
+    "on_returnEquipment_clicked\0on_notif_clicked\0"
+    "on_Sponsors_clicked\0on_employees_clicked\0"
+    "on_guests_clicked\0on_shows_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -86,7 +92,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      21,   14, // methods
+      25,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -94,27 +100,31 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  119,    2, 0x08 /* Private */,
-       3,    0,  120,    2, 0x08 /* Private */,
-       4,    0,  121,    2, 0x08 /* Private */,
-       5,    0,  122,    2, 0x08 /* Private */,
-       6,    1,  123,    2, 0x08 /* Private */,
-       7,    0,  126,    2, 0x08 /* Private */,
-       8,    0,  127,    2, 0x08 /* Private */,
-       9,    0,  128,    2, 0x08 /* Private */,
-      10,    0,  129,    2, 0x08 /* Private */,
-      11,    0,  130,    2, 0x08 /* Private */,
-      12,    0,  131,    2, 0x08 /* Private */,
-      13,    0,  132,    2, 0x08 /* Private */,
-      14,    0,  133,    2, 0x08 /* Private */,
-      15,    0,  134,    2, 0x08 /* Private */,
-      16,    0,  135,    2, 0x08 /* Private */,
-      17,    2,  136,    2, 0x08 /* Private */,
-      20,    1,  141,    2, 0x08 /* Private */,
-      23,    3,  144,    2, 0x08 /* Private */,
-      26,    0,  151,    2, 0x08 /* Private */,
-      27,    0,  152,    2, 0x08 /* Private */,
-      28,    0,  153,    2, 0x08 /* Private */,
+       1,    0,  139,    2, 0x08 /* Private */,
+       3,    0,  140,    2, 0x08 /* Private */,
+       4,    0,  141,    2, 0x08 /* Private */,
+       5,    0,  142,    2, 0x08 /* Private */,
+       6,    1,  143,    2, 0x08 /* Private */,
+       7,    0,  146,    2, 0x08 /* Private */,
+       8,    0,  147,    2, 0x08 /* Private */,
+       9,    0,  148,    2, 0x08 /* Private */,
+      10,    0,  149,    2, 0x08 /* Private */,
+      11,    0,  150,    2, 0x08 /* Private */,
+      12,    0,  151,    2, 0x08 /* Private */,
+      13,    0,  152,    2, 0x08 /* Private */,
+      14,    0,  153,    2, 0x08 /* Private */,
+      15,    0,  154,    2, 0x08 /* Private */,
+      16,    0,  155,    2, 0x08 /* Private */,
+      17,    2,  156,    2, 0x08 /* Private */,
+      20,    1,  161,    2, 0x08 /* Private */,
+      23,    3,  164,    2, 0x08 /* Private */,
+      26,    0,  171,    2, 0x08 /* Private */,
+      27,    0,  172,    2, 0x08 /* Private */,
+      28,    0,  173,    2, 0x08 /* Private */,
+      29,    0,  174,    2, 0x08 /* Private */,
+      30,    0,  175,    2, 0x08 /* Private */,
+      31,    0,  176,    2, 0x08 /* Private */,
+      32,    0,  177,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -135,6 +145,10 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, QMetaType::QString, QMetaType::QString,   18,   19,
     QMetaType::Void, 0x80000000 | 21,   22,
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString,   18,   24,   25,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -170,6 +184,10 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 18: _t->on_useEquipment_clicked(); break;
         case 19: _t->on_returnEquipment_clicked(); break;
         case 20: _t->on_notif_clicked(); break;
+        case 21: _t->on_Sponsors_clicked(); break;
+        case 22: _t->on_employees_clicked(); break;
+        case 23: _t->on_guests_clicked(); break;
+        case 24: _t->on_shows_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -211,13 +229,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 21)
+        if (_id < 25)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 21;
+        _id -= 25;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 21)
+        if (_id < 25)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 21;
+        _id -= 25;
     }
     return _id;
 }

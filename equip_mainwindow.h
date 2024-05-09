@@ -81,6 +81,13 @@ private slots:
 
      void on_notif_clicked();
 
+
+     void on_Sponsors_clicked();
+     void on_employees_clicked();
+     void on_guests_clicked();
+     //void on_equipement_clicked();
+     void on_shows_clicked();
+
 private:
     Ui::MainWindow *ui;
     EQUIPEMENT Equipmp;

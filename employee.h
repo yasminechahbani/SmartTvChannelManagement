@@ -47,6 +47,8 @@ public:
     QSqlQueryModel* searchEmployeebyName(QString name);
     QString hashPassword(const QString& password);
 
+
+
 };
 
 #endif // EMPLOYEE_H

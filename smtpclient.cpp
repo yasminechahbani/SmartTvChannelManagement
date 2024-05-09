@@ -347,7 +347,7 @@ bool SmtpClient::login(const QString &user, const QString &password, AuthMethod 
 
     return true;
 }
-
+/*
 bool SmtpClient::sendMail(MimeMessage& email)
 {
     try
@@ -431,7 +431,7 @@ void SmtpClient::quit()
         if(socket->state() == QAbstractSocket::ConnectedState || socket->state() == QAbstractSocket::ConnectingState || socket->state() == QAbstractSocket::HostLookupState)
             socket->disconnectFromHost();
     }
-}
+}*/
 
 /* [3] --- */
 

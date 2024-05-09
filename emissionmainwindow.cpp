@@ -63,7 +63,6 @@
 #include <QtSerialPort>
 #include <QSerialPortInfo>
 
-#include <QProcess>
 
 
 using namespace qrcodegen;
@@ -74,7 +73,6 @@ EmissionMainWindow::EmissionMainWindow(QWidget *parent)
     , ui(new Ui::EmissionMainWindow)
 {
     ui->setupUi(this);
-
     arduino_is_available = false;
     arduino_port_name = "";
 arduino = new QSerialPort;
@@ -124,12 +122,6 @@ qDebug() << "Available ports:";
 
 
 
-void EmissionMainWindow::on_finger_clicked()
-{
-}
-
-
-
 void EmissionMainWindow::writeData(const char *data)
 {
     if (arduino->isOpen()) {
@@ -153,7 +145,6 @@ EmissionMainWindow::~EmissionMainWindow()
     }
     delete ui;
 }
-
 
 
 void EmissionMainWindow::readData()

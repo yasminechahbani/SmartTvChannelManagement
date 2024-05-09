@@ -145,7 +145,7 @@ public:
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
         frame = new QFrame(centralwidget);
         frame->setObjectName(QStringLiteral("frame"));
-        frame->setGeometry(QRect(130, 10, 1401, 871));
+        frame->setGeometry(QRect(10, 10, 1401, 871));
         frame->setStyleSheet(QLatin1String("\n"
 "   background: rgb(189, 206, 222);\n"
 "  border: 1px solid #032B43;\n"

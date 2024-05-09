@@ -56,15 +56,6 @@ SOURCES += \
     emailaddress.cpp \
     equip_mainwindow.cpp \
     equipement.cpp \
-    mimeattachment.cpp \
-    mimecontentformatter.cpp \
-    mimefile.cpp \
-    mimehtml.cpp \
-    mimeinlinefile.cpp \
-    mimemessage.cpp \
-    mimemultipart.cpp \
-    mimepart.cpp \
-    mimetext.cpp \
     qrgeneratewindow.cpp \
     quotedprintable.cpp \
     returnequipmentwindow.cpp \
@@ -79,7 +70,8 @@ SOURCES += \
     form.cpp \
     invites.cpp \
     invitesmainwindow.cpp \
-    supp.cpp
+    supp.cpp\
+    mainwindow.cpp
 
 HEADERS += \
     emission.h\
@@ -108,21 +100,14 @@ HEADERS += \
     emailaddress.h \
     equip_mainwindow.h \
     equipement.h \
-    mimeattachment.h \
-    mimecontentformatter.h \
-    mimefile.h \
-    mimehtml.h \
-    mimeinlinefile.h \
-    mimemessage.h \
-    mimemultipart.h \
-    mimepart.h \
-    mimetext.h \
     qrgeneratewindow.h \
     quotedprintable.h \
     returnequipmentwindow.h \
     smtpclient.h \
     smtpexports.h \
-    useequipmentwindow.h
+    useequipmentwindow.h\
+    mainwindow.h
+
 
 FORMS += \
     emissionmainwindow.ui \
@@ -142,17 +127,19 @@ FORMS += \
     equip_mainwindow.ui \
     qrgeneratewindow.ui \
     returnequipmentwindow.ui \
-    useequipmentwindow.ui
+    useequipmentwindow.ui\
+    login.ui
+
 
 
 DISTFILES +=\
 fonts/Kabel Book BT_0.ttf \
     lineEdit.qss \
-    smtp/CMakeLists.txt
+    smtp/CMakeLists.txt \
+    usermanagment/backui.jpg
 
 
 include(C:\Users\USER\Downloads\Qt-QrCodeGenerator-main\Qt-QrCodeGenerator-main\Qt-QrCodeGenerator.pri)
-include(C:\Users\USER\Desktop\official_projectCPP_folder\Hand-Tracker-main)
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -164,13 +151,14 @@ RESOURCES += \
     font.qrc \
     icons_ui_dark.qrc \
     logo.qrc\
-
-
+    back.qrc \
+    icone.qrc \
+    iconeprofil.qrc
 SUBDIRS += \
     smtp/SMTPEmail.pro
 
 
-
+#include "C:\Users\emnaa\Desktop\integration - Copie\Qt-QrCodeGenerator-main\Qt-QrCodeGenerator.pro"
 
 #win32:CONFIG(release, debug|release): LIBS += -L$$PWD/'../../../../../Program Files (x86)/OpenSSL-Win32/lib/VC/x86/MT/' -llibcrypto
 #else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/'../../../../../Program Files (x86)/OpenSSL-Win32/lib/VC/x86/MT/' -llibcryptod
