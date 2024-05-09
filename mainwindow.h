@@ -33,6 +33,7 @@ int test=0;
     bool validateCredentials(const QString &id, const QString &password);
     void openMainInterface();
     bool readFromSerial();
+    void writeData(const char *data);
 
     //arduino
      QString searchEmployeeById(QString id);

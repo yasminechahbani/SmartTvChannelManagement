@@ -42,7 +42,7 @@ LoginMainWindow::LoginMainWindow(QWidget *parent)
         if(arduino_is_available){
             // Open and configure the serial port
             arduino->setPortName(arduino_port_name);
-            if (arduino->open(QSerialPort::ReadOnly)) {
+            if (arduino->open(QSerialPort::ReadWrite)) {
                 qDebug() << "Serial port opened successfully.";
                 //QMessageBox::information(this, "Port success", "successful opening serial port: " );
 
@@ -216,4 +216,19 @@ qDebug() << "Data from Arduino: " << lines;
     return idDetecded;
 }
 
+
+
+void LoginMainWindow::writeData(const char *data)
+{
+    if (arduino->isOpen()) {
+        //arduino->write(data);
+        if(arduino->isWritable()){
+            arduino->write(data);
+        }else{
+            qDebug() << "Couldn't write to serial!";
+        }
+    } else {
+        QMessageBox::warning(this, "Port error", "Serial port is not open!");
+    }
+}
 

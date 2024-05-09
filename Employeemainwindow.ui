@@ -2347,7 +2347,7 @@ border:0px;</string>
       <string/>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_7">
+    <widget class="QPushButton" name="logout">
      <property name="geometry">
       <rect>
        <x>124</x>
@@ -2696,7 +2696,7 @@ background : transparent;
     <zorder>label_7</zorder>
     <zorder>frame_3</zorder>
     <zorder>label_17</zorder>
-    <zorder>pushButton_7</zorder>
+    <zorder>logout</zorder>
     <zorder>label_13</zorder>
     <zorder>shows</zorder>
     <zorder>Sponsors</zorder>

@@ -74,11 +74,11 @@ SponsorMainWindow::SponsorMainWindow(QWidget *parent)
                 arduino->setPortName(arduino_port_name);
                 if (arduino->open(QSerialPort::ReadWrite)) {
                     qDebug() << "Serial port opened successfully.";
-                    QMessageBox::information(this, "Port success", "successful opening serial port: " );
+                    //QMessageBox::information(this, "Port success", "successful opening serial port: " );
 
                 } else {
                     qDebug() << "Error opening serial port:" << arduino->errorString();
-                    QMessageBox::warning(this, "Port error", "Error opening serial port: " + arduino->errorString());
+                    //QMessageBox::warning(this, "Port error", "Error opening serial port: " + arduino->errorString());
                 }
 
                 arduino->setBaudRate(QSerialPort::Baud9600);
@@ -90,7 +90,7 @@ SponsorMainWindow::SponsorMainWindow(QWidget *parent)
 
             } else {
                 // Give error message if Arduino not available
-                QMessageBox::warning(this, "Port error", "Couldn't find the Arduino!");
+                //QMessageBox::warning(this, "Port error", "Couldn't find the Arduino!");
             }
      /*connect(ui->sendButton, SIGNAL(clicked()), this, SLOT(on_sendButton_clicked()));
     connect(ui->sponsor_tab->horizontalHeader(), &QHeaderView::sectionClicked, this, &MainWindow::on_tableHeader_clicked);
@@ -138,7 +138,7 @@ void SponsorMainWindow::on_ajouter_clicked()
     Sponsor sponsor(sponsor_id, sponsor_nom, sponsor_montant, sponsor_tempsaffichage, sponsor_nb_totalaffichage, sponsor_etatcontrat);
 
     if (!sponsor.addSponsor()) {
-        QMessageBox::critical(nullptr, "Error", "Failed to add sponsor.");
+        //QMessageBox::critical(nullptr, "Error", "Failed to add sponsor.");
         return;
     }
 else
@@ -151,12 +151,12 @@ else
 {
     QString sponsor_id = ui->id_lineEdit_delete->text();
     if (!sponsor.deleteSponsor(sponsor_id)) {
-        QMessageBox::critical(nullptr, "Error", "Failed to delete sponsor.");
+        //QMessageBox::critical(nullptr, "Error", "Failed to delete sponsor.");
         return;
     }
 
     ui->sponsor_tab->setModel(sponsor.showSponsor());
-    QMessageBox::information(nullptr, "Success", "Sponsor deleted successfully.");
+    //QMessageBox::information(nullptr, "Success", "Sponsor deleted successfully.");
 }
 
 
@@ -217,17 +217,17 @@ else
         return;
     }
     else {
-        QMessageBox::information(nullptr, "Success", "Sponsor edited successfully.");
+        //QMessageBox::information(nullptr, "Success", "Sponsor edited successfully.");
     }
 
     ui->sponsor_tab->setModel(sponsor.showSponsor());
 }
  void SponsorMainWindow::on_Generate_PDF_clicked()
 {
-    QPdfWriter pdf("C:/Users/MSI/Downloads/SmartTvChannelManagement-gestion_materiels/gen_UI/SPONSOR.pdf");
+    QPdfWriter pdf("C:/Users/USER/Desktop/official_projectCPP_folder/integration finale/bien/integration - Copie/SPONSOR.pdf");
     QPainter painter(&pdf);
     int i = 4100;
-    const QImage image("C:/Users/MSI/Downloads/SmartTvChannelManagement-gestion_materiels/gen_U/logo.qrc");
+    const QImage image("C:/Users/USER/Desktop/official_projectCPP_folder/integration finale/bien/integration - Copie/logo.qrc");
     const QPoint imageCoordinates(155,0);
     int width1 = 2000;
     int height1 = 2000;
@@ -281,7 +281,7 @@ else
     int reponse = QMessageBox::question(this, "Generate PDF", "PDF Saved. Do you want to open it?", QMessageBox::Yes | QMessageBox::No);
     if (reponse == QMessageBox::Yes)
     {
-        QDesktopServices::openUrl(QUrl::fromLocalFile("C:/Users/USER/Desktop/official_projectCPP_folder/pdf/SPONSOR.pdf"));
+        QDesktopServices::openUrl(QUrl::fromLocalFile("C:/Users/USER/Desktop/official_projectCPP_folder/integration finale/bien/integration - Copie/SPONSOR.pdf"));
         painter.end();
     }
     else
