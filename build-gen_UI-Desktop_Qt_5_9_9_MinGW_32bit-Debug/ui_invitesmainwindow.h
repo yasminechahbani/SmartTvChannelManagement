@@ -902,7 +902,7 @@ public:
         retranslateUi(invitesMainWindow);
         QObject::connect(toolButton, SIGNAL(pressed()), toolButton, SLOT(showMenu()));
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(invitesMainWindow);

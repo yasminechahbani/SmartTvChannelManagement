@@ -4,6 +4,9 @@
 #include "employee.h"
 #include <QMainWindow>
 #include <QObject>
+#include <QTableView>
+#include <QNetworkReply>
+#include "arduino.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class EmployeeMainWindow; }
@@ -34,9 +37,21 @@ private slots:
 
     void on_shows_clicked();
 
+     void readFromSerial();
+
 private:
     Ui::EmployeeMainWindow*ui;
     EMPLOYEE Employee;
+
+    QByteArray data;
+    Arduino A;
+    QSerialPort *arduino;
+    static const quint16 arduino_uno_vendor_id = 9025;
+    static const quint16 arduino_uno_product_id = 67;
+    QString arduino_port_name;
+    bool arduino_is_available;
+
+     QTableView *tableView_2;
 };
 
 #endif // EMPLOYEEMAINWINDOW_H

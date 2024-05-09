@@ -38,6 +38,8 @@
 #include "equip_mainwindow.h"
 #include "emissionmainwindow.h"
 #include "invitesmainwindow.h"
+#include <QtSerialPort>
+#include <QSerialPortInfo>
 
 #include <QPropertyAnimation>
 
@@ -48,6 +50,48 @@ SponsorMainWindow::SponsorMainWindow(QWidget *parent)
     , ui(new Ui::SponsorMainWindow)
 {
     ui->setupUi(this);
+    arduino_is_available = false;
+            arduino_port_name = "";
+        arduino = new QSerialPort;
+        qDebug() << "Available ports:";
+            foreach(const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()){
+                qDebug() << "Port Name: " << serialPortInfo.portName();
+            }
+
+            foreach(const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()){
+                if(serialPortInfo.hasVendorIdentifier() && serialPortInfo.hasProductIdentifier()){
+                    if(serialPortInfo.vendorIdentifier() == arduino_uno_vendor_id){
+                        if(serialPortInfo.productIdentifier() == arduino_uno_product_id){
+                            arduino_port_name = serialPortInfo.portName();
+                            arduino_is_available = true;
+                        }
+                    }
+                }
+            }
+
+            if(arduino_is_available){
+                // Open and configure the serial port
+                arduino->setPortName(arduino_port_name);
+                if (arduino->open(QSerialPort::ReadWrite)) {
+                    qDebug() << "Serial port opened successfully.";
+                    QMessageBox::information(this, "Port success", "successful opening serial port: " );
+
+                } else {
+                    qDebug() << "Error opening serial port:" << arduino->errorString();
+                    QMessageBox::warning(this, "Port error", "Error opening serial port: " + arduino->errorString());
+                }
+
+                arduino->setBaudRate(QSerialPort::Baud9600);
+                arduino->setDataBits(QSerialPort::Data8);
+                arduino->setParity(QSerialPort::NoParity);
+                arduino->setStopBits(QSerialPort::OneStop);
+                arduino->setFlowControl(QSerialPort::NoFlowControl);
+                QObject::connect(arduino, SIGNAL(readyRead()), this, SLOT(readData()));
+
+            } else {
+                // Give error message if Arduino not available
+                QMessageBox::warning(this, "Port error", "Couldn't find the Arduino!");
+            }
      /*connect(ui->sendButton, SIGNAL(clicked()), this, SLOT(on_sendButton_clicked()));
     connect(ui->sponsor_tab->horizontalHeader(), &QHeaderView::sectionClicked, this, &MainWindow::on_tableHeader_clicked);
     ui->sponsor_tab->setModel(sponsor.showSponsor());
@@ -416,5 +460,29 @@ this->close();
      EmissionMainWindow * chooseWindow = new EmissionMainWindow(this);
      chooseWindow->show();
  }
+ void SponsorMainWindow::readData()
+ {
+     // Read all available data from the serial port
+     QByteArray newData = arduino->readAll();
+     bool alertShown =false  ;
 
+     // Convert the QByteArray to QString and concatenate it with previously received data
+
+     if (newData.contains("on")) {
+         if (!alertShown) { // Check if the alert has not been shown yet
+             // Set the flag to true to indicate that the message has been shown
+             alertShown = true;
+
+             // Show alert in Qt application
+             QMessageBox msgBox;
+             msgBox.setWindowTitle("Movement Alert");
+             msgBox.setText("Movement Detected!");
+             msgBox.exec();
+
+             // Check if the OK button was clicked
+         }
+     } else {
+         alertShown = false; // Reset the flag if the condition is not met
+     }
+ }
 

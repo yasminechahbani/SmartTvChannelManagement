@@ -397,11 +397,11 @@ void invitesMainWindow::refreshTable() {
 void invitesMainWindow::on_Generate_PDF_clicked()
 {
 
-    QPdfWriter pdf("C:/Users/emnaa/Desktop/gen_UI/invites.pdf");
+    QPdfWriter pdf("C:/Users/USER/Desktop/official_projectCPP_folder/integration finale/bien/integration - Copie/invites.pdf");
 
            QPainter painter(&pdf);
            int i = 4100;
-           const QImage image("C:/Users/emnaa/Desktop/gen_UI/417529624_1870268480077915_5802465082538659099_n.png");
+           const QImage image("C:/Users/USER/Desktop/official_projectCPP_folder/integration finale/bien/integration - Copie/417529624_1870268480077915_5802465082538659099_n.png");
                        const QPoint imageCoordinates(155,0);
                        int width1 = 2000;
                        int height1 = 2000;

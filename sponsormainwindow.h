@@ -50,6 +50,7 @@ private slots:
     void on_guests_clicked();
     void on_equipement_clicked();
     void on_shows_clicked();
+     void readData() ;
 
 
 
@@ -65,6 +66,11 @@ private:
     Sponsor sponsor; // Instantiate the Sponsor class
     QStackedWidget *stackedWidget;
     invitesMainWindow *invitesWindow;
+    QSerialPort *arduino;
+      static const quint16 arduino_uno_vendor_id = 9025;
+      static const quint16 arduino_uno_product_id = 67;
+       QString arduino_port_name;
+       bool arduino_is_available;
 
 };
 

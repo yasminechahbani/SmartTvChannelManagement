@@ -1281,7 +1281,7 @@ public:
         retranslateUi(EmissionMainWindow);
         QObject::connect(search_button, SIGNAL(pressed()), search_button, SLOT(showMenu()));
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(EmissionMainWindow);
