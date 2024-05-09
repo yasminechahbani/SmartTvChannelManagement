@@ -172,6 +172,33 @@ void EmissionMainWindow::on_finger_clicked()
 
         // Update your UI with the finger count
         ui->nbfinger->setText("Finger Count: " + fingerCountString);
+
+
+        switch (fingerCount) {
+            case 0:
+                delete ui;
+                break;
+            case 1:
+                on_employees_clicked();
+                break;
+
+            case 2:
+
+                break;
+        case 3:
+            on_guests_clicked();
+            break;
+        case 4:
+            on_Sponsors_clicked();
+            break;
+       case 5:
+               on_equipement_clicked();
+            break;
+            // Add more cases as needed
+            default:
+                // Default case (handle cases not covered above)
+                break;
+            }
 }
 
 
