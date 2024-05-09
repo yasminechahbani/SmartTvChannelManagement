@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_EmployeeMainWindow_t {
-    QByteArrayData data[13];
-    char stringdata0[251];
+    QByteArrayData data[16];
+    char stringdata0[316];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,25 +35,29 @@ QT_MOC_LITERAL(0, 0, 18), // "EmployeeMainWindow"
 QT_MOC_LITERAL(1, 19, 18), // "on_ajouter_clicked"
 QT_MOC_LITERAL(2, 38, 0), // ""
 QT_MOC_LITERAL(3, 39, 24), // "on_delete_button_clicked"
-QT_MOC_LITERAL(4, 64, 26), // "on_list_all_button_clicked"
-QT_MOC_LITERAL(5, 91, 27), // "on_clear_all_button_clicked"
-QT_MOC_LITERAL(6, 119, 23), // "on_Generate_PDF_clicked"
-QT_MOC_LITERAL(7, 143, 15), // "on_stat_clicked"
-QT_MOC_LITERAL(8, 159, 19), // "on_Sponsors_clicked"
-QT_MOC_LITERAL(9, 179, 17), // "on_guests_clicked"
-QT_MOC_LITERAL(10, 197, 21), // "on_equipement_clicked"
-QT_MOC_LITERAL(11, 219, 16), // "on_shows_clicked"
-QT_MOC_LITERAL(12, 236, 14) // "readFromSerial"
+QT_MOC_LITERAL(4, 64, 17), // "on_search_clicked"
+QT_MOC_LITERAL(5, 82, 27), // "on_clear_all_button_clicked"
+QT_MOC_LITERAL(6, 110, 23), // "on_Generate_PDF_clicked"
+QT_MOC_LITERAL(7, 134, 15), // "on_stat_clicked"
+QT_MOC_LITERAL(8, 150, 19), // "on_Sponsors_clicked"
+QT_MOC_LITERAL(9, 170, 17), // "on_guests_clicked"
+QT_MOC_LITERAL(10, 188, 21), // "on_equipement_clicked"
+QT_MOC_LITERAL(11, 210, 16), // "on_shows_clicked"
+QT_MOC_LITERAL(12, 227, 24), // "on_update_button_clicked"
+QT_MOC_LITERAL(13, 252, 23), // "on_pushButton_2_clicked"
+QT_MOC_LITERAL(14, 276, 21), // "on_clear_list_clicked"
+QT_MOC_LITERAL(15, 298, 17) // "on_logout_clicked"
 
     },
     "EmployeeMainWindow\0on_ajouter_clicked\0"
-    "\0on_delete_button_clicked\0"
-    "on_list_all_button_clicked\0"
+    "\0on_delete_button_clicked\0on_search_clicked\0"
     "on_clear_all_button_clicked\0"
     "on_Generate_PDF_clicked\0on_stat_clicked\0"
     "on_Sponsors_clicked\0on_guests_clicked\0"
     "on_equipement_clicked\0on_shows_clicked\0"
-    "readFromSerial"
+    "on_update_button_clicked\0"
+    "on_pushButton_2_clicked\0on_clear_list_clicked\0"
+    "on_logout_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -63,7 +67,7 @@ static const uint qt_meta_data_EmployeeMainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      14,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -71,19 +75,25 @@ static const uint qt_meta_data_EmployeeMainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   69,    2, 0x08 /* Private */,
-       3,    0,   70,    2, 0x08 /* Private */,
-       4,    0,   71,    2, 0x08 /* Private */,
-       5,    0,   72,    2, 0x08 /* Private */,
-       6,    0,   73,    2, 0x08 /* Private */,
-       7,    0,   74,    2, 0x08 /* Private */,
-       8,    0,   75,    2, 0x08 /* Private */,
-       9,    0,   76,    2, 0x08 /* Private */,
-      10,    0,   77,    2, 0x08 /* Private */,
-      11,    0,   78,    2, 0x08 /* Private */,
-      12,    0,   79,    2, 0x08 /* Private */,
+       1,    0,   84,    2, 0x08 /* Private */,
+       3,    0,   85,    2, 0x08 /* Private */,
+       4,    0,   86,    2, 0x08 /* Private */,
+       5,    0,   87,    2, 0x08 /* Private */,
+       6,    0,   88,    2, 0x08 /* Private */,
+       7,    0,   89,    2, 0x08 /* Private */,
+       8,    0,   90,    2, 0x08 /* Private */,
+       9,    0,   91,    2, 0x08 /* Private */,
+      10,    0,   92,    2, 0x08 /* Private */,
+      11,    0,   93,    2, 0x08 /* Private */,
+      12,    0,   94,    2, 0x08 /* Private */,
+      13,    0,   95,    2, 0x08 /* Private */,
+      14,    0,   96,    2, 0x08 /* Private */,
+      15,    0,   97,    2, 0x08 /* Private */,
 
  // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -107,7 +117,7 @@ void EmployeeMainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         switch (_id) {
         case 0: _t->on_ajouter_clicked(); break;
         case 1: _t->on_delete_button_clicked(); break;
-        case 2: _t->on_list_all_button_clicked(); break;
+        case 2: _t->on_search_clicked(); break;
         case 3: _t->on_clear_all_button_clicked(); break;
         case 4: _t->on_Generate_PDF_clicked(); break;
         case 5: _t->on_stat_clicked(); break;
@@ -115,7 +125,10 @@ void EmployeeMainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 7: _t->on_guests_clicked(); break;
         case 8: _t->on_equipement_clicked(); break;
         case 9: _t->on_shows_clicked(); break;
-        //case 10: _t->readFromSerial(); break;
+        case 10: _t->on_update_button_clicked(); break;
+        case 11: _t->on_pushButton_2_clicked(); break;
+        case 12: _t->on_clear_list_clicked(); break;
+        case 13: _t->on_logout_clicked(); break;
         default: ;
         }
     }
@@ -147,13 +160,13 @@ int EmployeeMainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 14;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
+        if (_id < 14)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 11;
+        _id -= 14;
     }
     return _id;
 }

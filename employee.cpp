@@ -60,7 +60,7 @@ QSqlQuery EMPLOYEE::getEmployeeData()
 QSqlQueryModel* EMPLOYEE::searchEmployeebyName(QString name)
 {
     QSqlQueryModel* model = new QSqlQueryModel();
-    model->setQuery("SELECT * FROM EMPLOYEE WHERE employee_prenom LIKE '%" + name + "%'");
+    model->setQuery("SELECT * FROM EMPLOYEE WHERE EMPLOYEE_PRENOM LIKE '%" + name + "%'");
     return model;
 }
 
@@ -79,5 +79,19 @@ QString EMPLOYEE::hashPassword(const QString& password)
     return hashedPassword;
 }
 
+bool EMPLOYEE::updateEmployee(QString id)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE EMPLOYEE SET employee_prenom = :prenom, employee_mail = :mail, employee_role = :role, employee_tel = :tel, employee_date_embauche = :date_embauche, employee_datenaissance = :datenaissance, employee_password = :password WHERE employee_id = :id");
+    query.bindValue(":password", employee_password);
+    query.bindValue(":id", employee_id);
+    query.bindValue(":prenom", employee_prenom);
+    query.bindValue(":mail", employee_mail);
+    query.bindValue(":role", employee_role);
+    query.bindValue(":tel", employee_tel);
+    query.bindValue(":date_embauche", employee_date_embauche);
+    query.bindValue(":datenaissance", employee_datenaissance);
+    return query.exec();
+}
 
 

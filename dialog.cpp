@@ -37,14 +37,7 @@ void Dialog::saveChanges()
     query.bindValue(":dateN_inv", date);  // Correction ici
     query.bindValue(":tel_inv", tel);  // Correction ici
 
-    if(query.exec())
-    {
-        QMessageBox::information(this, tr("Mise à jour réussie"), tr("Les modifications ont été enregistrées avec succès."));
-    }
-    else
-    {
-        QMessageBox::critical(this, tr("Erreur de mise à jour"), tr("Une erreur est survenue lors de l'enregistrement des modifications : ") + query.lastError().text());
-    }
+    query.exec();
 }
 
 

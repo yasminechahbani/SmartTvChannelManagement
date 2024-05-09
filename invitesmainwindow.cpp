@@ -200,7 +200,7 @@ void invitesMainWindow::on_pushButton_9_clicked()
     invites i(id_inv,nom_inv, prenom_inv, sexe_inv, metier_inv, dateN_inv,tel_inv, id_em);
 
 
-    bool test=i.ajouter();
+    i.ajouter();
 
 
     if (!validateFormData()) {
@@ -209,17 +209,7 @@ void invitesMainWindow::on_pushButton_9_clicked()
 
 
 
-    if(test)
-    {
-        QMessageBox::information(nullptr,QObject::tr("OK"),
-                QObject::tr("Ajout effectué \n"
-                            "Click cancel to exit."),QMessageBox::Cancel);
 
-    }
-    else
-        QMessageBox::critical(nullptr, QObject::tr("Not OK"),
-                              QObject::tr("Ajout non effectué.\n"
-                                          "click cancel to exit."),QMessageBox::Cancel);
 
 }
 
@@ -230,15 +220,8 @@ void invitesMainWindow::on_pushButton_9_clicked()
 void invitesMainWindow::on_pushButton_10_clicked()
 {
     QString id_inv = ui->supp_lineEdit->text();
-    bool test = inv.supprimer(id_inv);
-    if (test) {
-        // Mise à jour de l'affichage si nécessaire
-        // ui->equip_tab->setModel(inv.afficher());
+    inv.supprimer(id_inv);
 
-        QMessageBox::information(nullptr, QObject::tr("OK"), QObject::tr("Suppression effectuée"), QMessageBox::Cancel);
-    } else {
-        QMessageBox::critical(nullptr, QObject::tr("Erreur"), QObject::tr("Suppression non effectuée"), QMessageBox::Cancel);
-    }
 }
 
 
@@ -460,7 +443,7 @@ void invitesMainWindow::on_Generate_PDF_clicked()
                   int reponse = QMessageBox::question(this, "Génerer PDF", "PDF Enregistré.\nVous voulez l'affichez ?", QMessageBox::Yes |  QMessageBox::No);
                   if (reponse == QMessageBox::Yes)
                   {
-                      QDesktopServices::openUrl( QUrl ::fromLocalFile("C:/Users/emnaa/Desktop/gen_UI/invites.pdf"));
+                      QDesktopServices::openUrl( QUrl ::fromLocalFile("C:/Users/USER/Desktop/official_projectCPP_folder/integration finale/bien/integration - Copie/invites.pdf"));
                       painter.end();
                   }
                   else

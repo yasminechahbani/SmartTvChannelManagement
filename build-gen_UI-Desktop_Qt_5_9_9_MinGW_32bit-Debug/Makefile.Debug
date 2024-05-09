@@ -5490,6 +5490,65 @@ debug/moc_mainwindow.cpp: C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QMain
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtGui/qtouchdevice.h \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qtabwidget.h \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtGui/qicon.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QString \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtSql/QSqlQuery \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtSql/qsqlquery.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtSql/qtsqlglobal.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtSql/qsqldatabase.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtSql/QSqlQueryModel \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtSql/qsqlquerymodel.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QTableView \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qtableview.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qframe.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/qitemselectionmodel.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qstyleoption.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtGui/qvalidator.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/qregularexpression.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qslider.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qabstractslider.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qstyle.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qtabbar.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qrubberband.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/QNetworkReply \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qnetworkreply.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qtnetworkglobal.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qtnetwork-config.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QIODevice \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QVariant \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/QNetworkRequest \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qnetworkrequest.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QSharedDataPointer \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QUrl \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/QNetworkAccessManager \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qnetworkaccessmanager.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QVector \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QObject \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/QSslConfiguration \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qsslconfiguration.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qsslsocket.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qtcpsocket.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qabstractsocket.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qsslerror.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qsslcertificate.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/qcryptographichash.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/qdatetime.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qssl.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QFlags \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/QSslPreSharedKeyAuthenticator \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qsslpresharedkeyauthenticator.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QMetaType \
+		../arduino.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtSerialPort/QSerialPort \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtSerialPort/qserialport.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtSerialPort/qserialportglobal.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtSerialPort/QSerialPortInfo \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtSerialPort/qserialportinfo.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QDebug \
 		../mainwindow.h \
 		debug/moc_predefs.h \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/bin/moc.exe
@@ -7182,26 +7241,49 @@ debug/main.o: ../main.cpp ../emissionmainwindow.h \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtSerialPort/QSerialPortInfo \
 		../Employeemainwindow.h \
 		../employee.h \
-		../mainwindow.h \
-		../mainwindow.cpp \
-		ui_login.h \
+		../sponsormainwindow.h \
+		../sponsor.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QJsonDocument \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QJsonObject \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/QNetworkAccessManager \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qnetworkaccessmanager.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qtnetworkglobal.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qtnetwork-config.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qnetworkrequest.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QSharedDataPointer \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QUrl \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QVariant \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QAction \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qaction.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qactiongroup.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QApplication \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qapplication.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qdesktopwidget.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtGui/qguiapplication.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtGui/qinputmethod.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QButtonGroup \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qbuttongroup.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QFrame \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qframe.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QHeaderView \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QVector \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/QSslConfiguration \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qsslconfiguration.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qsslsocket.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qtcpsocket.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qabstractsocket.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qsslerror.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qsslcertificate.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qssl.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QFlags \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/QSslPreSharedKeyAuthenticator \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qsslpresharedkeyauthenticator.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QMetaType \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/QNetworkReply \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/qnetworkreply.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QIODevice \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtNetwork/QNetworkRequest \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QTime \
+		../invitesmainwindow.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QPushButton \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtGui/QHoverEvent \
+		../invites.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QtDebug \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QTableView \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qtableview.h \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qabstractitemview.h \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qframe.h \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qabstractitemdelegate.h \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qstyleoption.h \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qabstractspinbox.h \
@@ -7211,30 +7293,23 @@ debug/main.o: ../main.cpp ../emissionmainwindow.h \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qstyle.h \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qtabbar.h \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qrubberband.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QLabel \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qlabel.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QLineEdit \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qlineedit.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtGui/qtextcursor.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtGui/qtextformat.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtGui/qpen.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtGui/qtextoption.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QMenu \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qmenu.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QMenuBar \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qmenubar.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QPushButton \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qpushbutton.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QStatusBar \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qstatusbar.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QWidget \
+		../arduino.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtSerialPort/QSerialPort \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QStackedWidget \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qstackedwidget.h \
+		../mainwindow.h \
+		../mainwindow.cpp \
+		ui_login.h \
 		ui_Employeemainwindow.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QProcess \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QMessageBox \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qmessagebox.h \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qdialog.h \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtGui/QHoverEvent \
-		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QDebug \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QApplication \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qapplication.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/qdesktopwidget.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtGui/qguiapplication.h \
+		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtGui/qinputmethod.h \
 		../connexion.h \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtSql/QSqlDatabase \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtSql/QSqlError \
@@ -9706,6 +9781,8 @@ debug/Employeemainwindow.o: ../Employeemainwindow.cpp ../Employeemainwindow.h \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QCoreApplication \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtCore/QByteArray \
 		ui_Employeemainwindow.h \
+		../mainwindow.h \
+		ui_login.h \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtWidgets/QMessageBox \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtSql/QSqlError \
 		C:/Qt/Qt5.9.9/5.9.9/mingw53_32/include/QtSql/qsqlerror.h \

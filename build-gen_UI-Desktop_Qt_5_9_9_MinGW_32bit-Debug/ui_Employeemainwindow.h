@@ -112,7 +112,7 @@ public:
     QLabel *label_6;
     QLabel *label_7;
     QLabel *label_17;
-    QPushButton *pushButton_7;
+    QPushButton *logout;
     QLabel *label_13;
     QPushButton *shows;
     QPushButton *Sponsors;
@@ -1018,10 +1018,10 @@ public:
         label_17->setObjectName(QStringLiteral("label_17"));
         label_17->setGeometry(QRect(60, 756, 51, 31));
         label_17->setStyleSheet(QStringLiteral("image:url(:/Light_ones/logout.png)"));
-        pushButton_7 = new QPushButton(frame);
-        pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
-        pushButton_7->setGeometry(QRect(124, 756, 93, 28));
-        pushButton_7->setStyleSheet(QLatin1String("color:white;\n"
+        logout = new QPushButton(frame);
+        logout->setObjectName(QStringLiteral("logout"));
+        logout->setGeometry(QRect(124, 756, 93, 28));
+        logout->setStyleSheet(QLatin1String("color:white;\n"
 "border: 0px solid white;\n"
 "background:transparent;\n"
 " border-radius: 10px;\n"
@@ -1117,7 +1117,7 @@ public:
         label_7->raise();
         frame_3->raise();
         label_17->raise();
-        pushButton_7->raise();
+        logout->raise();
         label_13->raise();
         shows->raise();
         Sponsors->raise();
@@ -1240,7 +1240,7 @@ public:
         label_6->setText(QString());
         label_7->setText(QString());
         label_17->setText(QString());
-        pushButton_7->setText(QApplication::translate("EmployeeMainWindow", "Log Out", Q_NULLPTR));
+        logout->setText(QApplication::translate("EmployeeMainWindow", "Log Out", Q_NULLPTR));
         label_13->setText(QApplication::translate("EmployeeMainWindow", "Shows", Q_NULLPTR));
         shows->setText(QApplication::translate("EmployeeMainWindow", "     Add a show", Q_NULLPTR));
         Sponsors->setText(QApplication::translate("EmployeeMainWindow", "     Add a show", Q_NULLPTR));

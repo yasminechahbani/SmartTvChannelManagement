@@ -5,6 +5,8 @@
 #include "equip_mainwindow.h"
 #include "ui_Employeemainwindow.h"
 #include "employee.h"
+#include "mainwindow.h"
+#include "ui_login.h"
 #include <QMessageBox>
 #include <QSqlError>
 #include<QDebug>
@@ -23,15 +25,6 @@
 #include <QTextDocument>
 #include <QTextStream>
 #include <QStringListModel>
-//arduino
-#include <QNetworkRequest>
-#include <QProcess>
-#include <QDebug>
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
-#include <QtSerialPort>
-#include <QSerialPortInfo>
-#include "arduino.h"
 
 EmployeeMainWindow::EmployeeMainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -39,72 +32,11 @@ EmployeeMainWindow::EmployeeMainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->tabb->setModel(Employee.ReadEmployee());
-
-
-
-    //******************************arduinoo
-    arduino_is_available = false;
-        arduino_port_name = "";
-    arduino = new QSerialPort;
-    qDebug() << "Available ports:";
-        foreach(const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()){
-            qDebug() << "Port Name: " << serialPortInfo.portName();
-        }
-        foreach(const QSerialPortInfo &serialPortInfo, QSerialPortInfo::availablePorts()){
-            if(serialPortInfo.hasVendorIdentifier() && serialPortInfo.hasProductIdentifier()){
-                if(serialPortInfo.vendorIdentifier() == arduino_uno_vendor_id){
-                    if(serialPortInfo.productIdentifier() == arduino_uno_product_id){
-                        arduino_port_name = serialPortInfo.portName();
-                        arduino_is_available = true;
-                    }
-                }
-            }
-        }
-        if(arduino_is_available){
-            // Open and configure the serial port
-            arduino->setPortName(arduino_port_name);
-            if (arduino->open(QSerialPort::ReadOnly)) {
-                qDebug() << "Serial port opened successfully.";
-                //QMessageBox::information(this, "Port success", "successful opening serial port: " );
-
-            } else {
-                qDebug() << "Error opening serial port:" << arduino->errorString();
-                //QMessageBox::warning(this, "Port error", "Error opening serial port: " + arduino->errorString());
-            }
-
-            arduino->setBaudRate(QSerialPort::Baud9600);
-            arduino->setDataBits(QSerialPort::Data8);
-            arduino->setParity(QSerialPort::NoParity);
-            arduino->setStopBits(QSerialPort::OneStop);
-            arduino->setFlowControl(QSerialPort::NoFlowControl);
-           // QObject::connect(arduino, SIGNAL(readyRead()), this, SLOT(readData()));
-            QObject::connect(arduino, SIGNAL(readyRead()), this, SLOT(readFromSerial()));
-
-               data=arduino->readAll();
-
-//QMessageBox::information(this, "arduino data:", "data received \n " +data );
-
-        } else {
-            // Give error message if Arduino not available
-            //QMessageBox::warning(this, "Port error", "Couldn't find the Arduino!");
-        }
-
-
-
-
-
-
-
-   //*********************************arduino
-
-
-
-
 }
 
 EmployeeMainWindow::~EmployeeMainWindow()
 {
-    delete this;
+    delete ui;
 }
 
 void EmployeeMainWindow::on_ajouter_clicked()
@@ -121,33 +53,25 @@ void EmployeeMainWindow::on_ajouter_clicked()
 
     EMPLOYEE Employee(employee_id, employee_prenom, employee_mail, employee_role, employee_tel, employee_date_embauche, employee_datenaissance, employee_password);
 
-    if (!Employee.CreateEmployee()) {
-        QMessageBox::critical(nullptr, "Error", "Failed to add employee.");
-        return;
-    }
+    Employee.CreateEmployee();
 
     ui->tabb->setModel(Employee.ReadEmployee());
-    QMessageBox::information(nullptr, "Success", "Employee added successfully.");
 
 }
 
 void EmployeeMainWindow::on_delete_button_clicked()
 {
     QString employee_id = ui->id_lineEdit_delete->text();
-    if (!Employee.deleteEmployee(employee_id)) {
-        QMessageBox::critical(nullptr, "Error", "Failed to delete employee.");
-        return;
-    }
+    Employee.deleteEmployee(employee_id);
 
     ui->tabb->setModel(Employee.ReadEmployee());
-    QMessageBox::information(nullptr, "Success", "Employee deleted successfully.");
 }
 // In the constructor of EmployeeMainWindow
 
 
-void EmployeeMainWindow::on_list_all_button_clicked()
+void EmployeeMainWindow::on_search_clicked()
 {
-    //ui->tabb->setModel(Employee.ReadEmployee());
+
     QString searchName = ui->search_lineEdit->text();
 
     ui->tabb->setModel(Employee.searchEmployeebyName(searchName));
@@ -171,10 +95,10 @@ void EmployeeMainWindow::on_clear_all_button_clicked()
 
 void EmployeeMainWindow::on_Generate_PDF_clicked()
 {
-    QPdfWriter pdf("C:/Users/USER/Desktop/QtProjects/SmartTvChannelManagement-gestion_materiels (3)/SmartTvChannelManagement-gestion_materiels/employee.pdf");
+    QPdfWriter pdf("C:/Users/USER/Desktop/official_projectCPP_folder/integration finale/bien/integration - Copie/employee.pdf");
     QPainter painter(&pdf);
     int i = 4100;
-    const QImage image("C:/Users/USER/Desktop/QtProjects/SmartTvChannelManagement-gestion_materiels (3)/SmartTvChannelManagement-gestion_materiels/417529624_1870268480077915_5802465082538659099_n.png");
+    const QImage image("C:/Users/USER/Desktop/official_projectCPP_folder/integration finale/bien/integration - Copie/417529624_1870268480077915_5802465082538659099_n.png");
     const QPoint imageCoordinates(155,0);
     int width1 = 2000;
     int height1 = 2000;
@@ -230,7 +154,7 @@ QSqlQuery query = Employee.getEmployeeData();
     int reponse = QMessageBox::question(this, "Generate PDF", "PDF Saved. Do you want to open it?", QMessageBox::Yes | QMessageBox::No);
     if (reponse == QMessageBox::Yes)
     {
-        QDesktopServices::openUrl(QUrl::fromLocalFile("C:/Users/USER/Desktop/QtProjects/SmartTvChannelManagement-gestion_materiels (3)/SmartTvChannelManagement-gestion_materiels/employee.pdf"));
+        QDesktopServices::openUrl(QUrl::fromLocalFile("C:/Users/USER/Desktop/official_projectCPP_folder/integration finale/bien/integration - Copie/employee.pdf"));
         painter.end();
     }
     else
@@ -283,6 +207,19 @@ void EmployeeMainWindow::on_Sponsors_clicked(){
 
 }
 
+
+
+void EmployeeMainWindow::on_logout_clicked(){
+
+    this->close();
+
+    LoginMainWindow *chooseWindow = new LoginMainWindow(this);
+
+        chooseWindow->show();
+
+
+}
+
 void EmployeeMainWindow::on_equipement_clicked(){
 
     this->close();
@@ -325,4 +262,51 @@ void EmployeeMainWindow::on_shows_clicked()
 
     EmissionMainWindow * chooseWindow = new EmissionMainWindow(this);
     chooseWindow->show();
+}
+
+void EmployeeMainWindow::on_update_button_clicked()
+{
+    QString employee_id = ui->id_lineEdit_2->text();
+    QString employee_prenom = ui->name_lineEdit_2->text();
+    QString employee_mail = ui->host_lineEdit_2->text();
+    QString employee_role = ui->nbviews_lineEdit_2->text();
+    QString employee_tel = ui->genre_lineEdit_2->text();
+    QString employee_date_embauche = ui->date_lineEdit_2->text();
+    QString employee_datenaissance = ui->type_lineEdit_2->text();
+    QString employee_password = ui->duree_lineEdit_2->text();
+
+    EMPLOYEE Employee(employee_id, employee_prenom, employee_mail, employee_role, employee_tel, employee_date_embauche, employee_datenaissance, employee_password);
+
+    Employee.updateEmployee(employee_id);
+
+    ui->tabb->setModel(Employee.ReadEmployee());
+}
+
+void EmployeeMainWindow::on_pushButton_2_clicked()
+{
+    //ui->equip_tab->setModel(Equipmp.showEquipement());
+    ui->tabb->setModel(Employee.ReadEmployee());
+}
+
+void EmployeeMainWindow::on_clear_list_clicked()
+{
+    /*ui->id_lineEdit->clear();
+    ui->prenom_lineEdit->clear();
+    ui->mail_lineEdit->clear();
+    ui->role_lineEdit->clear();
+    ui->tel_lineEdit->clear();
+    ui->date_embauche_lineEdit->clear();
+    ui->datenaissance_lineEdit->clear();
+    ui->passwordlineEdit->clear();*/
+
+    int reply = QMessageBox::question(this, "Confirmation", "Are you sure you want to clear all lines in the table?", QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes) {
+        QSqlQuery query;
+        query.prepare("DELETE FROM EMPLOYEE");
+        if (!query.exec()) {
+            return;
+        }
+        ui->tabb->setModel(Employee.ReadEmployee());
+    }
+
 }

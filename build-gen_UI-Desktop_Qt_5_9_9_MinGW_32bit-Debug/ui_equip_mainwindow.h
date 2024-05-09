@@ -770,14 +770,14 @@ public:
 ""));
         equip_tab = new QTableView(frame_3);
         equip_tab->setObjectName(QStringLiteral("equip_tab"));
-        equip_tab->setGeometry(QRect(480, 170, 581, 271));
+        equip_tab->setGeometry(QRect(480, 170, 581, 261));
         equip_tab->setStyleSheet(QLatin1String("color:black;\n"
 " background-color: rgb(131, 179, 216);\n"
 "\n"
 ""));
         list_all_button = new QPushButton(frame_3);
         list_all_button->setObjectName(QStringLiteral("list_all_button"));
-        list_all_button->setGeometry(QRect(530, 400, 201, 71));
+        list_all_button->setGeometry(QRect(530, 420, 201, 71));
         list_all_button->setStyleSheet(QLatin1String("QPushButton{color: rgb(107, 189, 171);\n"
 "border-radius:20px;\n"
 "border: 1px solid rgb(107, 189, 171);\n"
@@ -791,7 +791,7 @@ public:
 "}"));
         clear_all_in_table = new QPushButton(frame_3);
         clear_all_in_table->setObjectName(QStringLiteral("clear_all_in_table"));
-        clear_all_in_table->setGeometry(QRect(790, 400, 201, 71));
+        clear_all_in_table->setGeometry(QRect(790, 420, 201, 71));
         clear_all_in_table->setStyleSheet(QLatin1String("QPushButton{color: rgb(107, 189, 171);\n"
 "border-radius:20px;\n"
 "border:1px solid rgb(107, 189, 171);\n"
@@ -813,12 +813,12 @@ public:
 ""));
         label_14 = new QLabel(frame_3);
         label_14->setObjectName(QStringLiteral("label_14"));
-        label_14->setGeometry(QRect(520, 410, 111, 51));
+        label_14->setGeometry(QRect(520, 430, 111, 51));
         label_14->setStyleSheet(QLatin1String("image:url(:/Dark_ones /eye.png);\n"
 "background:transparent;"));
         label_9 = new QLabel(frame_3);
         label_9->setObjectName(QStringLiteral("label_9"));
-        label_9->setGeometry(QRect(790, 420, 61, 31));
+        label_9->setGeometry(QRect(790, 440, 61, 31));
         label_9->setStyleSheet(QLatin1String("image:url(:/Dark_ones /poubelle.png);\n"
 "background:transparent;"));
         equip_tab->raise();

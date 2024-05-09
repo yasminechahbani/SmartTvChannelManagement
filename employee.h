@@ -45,7 +45,9 @@ public:
     QSqlQuery getEmployeeData();
     QSqlQuery getStatByroles();
     QSqlQueryModel* searchEmployeebyName(QString name);
+
     QString hashPassword(const QString& password);
+    bool updateEmployee(QString id);
 
 
 

@@ -156,19 +156,13 @@ void MainWindow::on_ajouter_clicked()
     {
         QString E_ID = ui->id_lineEdit_delete->text().trimmed();
 
-        if (E_ID.isEmpty()) {
-            QMessageBox::warning(nullptr, QObject::tr("Empty ID"), QObject::tr("Please enter an ID for deletion."), QMessageBox::Cancel);
-            return;
-        }
 
-        bool test = Equipmp.deleteEquipement(E_ID);
 
-        if (test) {
+        Equipmp.deleteEquipement(E_ID);
+
+
             ui->equip_tab->setModel(Equipmp.showEquipement());
-            QMessageBox::information(nullptr, QObject::tr("DELETE"), QObject::tr("Deletion done."), QMessageBox::Cancel);
-        } else {
-            QMessageBox::critical(nullptr, QObject::tr("DELETE"), QObject::tr("Deletion not done."), QMessageBox::Cancel);
-        }
+
     }
 
 
@@ -295,11 +289,11 @@ void MainWindow::on_clear_all_in_table_clicked()
 void MainWindow::on_Generate_PDF_clicked()
 {
 
-    QPdfWriter pdf("C:/Users/user/OneDrive/Documents/gen_UI/EQUIPEMENT.pdf");
+    QPdfWriter pdf("C:/Users/USER/Desktop/official_projectCPP_folder/integration finale/bien/integration - Copie/EQUIPEMENT.pdf");
 
            QPainter painter(&pdf);
            int i = 4100;
-           const QImage image("C:/Users/user/OneDrive/Documents/gen_UI/417529624_1870268480077915_5802465082538659099_n.png");
+           const QImage image("C:/Users/USER/Desktop/official_projectCPP_folder/integration finale/bien/integration - Copie/417529624_1870268480077915_5802465082538659099_n.png");
                        const QPoint imageCoordinates(155,0);
                        int width1 = 2000;
                        int height1 = 2000;
@@ -358,7 +352,7 @@ void MainWindow::on_Generate_PDF_clicked()
                   int reponse = QMessageBox::question(this, "Génerer PDF", "PDF Enregistré.\nVous voulez l'affichez ?", QMessageBox::Yes |  QMessageBox::No);
                   if (reponse == QMessageBox::Yes)
                   {
-                      QDesktopServices::openUrl( QUrl ::fromLocalFile("C:/Users/user/OneDrive/Documents/gen_UI/EQUIPEMENT.pdf"));
+                      QDesktopServices::openUrl( QUrl ::fromLocalFile("C:/Users/USER/Desktop/official_projectCPP_folder/integration finale/bien/integration - Copie/EQUIPEMENT.pdf"));
                       painter.end();
                   }
                   else
