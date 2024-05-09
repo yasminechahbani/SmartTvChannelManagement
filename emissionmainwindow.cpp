@@ -122,43 +122,56 @@ qDebug() << "Available ports:";
 
 void EmissionMainWindow::on_finger_clicked()
 {
-
     // Specify the path to your Python interpreter
-        QString pythonInterpreter = "C:/Users/USER/Desktop/official_projectCPP_folder/Hand-Tracker-main/.venv/Scripts/python.exe";
+    QString pythonInterpreter = "C:/Users/USER/Desktop/official_projectCPP_folder/Hand-Tracker-main/.venv/Scripts/python.exe";
 
-        // Specify the path to your Python script
-        QString pythonScriptPath = "C:/Users/USER/Desktop/official_projectCPP_folder/Hand-Tracker-main/Track/another-method/FingerCounter.py";
+    // Specify the path to your Python script
+    QString pythonScriptPath = "C:/Users/USER/Desktop/official_projectCPP_folder/Hand-Tracker-main/Track/another-method/FingerCounter.py";
 
+    // Create a QProcess object to start the Python script
+    QProcess pythonProcess;
 
-        // Create a QProcess object to start the Python script
-        QProcess pythonProcess;
+    // Start the Python script using the specified interpreter
+    pythonProcess.start(pythonInterpreter, QStringList() << pythonScriptPath);
 
-        // Start the Python script using the specified interpreter
-        pythonProcess.start(pythonInterpreter, QStringList() << pythonScriptPath);
+    // Check if the Python script was started successfully
+    if (!pythonProcess.waitForStarted()) {
+        qDebug() << "Failed to start Python script!";
+        return; // Exit the function if the script failed to start
+    }
 
-        // Check if the Python script was started successfully
-        if (!pythonProcess.waitForStarted()) {
-            qDebug() << "Failed to start Python script!";
-        }
+    // Wait for the Python script to finish
+    if (!pythonProcess.waitForFinished()) {
+        qDebug() << "Failed to finish Python script!";
+        return; // Exit the function if the script failed to finish
+    }
 
-        // Wait for the Python script to finish
-        if (!pythonProcess.waitForFinished()) {
-            qDebug() << "Failed to finish Python script!";
-
-        }
-
-        // Retrieve and print the output of the Python script
+    // Retrieve and print the output of the Python script
         QByteArray output = pythonProcess.readAllStandardOutput();
         qDebug() << "Python Script Output:" << output;
-        // Convert the byte array to an integer
-           int fingerCount = output.toInt();
 
-           // Convert the integer to a string
-           QString fingerCountString = QString::number(fingerCount);
+        // Convert the output to a QString
+        QString outputString = QString::fromUtf8(output).trimmed();
 
-           // Update your UI with the finger count
-           ui->nbfinger->setText("Finger Count: " + fingerCountString);
+        // Split the output string based on the '\r' delimiter
+        QStringList dataList = outputString.split("\r");
 
+        // Get the last item from the list (just before finishing the process)
+        QString lastData = dataList.last();
+
+        // Convert the last item to an integer
+        bool conversionOk;
+        int fingerCount = lastData.toInt(&conversionOk);
+        if (!conversionOk) {
+            qDebug() << "Failed to convert output to integer!";
+            return; // Exit the function if conversion fails
+        }
+
+        // Convert the integer to a string
+        QString fingerCountString = QString::number(fingerCount);
+
+        // Update your UI with the finger count
+        ui->nbfinger->setText("Finger Count: " + fingerCountString);
 }
 
 
