@@ -3037,6 +3037,43 @@ color:rgb(3, 43, 67);
       <string/>
      </property>
     </widget>
+    <widget class="QPushButton" name="shows_2">
+     <property name="geometry">
+      <rect>
+       <x>670</x>
+       <y>810</y>
+       <width>361</width>
+       <height>61</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">
+QPushButton {
+background-color: white;
+border-radius: 30px;
+padding: 5px 10px;
+color: black;
+border: 1px solid #3072B3;
+font: 75 12pt &quot;8514oem&quot;;
+}
+QPushButton:pressed {
+  background-color: #3072B3;
+  color: white;
+}
+QPushButton:hover {
+  background-color: #F0F0F0;
+  border: 1px solid #428BCA;
+}
+
+</string>
+     </property>
+     <property name="text">
+      <string>Shows</string>
+     </property>
+    </widget>
     <zorder>shows</zorder>
     <zorder>label_10</zorder>
     <zorder>label_12</zorder>
@@ -3058,6 +3095,7 @@ color:rgb(3, 43, 67);
     <zorder>showLogButton</zorder>
     <zorder>finger</zorder>
     <zorder>nbfinger</zorder>
+    <zorder>shows_2</zorder>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

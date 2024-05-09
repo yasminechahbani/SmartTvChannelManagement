@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_SponsorMainWindowFr_t {
-    QByteArrayData data[31];
-    char stringdata0[549];
+    QByteArrayData data[28];
+    char stringdata0[508];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -46,22 +46,19 @@ QT_MOC_LITERAL(11, 221, 15), // "on_stat_clicked"
 QT_MOC_LITERAL(12, 237, 25), // "on_checkContracts_clicked"
 QT_MOC_LITERAL(13, 263, 21), // "on_sendButton_clicked"
 QT_MOC_LITERAL(14, 285, 28), // "on_Sponsor_tabHeader_clicked"
-QT_MOC_LITERAL(15, 314, 18), // "onStartTimeChanged"
-QT_MOC_LITERAL(16, 333, 4), // "time"
-QT_MOC_LITERAL(17, 338, 16), // "onEndTimeChanged"
-QT_MOC_LITERAL(18, 355, 22), // "onSendSMSButtonClicked"
-QT_MOC_LITERAL(19, 378, 16), // "on_excel_clicked"
-QT_MOC_LITERAL(20, 395, 15), // "on_sort_clicked"
-QT_MOC_LITERAL(21, 411, 17), // "on_search_clicked"
-QT_MOC_LITERAL(22, 429, 21), // "on_use_return_clicked"
-QT_MOC_LITERAL(23, 451, 7), // "sendSMS"
-QT_MOC_LITERAL(24, 459, 9), // "recipient"
-QT_MOC_LITERAL(25, 469, 7), // "message"
-QT_MOC_LITERAL(26, 477, 20), // "onSMSRequestFinished"
-QT_MOC_LITERAL(27, 498, 14), // "QNetworkReply*"
-QT_MOC_LITERAL(28, 513, 5), // "reply"
-QT_MOC_LITERAL(29, 519, 14), // "on_sms_clicked"
-QT_MOC_LITERAL(30, 534, 14) // "on_eng_clicked"
+QT_MOC_LITERAL(15, 314, 22), // "onSendSMSButtonClicked"
+QT_MOC_LITERAL(16, 337, 16), // "on_excel_clicked"
+QT_MOC_LITERAL(17, 354, 15), // "on_sort_clicked"
+QT_MOC_LITERAL(18, 370, 17), // "on_search_clicked"
+QT_MOC_LITERAL(19, 388, 21), // "on_use_return_clicked"
+QT_MOC_LITERAL(20, 410, 7), // "sendSMS"
+QT_MOC_LITERAL(21, 418, 9), // "recipient"
+QT_MOC_LITERAL(22, 428, 7), // "message"
+QT_MOC_LITERAL(23, 436, 20), // "onSMSRequestFinished"
+QT_MOC_LITERAL(24, 457, 14), // "QNetworkReply*"
+QT_MOC_LITERAL(25, 472, 5), // "reply"
+QT_MOC_LITERAL(26, 478, 14), // "on_sms_clicked"
+QT_MOC_LITERAL(27, 493, 14) // "on_eng_clicked"
 
     },
     "SponsorMainWindowFr\0on_tableHeader_clicked\0"
@@ -74,7 +71,6 @@ QT_MOC_LITERAL(30, 534, 14) // "on_eng_clicked"
     "on_stat_clicked\0on_checkContracts_clicked\0"
     "on_sendButton_clicked\0"
     "on_Sponsor_tabHeader_clicked\0"
-    "onStartTimeChanged\0time\0onEndTimeChanged\0"
     "onSendSMSButtonClicked\0on_excel_clicked\0"
     "on_sort_clicked\0on_search_clicked\0"
     "on_use_return_clicked\0sendSMS\0recipient\0"
@@ -90,7 +86,7 @@ static const uint qt_meta_data_SponsorMainWindowFr[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      23,   14, // methods
+      21,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -98,29 +94,27 @@ static const uint qt_meta_data_SponsorMainWindowFr[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,  129,    2, 0x08 /* Private */,
-       4,    0,  132,    2, 0x08 /* Private */,
-       5,    0,  133,    2, 0x08 /* Private */,
-       6,    0,  134,    2, 0x08 /* Private */,
-       7,    0,  135,    2, 0x08 /* Private */,
-       8,    0,  136,    2, 0x08 /* Private */,
-       9,    0,  137,    2, 0x08 /* Private */,
-      10,    0,  138,    2, 0x08 /* Private */,
-      11,    0,  139,    2, 0x08 /* Private */,
-      12,    0,  140,    2, 0x08 /* Private */,
-      13,    0,  141,    2, 0x08 /* Private */,
-      14,    1,  142,    2, 0x08 /* Private */,
-      15,    1,  145,    2, 0x08 /* Private */,
-      17,    1,  148,    2, 0x08 /* Private */,
-      18,    0,  151,    2, 0x08 /* Private */,
-      19,    0,  152,    2, 0x08 /* Private */,
-      20,    0,  153,    2, 0x08 /* Private */,
-      21,    0,  154,    2, 0x08 /* Private */,
-      22,    0,  155,    2, 0x08 /* Private */,
-      23,    2,  156,    2, 0x08 /* Private */,
-      26,    1,  161,    2, 0x08 /* Private */,
-      29,    0,  164,    2, 0x08 /* Private */,
-      30,    0,  165,    2, 0x08 /* Private */,
+       1,    1,  119,    2, 0x08 /* Private */,
+       4,    0,  122,    2, 0x08 /* Private */,
+       5,    0,  123,    2, 0x08 /* Private */,
+       6,    0,  124,    2, 0x08 /* Private */,
+       7,    0,  125,    2, 0x08 /* Private */,
+       8,    0,  126,    2, 0x08 /* Private */,
+       9,    0,  127,    2, 0x08 /* Private */,
+      10,    0,  128,    2, 0x08 /* Private */,
+      11,    0,  129,    2, 0x08 /* Private */,
+      12,    0,  130,    2, 0x08 /* Private */,
+      13,    0,  131,    2, 0x08 /* Private */,
+      14,    1,  132,    2, 0x08 /* Private */,
+      15,    0,  135,    2, 0x08 /* Private */,
+      16,    0,  136,    2, 0x08 /* Private */,
+      17,    0,  137,    2, 0x08 /* Private */,
+      18,    0,  138,    2, 0x08 /* Private */,
+      19,    0,  139,    2, 0x08 /* Private */,
+      20,    2,  140,    2, 0x08 /* Private */,
+      23,    1,  145,    2, 0x08 /* Private */,
+      26,    0,  148,    2, 0x08 /* Private */,
+      27,    0,  149,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -135,15 +129,13 @@ static const uint qt_meta_data_SponsorMainWindowFr[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,    3,
-    QMetaType::Void, QMetaType::QTime,   16,
-    QMetaType::Void, QMetaType::QTime,   16,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,   24,   25,
-    QMetaType::Void, 0x80000000 | 27,   28,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   21,   22,
+    QMetaType::Void, 0x80000000 | 24,   25,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -168,23 +160,21 @@ void SponsorMainWindowFr::qt_static_metacall(QObject *_o, QMetaObject::Call _c, 
         case 9: _t->on_checkContracts_clicked(); break;
         case 10: _t->on_sendButton_clicked(); break;
         case 11: _t->on_Sponsor_tabHeader_clicked((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 12: _t->onStartTimeChanged((*reinterpret_cast< const QTime(*)>(_a[1]))); break;
-        case 13: _t->onEndTimeChanged((*reinterpret_cast< const QTime(*)>(_a[1]))); break;
-        case 14: _t->onSendSMSButtonClicked(); break;
-        case 15: _t->on_excel_clicked(); break;
-        case 16: _t->on_sort_clicked(); break;
-        case 17: _t->on_search_clicked(); break;
-        case 18: _t->on_use_return_clicked(); break;
-        case 19: _t->sendSMS((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
-        case 20: _t->onSMSRequestFinished((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
-        case 21: _t->on_sms_clicked(); break;
-        case 22: _t->on_eng_clicked(); break;
+        case 12: _t->onSendSMSButtonClicked(); break;
+        case 13: _t->on_excel_clicked(); break;
+        case 14: _t->on_sort_clicked(); break;
+        case 15: _t->on_search_clicked(); break;
+        case 16: _t->on_use_return_clicked(); break;
+        case 17: _t->sendSMS((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2]))); break;
+        case 18: _t->onSMSRequestFinished((*reinterpret_cast< QNetworkReply*(*)>(_a[1]))); break;
+        case 19: _t->on_sms_clicked(); break;
+        case 20: _t->on_eng_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-        case 20:
+        case 18:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -220,13 +210,13 @@ int SponsorMainWindowFr::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 23)
+        if (_id < 21)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 23;
+        _id -= 21;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 23)
+        if (_id < 21)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 23;
+        _id -= 21;
     }
     return _id;
 }

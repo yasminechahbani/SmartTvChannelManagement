@@ -188,8 +188,8 @@ public:
 "}\n"
 "QPushButton:hover {\n"
 "    background: rgb(107, 189, 171);\n"
-"	color:white;\n"
-"	\n"
+"        color:white;\n"
+"\n"
 "}"));
         label_83 = new QLabel(Dialog);
         label_83->setObjectName(QStringLiteral("label_83"));

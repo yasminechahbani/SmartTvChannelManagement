@@ -1,5 +1,6 @@
 INPUT(
 ./debug\QSortFilterProxyModel.o
+./debug\dialogg.o
 ./debug\emissionmainwindow.o
 ./debug\emissionmainwindowdarkmode.o
 ./debug\main.o
@@ -40,6 +41,7 @@ INPUT(
 ./debug\qrc_back.o
 ./debug\qrc_icone.o
 ./debug\qrc_iconeprofil.o
+./debug\moc_dialogg.o
 ./debug\moc_emissionmainwindow.o
 ./debug\moc_emissionmainwindowdarkmode.o
 ./debug\moc_smtp.o

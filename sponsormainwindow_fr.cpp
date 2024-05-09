@@ -313,26 +313,7 @@ void SponsorMainWindowFr::on_Sponsor_tabHeader_clicked(int index)
     ui->sponsor_tab->sortByColumn(index, Qt::AscendingOrder);
 }
 
-void SponsorMainWindowFr::onStartTimeChanged(const QTime &time)
-{
-    startTime = time;
-    if (endTime <= startTime)
-    {
-        endTime = startTime.addSecs(60); // Add one minute
-        ui->EndTimeEdit->setTime(endTime); // Update the end time edit widget
-    }
-}
 
-
-void SponsorMainWindowFr::onEndTimeChanged(const QTime &time)
-{
-    endTime = time;
-    if (endTime <= startTime)
-    {
-        startTime = endTime.addSecs(-60); // Subtract one minute from end time
-        ui->StartTimeEdit->setTime(startTime); // Update the start time edit widget
-    }
-}
 /*void SponsorMainWindowFr::sendEmail(const QString& recipient, const QString& subject, const QString& body)
 {
     // Set up Infobip API details
