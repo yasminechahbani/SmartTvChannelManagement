@@ -841,7 +841,7 @@ border:0px;</string>
        <string>TextLabel</string>
       </property>
      </widget>
-     <widget class="QToolButton" name="search_button">
+     <widget class="QToolButton" name="search">
       <property name="geometry">
        <rect>
         <x>970</x>
@@ -991,7 +991,7 @@ background:transparent;</string>
       <property name="geometry">
        <rect>
         <x>590</x>
-        <y>420</y>
+        <y>440</y>
         <width>201</width>
         <height>71</height>
        </rect>
@@ -1020,7 +1020,7 @@ QPushButton:hover {
       <property name="geometry">
        <rect>
         <x>570</x>
-        <y>430</y>
+        <y>450</y>
         <width>111</width>
         <height>51</height>
        </rect>
@@ -1065,40 +1065,6 @@ background:transparent;</string>
       </property>
       <property name="text">
        <string/>
-      </property>
-     </widget>
-     <widget class="QToolButton" name="sort_button">
-      <property name="geometry">
-       <rect>
-        <x>570</x>
-        <y>130</y>
-        <width>131</width>
-        <height>51</height>
-       </rect>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">
-    QToolButton {
-        background-color: #3F88C5;
-        border: none;
-        color: white;
-        font-weight: bold;
-        padding: 5px;
-        width: 30px;
-        height: 30px;
-        border-radius: 20px;
-font: 75 12pt &quot;8514oem&quot;;
-
-    }
-    QToolButton::menu-indicator {
-        image: none;
-    }</string>
-      </property>
-      <property name="text">
-       <string>sort by </string>
       </property>
      </widget>
      <widget class="QTabWidget" name="tabWidget">
@@ -2165,7 +2131,7 @@ QPushButton:hover {
       <property name="geometry">
        <rect>
         <x>810</x>
-        <y>420</y>
+        <y>440</y>
         <width>201</width>
         <height>71</height>
        </rect>
@@ -2213,7 +2179,7 @@ background:transparent;</string>
         <x>550</x>
         <y>190</y>
         <width>491</width>
-        <height>271</height>
+        <height>261</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -2224,13 +2190,12 @@ color:black;</string>
      <zorder>add_button</zorder>
      <zorder>search_lineEdit</zorder>
      <zorder>label_3</zorder>
-     <zorder>search_button</zorder>
+     <zorder>search</zorder>
      <zorder>Generate_PDF</zorder>
      <zorder>label_15</zorder>
      <zorder>label_9</zorder>
      <zorder>label_8</zorder>
      <zorder>label_18</zorder>
-     <zorder>sort_button</zorder>
      <zorder>tabWidget</zorder>
      <zorder>tableView_3</zorder>
      <zorder>stat</zorder>
@@ -2749,9 +2714,9 @@ background : transparent;
  <resources/>
  <connections>
   <connection>
-   <sender>search_button</sender>
+   <sender>search</sender>
    <signal>pressed()</signal>
-   <receiver>search_button</receiver>
+   <receiver>search</receiver>
    <slot>showMenu()</slot>
    <hints>
     <hint type="sourcelabel">

@@ -359,9 +359,11 @@ void invitesMainWindow::on_tableView_activated(const QModelIndex &index)
 
 void invitesMainWindow::on_pushButton_up_clicked()
 {
+
     Dialog m;
     //m.getinfo(ui->)
     m.exec();
+
 }
 
 

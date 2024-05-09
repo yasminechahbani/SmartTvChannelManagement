@@ -306,8 +306,8 @@ font: 75 12pt &quot;8514oem&quot;;
 }
 QPushButton:hover {
     background: rgb(107, 189, 171);
-	color:white;
-	
+        color:white;
+
 }</string>
    </property>
    <property name="text">

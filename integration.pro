@@ -38,6 +38,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     QSortFilterProxyModel.cpp \
+    dialogg.cpp \
     emissionmainwindow.cpp \
     emissionmainwindowdarkmode.cpp \
     main.cpp \
@@ -75,6 +76,7 @@ SOURCES += \
     fire.cpp
 
 HEADERS += \
+    dialogg.h \
     emission.h\
     connexion.h\
     emissionmainwindow.h \
@@ -112,6 +114,8 @@ HEADERS += \
 
 
 FORMS += \
+    dialog.ui \
+    dialogg.ui \
     fire.ui \
     emissionmainwindow.ui \
     emissionmainwindowdarkmode.ui \
@@ -120,7 +124,6 @@ FORMS += \
     Employeemainwindow.ui\
     calendrier.ui \
     chat.ui \
-    dialog.ui \
     form.ui \
     invitesmainwindow.ui \
     modif.ui \
