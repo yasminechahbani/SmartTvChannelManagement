@@ -1,106 +1,85 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "sponsor.h" // Include the sponsor header file
-#include <QMessageBox>
-#include <QSqlError>
-#include <QDebug>
+#include "ui_login.h"
+#include "Employeemainwindow.h"
+#include "employee.h"
+#include "ui_Employeemainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
+#include <QMessageBox>
+
+LoginMainWindow::LoginMainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui(new Ui::LoginMainWindow)
 {
     ui->setupUi(this);
-    // Connect signals and slots here if needed
-    ui->sponsor_tab->setModel(sponsor.showSponsor()); // Update to use the Sponsor class
+
+    // Connect the login button to the appropriate slot
+    //connect(ui->loginButton, &QPushButton::clicked, this, &LoginMainWindow::on_loginButton_clicked);
 }
 
-MainWindow::~MainWindow()
+LoginMainWindow::~LoginMainWindow()
 {
     delete ui;
 }
 
-// Validate form function remains the same if form fields are common
-
-void MainWindow::on_ajouter_clicked()
+void LoginMainWindow::on_loginButton_clicked()
 {
-    QString sponsor_id = ui->id_lineEdit->text();
-    QString sponsor_nom = ui->name_lineEdit->text();
-    QString sponsor_montant = ui->montant_lineEdit->text();
-    QString sponsor_tempsaffichage = ui->tempsaffichage_lineEdit->text();
-    QString sponsor_nb_totalaffichage = ui->nb_totalaffichage_lineEdit->text();
-    QString sponsor_etatcontrat = ui->etatcontrat_lineEdit->text();
+    // Retrieve username and password from the input fields
+    username = ui->employeeIdLineEdit->text();
+    password = ui->passwordLineEdit->text();
 
-    Sponsor sponsor(sponsor_id, sponsor_nom, sponsor_montant, sponsor_tempsaffichage, sponsor_nb_totalaffichage, sponsor_etatcontrat);
-
-    if (!sponsor.addSponsor()) {
-        QMessageBox::critical(nullptr, "Error", "Failed to add sponsor.");
-        return;
-    }
-
-    ui->sponsor_tab->setModel(sponsor.showSponsor());
-    QMessageBox::information(nullptr, "Success", "Sponsor added successfully.");
-}
-
-void MainWindow::on_delete_button_clicked()
-{
-    QString sponsor_id = ui->id_lineEdit_delete->text();
-    if (!sponsor.deleteSponsor(sponsor_id)) {
-        QMessageBox::critical(nullptr, "Error", "Failed to delete sponsor.");
-        return;
-    }
-
-    ui->sponsor_tab->setModel(sponsor.showSponsor());
-    QMessageBox::information(nullptr, "Success", "Sponsor deleted successfully.");
-}
-
-
-void MainWindow::on_list_all_button_clicked()
-{
-    ui->sponsor_tab->setModel(sponsor.showSponsor());
-}
-
-void MainWindow::on_clear_fields_add_clicked()
-{
-    ui->id_lineEdit->clear();
-    ui->name_lineEdit->clear();
-    ui->montant_lineEdit->clear();
-    ui->tempsaffichage_lineEdit->clear();
-    ui->nb_totalaffichage_lineEdit->clear();
-    ui->etatcontrat_lineEdit->clear();
-}
-
-void MainWindow::on_clear_all_in_table_clicked()
-{
-    int reply = QMessageBox::question(this, "Confirmation", "Are you sure you want to clear all lines in the table?", QMessageBox::Yes | QMessageBox::No);
-    if (reply == QMessageBox::Yes) {
-        QSqlQuery query;
-        query.prepare("DELETE FROM sponsor");
-        if (!query.exec()) {
-            QMessageBox::critical(this, "Error", "Failed to clear table.");
-            return;
-        }
-        ui->sponsor_tab->setModel(sponsor.showSponsor());
+    // Validate the credentials
+    if (validateCredentials(username, password)) {
+openMainInterface();
     }
 }
-void MainWindow::on_update_clicked()
+bool LoginMainWindow::validateCredentials(const QString &id, const QString &password)
 {
-    QString sponsor_id = ui->id_lineEdit_2->text();
-    QString sponsor_nom = ui->name_lineEdit_2->text();
-    QString sponsor_montant = ui->montant_lineEdit_2->text();
-    QString sponsor_tempsaffichage = ui->tempsaffichage_lineEdit_2->text();
-    QString sponsor_nb_totalaffichage = ui->nb_totalaffichage_lineEdit_2->text();
-    QString sponsor_etatcontrat = ui->etatcontrat_lineEdit_2->text();
+    // Perform validation here, e.g., check against a database or hardcoded values
+    // For demonstration, let's assume a hardcoded ID and password
+    QString expectedId = "admin";
+    QString expectedPassword = "admin";
 
-    Sponsor sponsor(sponsor_id, sponsor_nom, sponsor_montant, sponsor_tempsaffichage, sponsor_nb_totalaffichage, sponsor_etatcontrat);
-
-    if (!sponsor.updateSponsor(sponsor_id)) {
-        QMessageBox::critical(nullptr, "Error", "Failed to update sponsor.");
-        return;
-    }
-    else {
-        QMessageBox::information(nullptr, "Success", "Sponsor edited successfully.");
+    if (id.isEmpty()) {
+        QMessageBox::critical(this, "Login Failed", "Please enter an ID");
+        return false;
     }
 
-    ui->sponsor_tab->setModel(sponsor.showSponsor());
+    if (password.isEmpty()) {
+        QMessageBox::critical(this, "Login Failed", "Please enter a password");
+        return false;
+    }
+
+    if (id != expectedId) {
+        QMessageBox::critical(this, "Login Failed", "Invalid ID");
+        return false;
+    }
+
+    if (password != expectedPassword) {
+        QMessageBox::critical(this, "Login Failed", "Invalid password");
+        return false;
+    }
+
+    // If both ID and password are correct, show a success message
+    QMessageBox::information(this, "Login Success", "Login successful");
+
+
+    return true;
+
 }
 
+
+/*bool MainWindow::validateCredentials(const QString &username, const QString &password)
+{
+    // Perform validation here, e.g., check against a database or hardcoded values
+    // For demonstration, let's assume a hardcoded username and password
+    return (username == "admin" && password == "admin");
+}*/
+
+void LoginMainWindow::openMainInterface()
+{
+    this->close();
+
+    EmployeeMainWindow *chooseWindow = new EmployeeMainWindow(this);
+
+        chooseWindow->show();
+}

@@ -1,5 +1,7 @@
-
+#include "emissionmainwindow.h"
+#include "Employeemainwindow.h"
 #include "mainwindow.h"
+#include "mainwindow.cpp"
 #include <QMessageBox>
 #include <QApplication>
 //#include <QFrame>
@@ -8,12 +10,16 @@
 //#include <QVBoxLayout>
 //added
 //#include<QFile>
-//#include<QDebug>
+#include<QDebug>
+#include <QtSerialPort>
+#include <QSerialPortInfo>
+
 #include "connexion.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
+    //EmissionMainWindow w;
+    LoginMainWindow w;
     Connection c;
    bool test=c.createconnect();
    if (test)
@@ -26,8 +32,6 @@ int main(int argc, char *argv[])
        QMessageBox::critical(nullptr,QObject::tr("database is not open"),
                              QObject::tr("connection failed.\n"
                                          "Clicl cancel to exit ."), QMessageBox::Cancel);
-
-
 
 
 

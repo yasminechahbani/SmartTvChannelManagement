@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/iconeprofil ">
+        <file>icone.qrc</file>
+    </qresource>
+</RCC>

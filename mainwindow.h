@@ -1,33 +1,30 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "sponsor.h"
 #include <QMainWindow>
-#include <QObject>
 
-QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
-QT_END_NAMESPACE
+namespace Ui {
+    class LoginMainWindow;
+}
 
-class MainWindow : public QMainWindow
+class LoginMainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    explicit LoginMainWindow(QWidget *parent = nullptr);
+    ~LoginMainWindow();
 
 private slots:
-    void on_ajouter_clicked();
-    void on_delete_button_clicked();
-    void on_list_all_button_clicked();
-    void on_clear_fields_add_clicked();
-    void on_clear_all_in_table_clicked();
-    void on_update_clicked();
+    void on_loginButton_clicked();
 
 private:
-    Ui::MainWindow *ui;
-    Sponsor sponsor; // Instantiate the Sponsor class
+    Ui::LoginMainWindow *ui;
+    QString username;
+    QString password;
+
+    bool validateCredentials(const QString &id, const QString &password);
+    void openMainInterface();
 };
 
 #endif // MAINWINDOW_H

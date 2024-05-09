@@ -3,6 +3,7 @@
 #include<QDebug>
 
 
+
 Sponsor::Sponsor(QString id, QString nom, QString montant, QString tempsaffichage, QString nb_totalaffichage, QString etatcontrat)
 {
     sponsor_id = id;
@@ -78,4 +79,56 @@ bool Sponsor::updateSponsor(QString id)
     query.bindValue(":id", id);
     return query.exec();
 }
+QSqlQueryModel *Sponsor::Readsponsor()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+    model->setQuery("SELECT * FROM sponsor");
+    // Set header data here
+    return model;
+}
+QSqlQueryModel *Sponsor::searchsponsorByName(QString name)
+{
 
+    QSqlQueryModel *model = new QSqlQueryModel();
+    model->setQuery("SELECT * FROM sponsor WHERE sponsor_nom LIKE '%" + name + "%'");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("sponsor_id"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("sponsor_nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("sponsor_montant"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("sponsor_tempsaffichage"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("sponsor_nb_totalaffichage"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("sponsor_etatcontrat"));
+
+    return model;
+}
+QSqlQuery Sponsor::getSPONSORData()
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM sponsor");
+    query.exec();
+    return query;
+}
+QSqlQuery Sponsor::getStatByTempsAffichage()
+{
+    QSqlQuery query;
+    query.exec("SELECT sponsor_tempsaffichage, COUNT(*) FROM sponsor GROUP BY sponsor_tempsaffichage");
+    return query;
+}
+QSqlQuery Sponsor::getSponsorsWithNonValideContract()
+{
+    QSqlQuery query;
+    query.prepare("SELECT sponsor_id, sponsor_nom FROM sponsor WHERE sponsor_etatcontrat = 'non valide'");
+    query.exec();
+    return query;
+}
+
+
+QSqlQueryModel* Sponsor::getAllSponsorsSorted()
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+    QString sqlQuery = "SELECT * FROM sponsor ORDER BY sponsor_nom ASC";
+    model->setQuery(sqlQuery);
+    return model;
+
+
+
+}

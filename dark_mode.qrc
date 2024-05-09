@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>mainwindow_dark_mode.ui</file>
+    </qresource>
+</RCC>

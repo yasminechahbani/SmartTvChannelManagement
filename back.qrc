@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>backui.jpg</file>
+    </qresource>
+    <qresource prefix="/new/prefix2"/>
+</RCC>
